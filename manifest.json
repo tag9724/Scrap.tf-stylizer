@@ -3,7 +3,7 @@
 
     "name": "Scrap.tf stylizer",
     "description": "This extension give more features for scrap.tf",
-    "version": "1.0.1",
+    "version": "1.0.2",
 
     "icons": {
         "16": "img/icon.png",
@@ -26,10 +26,6 @@
     }, {
         "matches": ["*://*.scrap.tf/raffles/*"],
         "js": ["js/raffle.js"]
-    }, {
-        "matches": ["*://*.scrap.tf/partswap"],
-        "js": ["js/lib/inject.js", "js/IN_partswap.js"],
-        "css": ["css/partswap.css"]
     }],
     "web_accessible_resources": [
         "js/inject/*",

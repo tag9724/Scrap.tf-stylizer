@@ -1,8 +1,0 @@
-.plusBtn {
-   float: right;
-   cursor: pointer;
-   margin-top: 10px;
-}
-.plusBtn:before {
-   font-size: 24px;
-}
