@@ -19,7 +19,7 @@ Some features was added :
 
 * "Reserve all" buttons on partswap section
 
-![alt tag](http://i.imgur.com/34PsrbM.png)
+![alt tag](http://i.imgur.com/HzMIHI2.png)
 
 * List of reclaimed items on ended raffles
 
