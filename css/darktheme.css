@@ -143,9 +143,6 @@ nav .iconic:before {
 .raffle-commenters .comment-container:nth-child(even) {
    background: #191919 !important;
 }
-.raffle-commenters .comment-container div {
-   padding: 5px 5px;
-}
 .form-group.focus .input-group-btn .btn, .input-group.focus .input-group-btn .btn {
    color: #cacaca;
    background-color: #34495e !important;
