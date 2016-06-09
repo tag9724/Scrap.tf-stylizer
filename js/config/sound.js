@@ -1,0 +1,70 @@
+/* Load Current configuration */
+
+function StyleApply(res) {
+    // Remove .curr to all
+    var rmAll = SOUND.querySelectorAll('input');
+    for (let i = 0, len = rmAll.length; i < len; i++) rmAll[i].classList.remove('curr');
+
+    // Change the style of this element
+    if (res.soundSelected && res.soundSelected.indexOf('#') == 0) {
+        SOUND.querySelector('input[value="' + res.soundSelected + '"]').classList.add('curr');
+    } else {
+        var url = SOUND.querySelector('.ownSoundURL');
+        url.classList.add('curr');
+        // Display the saved url
+        (res.sound) ? url.value = res.sound: "";
+    }
+}
+
+chrome.storage.sync.get(["sound", "soundSelected"], StyleApply);
+
+/* Set the configuration */
+
+const SOUND = document.querySelector('.block.sound');
+const SOUND_FORM = SOUND.querySelector('form');
+
+function SaveSound(url, choosen) {
+    chrome.storage.sync.set({
+        sound: url,
+        soundSelected: choosen
+    }, function() {
+        StyleApply({
+            soundSelected: choosen
+        });
+    });
+}
+
+// Magic appear here
+
+function ChooseSound(ev) {
+    console.log(ev);
+    // Preselected sounds
+    if (ev.target.type == "button") {
+        // Play the sound
+        var playSound = document.createElement('audio');
+        playSound.setAttribute('src', chrome.extension.getURL('mp3/' + ev.target.name + '.mp3'));
+        playSound.play();
+        // Save the sound configuration
+        SaveSound(chrome.extension.getURL('mp3/' + ev.target.name + '.mp3'), ev.target.value);
+    }
+}
+
+function SubmitSound(ev) {
+
+    ev.preventDefault();
+
+    var url = SOUND_FORM.querySelector('.ownSoundURL').value;
+
+    // Play the sound
+    if (url != "") {
+        var playSound = document.createElement('audio');
+        playSound.setAttribute('src', url);
+        playSound.play();
+    }
+    // Save the sound
+    SaveSound(url, "");
+}
+
+// Add event on SOUND ( children )
+SOUND.addEventListener("click", ChooseSound);
+SOUND_FORM.addEventListener("submit", SubmitSound);

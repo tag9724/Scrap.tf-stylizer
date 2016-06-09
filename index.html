@@ -1,0 +1,55 @@
+<!doctype html>
+
+<html>
+
+<head>
+   <link rel="stylesheet" href="css/popup.css">
+</head>
+
+<body>
+   <div id="content">
+      <!-- Apply a dark template -->
+      <div class="block dark">
+         <!-- Dark theme -->
+         <div class="box formcheck">
+            <span>Use Dark theme : </span>
+            <input type="checkbox">
+         </div>
+      </div>
+      <!-- Modify the default Scratf sound notification -->
+      <div class="block sound">
+         <h3>Choose your notification sound</h3>
+         <!-- User own url -->
+         <form class="box formtxt">
+            <input type="text" placeholder="mp3 url ( left blank for the default scrap.tf sound )" class="ownSoundURL">
+            <input type="submit" value="OK" />
+         </form>
+         <!-- Preselected sounds -->
+         <div class="box formbtn">
+            <h4>You can also choose one of these sounds</h4>
+            <input type="button" value="#1" name="tuturu">
+            <input type="button" value="#2" name="Abduction_swish">
+            <input type="button" value="#3" name="yeah">
+            <input type="button" value="#4" name="inceptionbutton">
+         </div>
+         <div class="box formbtn">
+            <a target="blank" href="https://www.myinstants.com/">You can also found a sound here</a>
+         </div>
+      </div>
+      <!-- Apply a custom background -->
+      <div class="block back">
+         <h3>Change the scrap.tf default background</h3>
+         <!-- User own url -->
+         <form class="box formtxt">
+            <input type="text" placeholder="The background url goes here" class="ownBackURL">
+            <input type="submit" value="OK" />
+         </form>
+      </div>
+   </div>
+   </div>
+   <script src="js/config/darktheme.js"></script>
+   <script src="js/config/sound.js"></script>
+   <script src="js/config/background.js"></script>
+</body>
+
+</html>
