@@ -24,3 +24,7 @@ http://i.imgur.com/34PsrbM.png
 * List of reclaimed items on ended raffles
 
 http://i.imgur.com/Vq6sczO.png
+
+###Chrome web store
+
+https://chrome.google.com/webstore/detail/scraptf-stylizer/gjejbbmaadafncfilaidnlbchdlppggg
