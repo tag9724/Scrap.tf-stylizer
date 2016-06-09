@@ -1,6 +1,6 @@
 #ScrapTF stylizer
 
-##A simple chrome/opera addon who provides some improvements for Scrap.tf
+###A simple chrome/opera addon who provides some improvements for Scrap.tf
 
 In options you can :
 
