@@ -1,5 +1,5 @@
 var ended = document.querySelector("#pid-viewraffle > div.container > div.welcome-overlay-container > div > div.row.raffle-box-row > div.col-sm-7.raffle-info-col > dl > dd.raffle-time-left");
-var isEnded = (ended) ? ended.innerHTML : false;
+var isEnded = (ended) ? ended.dataset.time : false;
 
 if (isEnded == "Raffle Ended") {
     // Nombre de gagnants
