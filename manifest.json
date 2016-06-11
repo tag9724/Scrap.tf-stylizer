@@ -3,7 +3,7 @@
 
     "name": "Scrap.tf stylizer",
     "description": "This extension give more features for scrap.tf",
-    "version": "1.0.3",
+    "version": "1.0.4",
 
     "icons": {
         "16": "img/icon.png",
@@ -16,7 +16,7 @@
         "default_title": "Scrap.tf stylizer"
     },
     "content_scripts": [{
-        "matches": ["*://*.scrap.tf/*"],
+        "matches": ["*://scrap.tf/*", "*://dev.scrap.tf/*"],
         "js": ["js/main.js"],
         "run_at": "document_start"
     }, {

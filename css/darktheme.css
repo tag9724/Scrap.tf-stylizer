@@ -28,17 +28,17 @@ html {
 .navbar {
    background: #000 !important;
 }
-.navbar-default .navbar-nav > li > a {
+.navbar-default .navbar-nav> li> a {
    color: #5e84ab !important;
 }
-#navbar-collapse-01 > ul > li > a:not(.nav-userdropdown):hover, #navbar-collapse-01 > ul > li > a:not(.nav-userdropdown):focus, .navbar .nav ul a:hover {
+#navbar-collapse-01> ul> li> a:not(.nav-userdropdown):hover, #navbar-collapse-01> ul> li> a:not(.nav-userdropdown):focus, .navbar .nav ul a:hover {
    background-color: #34495e !important;
    color: #eee !important;
 }
 .dropdown-menu, .select2-drop {
    background-color: #000000 !important;
 }
-.yamm-content li > a {
+.yamm-content li> a {
    color: #5e84ab !important;
 }
 nav .iconic:before {
@@ -59,7 +59,7 @@ nav .iconic:before {
 .welcome-status-bg {
    background: #000 !important;
 }
-.panel-info > .panel-heading, .panel-success>.panel-heading, .panel-danger>.panel-heading {
+.panel-info> .panel-heading, .panel-success>.panel-heading, .panel-danger>.panel-heading {
    background-color: #000000 !important;
    border-color: #252525 !important;
    color: #cacaca !important;
@@ -155,34 +155,34 @@ nav .iconic:before {
 
 /* Stats bots */
 
-.nav-pills > li > a, .btn-primary {
+.nav-pills> li> a, .btn-primary {
    background-color: #34495e !important;
    color: #cacaca !important;
    border: 1px solid #34495e !important;
 }
-.nav-pills > li > a:hover, .nav-pills > li > a:focus, .nav-pills > li.active > a, .nav-pills > li.open > a, .nav-pills > li.active > a:hover, .nav-pills > li.open > a:hover {
+.nav-pills> li> a:hover, .nav-pills> li> a:focus, .nav-pills> li.active> a, .nav-pills> li.open> a, .nav-pills> li.active> a:hover, .nav-pills> li.open> a:hover {
    background-color: #151515 !important;
    color: #34495e !important;
 }
-.nav-pills > li.active > a, .nav-pills > li.open > a, .nav-pills > li.active > a:hover, .nav-pills > li.open > a:hover, .btn-primary:active, .btn-primary.active, .open > .dropdown-toggle.btn-primary, .btn-primary:hover, .btn-primary.hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open > .dropdown-toggle.btn-primary {
+.nav-pills> li.active> a, .nav-pills> li.open> a, .nav-pills> li.active> a:hover, .nav-pills> li.open> a:hover, .btn-primary:active, .btn-primary.active, .open> .dropdown-toggle.btn-primary, .btn-primary:hover, .btn-primary.hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open> .dropdown-toggle.btn-primary {
    background-color: #151515 !important;
    color: #34495e !important;
 }
-.dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
+.dropdown-menu> li> a:hover, .dropdown-menu> li> a:focus {
    color: #cacaca !important;
    background-color: #34495e !important;
 }
-.table-bordered, .table-bordered > thead > tr > th, .table-bordered > tbody > tr > th, .table-bordered > tfoot > tr > th, .table-bordered > thead > tr > td, .table-bordered > tbody > tr > td, .table-bordered > tfoot > tr > td {
+.table-bordered, .table-bordered> thead> tr> th, .table-bordered> tbody> tr> th, .table-bordered> tfoot> tr> th, .table-bordered> thead> tr> td, .table-bordered> tbody> tr> td, .table-bordered> tfoot> tr> td {
    border-color: #353535 !important;
 }
-div[rel="tooltip"], #butt_list > div > table > tbody > tr > td > div {
+div[rel="tooltip"], #butt_list> div> table> tbody> tr> td> div {
    color: #eee !important;
    border: 1px solid #555 !important;
 }
-div[rel="tooltip"] > div, #butt_list > div > table > tbody > tr > td > div > div {
+div[rel="tooltip"]> div, #butt_list> div> table> tbody> tr> td> div> div {
    background: #333333 !important;
 }
-div[rel="tooltip"] > div > div:nth-child(1), #butt_list > div > table > tbody > tr > td > div > div > div:nth-child(1) {
+div[rel="tooltip"]> div> div:nth-child(1), #butt_list> div> table> tbody> tr> td> div> div> div:nth-child(1) {
    background: #000 !important;
 }
 .bank-items {
@@ -268,12 +268,12 @@ input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
 .modal.in .modal-dialog {
    margin: auto !important;
 }
-body > div:not(.modal), nav {
+body> div:not(.modal), nav {
    -webkit-filter: blur(0px) grayscale(0%);
    filter: blur(0px) grayscale(0%);
    transition: 0.4s ease-out;
 }
-.modal-open > div:not(.modal), .modal-open nav {
+.modal-open> div:not(.modal), .modal-open nav {
    -webkit-filter: blur(2px) grayscale(80%);
    filter: blur(2px) grayscale(80%);
 }

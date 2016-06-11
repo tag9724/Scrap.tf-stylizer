@@ -27,3 +27,4 @@
 **v1.0.3**
 
 - Improved filters in weapons / skins / stranges banking
+- fixed bug : chat settings don't appear
