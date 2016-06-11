@@ -27,4 +27,17 @@
 **v1.0.3**
 
 - Improved filters in weapons / skins / stranges banking
+
+**v1.0.4**
+
 - fixed bug : chat settings don't appear
+
+**v1.0.5**
+
+- fixed bug : some items don't appear with new filters
+
+**v1.0.6**
+
+- fixed bug : slots filters array debugged
+- prevent bug : added config version
+- added filters for user backpack ( items selection payement )

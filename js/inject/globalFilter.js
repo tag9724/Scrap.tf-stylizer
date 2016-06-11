@@ -2,8 +2,13 @@
 
 class FILTER {
     constructor() {
+        // For debugging the saved configuration
+        this.saveVersion = 3;
         // Select allitems & classes box
-        this.items = document.querySelectorAll('#buy-container div .item');
+        this.buyContainer = document.getElementById('buy-container');
+        this.buyItems = document.querySelectorAll('#buy-container div .item');
+        // User backpack
+        this.sellContainer = document.getElementById('sell-container');
         this.classes = document.getElementById('classes');
 
         // Get page path
@@ -35,11 +40,14 @@ class FILTER {
             }
         }.bind(this), 250);
 
-        // List of visible items
+        // List of visible items in bot inventory
         this.botItems = document.createElement('span');
         document.querySelector('#buy-container > div.inv-hint > i18n').appendChild(this.botItems);
+        // List of visible items in user inventory
+        this.userItems = document.createElement('span');
+        document.querySelector('#sell-container > div.inv-hint > i18n').appendChild(this.userItems);
 
-        // Ineject extras buttons for filtering results
+        // Inject extras buttons for filtering results
         this.InjectFilters();
 
         // Reset events
@@ -134,11 +142,18 @@ class FILTER {
         // Add the button
         clearbtn.insertAdjacentElement('beforeBegin', this.clearbtn);
 
+        /* Items payement */
+
+        this.payementBtn = document.querySelector('#reverse-header > div.rev-filters > div.row.text-center > div.pull-right.text-right > button.btn.btn-embossed.btn-primary.btn-trade.btn-stage2');
+        this.payementBtn.addEventListener('click', function() {
+            this.sellUserInvDisplayed = true;
+            this.ApplyFilter();
+        }.bind(this));
     }
     InjectFilters() {
         // TODO
     }
-    Filters(item) {
+    Filters(item, ingnoreDupes) {
 
         // Query Search
         if (!new RegExp("(" + this.filter.query + ")", "i").test(item.dataset.title)) {
@@ -147,7 +162,7 @@ class FILTER {
         }
 
         // Hide items in my inventory
-        if (this.filter.hideDupes && this.myInventory[item.dataset.defindex]) {
+        if (!ingnoreDupes && this.filter.hideDupes && this.myInventory[item.dataset.defindex]) {
             item.classList.add('rm');
             return 0;
         }
@@ -169,11 +184,24 @@ class FILTER {
         return true;
     }
     ApplyFilter() {
-        for (var i = 0, displayed = 0, len = this.items.length; i < len; i++) {
-            displayed += this.Filters(this.items[i]);
+        // Buy container
+        if (!this.sellUserInvDisplayed) {
+            for (var i = 0, displayed = 0, len = this.buyItems.length; i < len; i++) {
+                displayed += this.Filters(this.buyItems[i], false);
+            }
+            // Display the number of available items
+            this.botItems.innerHTML = '(' + displayed + ' / ' + i + ')';
         }
-        // Display the number of available items
-        this.botItems.innerHTML = '(' + displayed + ' / ' + i + ')';
+        // Sell container
+        else {
+            this.sellItems = this.sellContainer.querySelectorAll('#sell-container div .item');
+            for (var i = 0, displayed = 0, len = this.sellItems.length; i < len; i++) {
+                displayed += this.Filters(this.sellItems[i], true);
+            }
+            // Display the number of available items
+            this.userItems.innerHTML = '(' + displayed + ' / ' + i + ')';
+        }
+
         // And Save filter
         this.SaveFilter();
     }
@@ -200,7 +228,7 @@ class FILTER {
             ScrapTF.Inventory.ToggleFilters();
             var savedConf = JSON.parse(localStorage.getItem(this.filterType));
             // Return datas
-            if (savedConf.version == 2) {
+            if (savedConf.version == this.saveVersion) {
                 return savedConf;
             } else {
                 return this.DefaultFilter();
@@ -216,7 +244,7 @@ class FILTER {
     }
     DefaultFilter() {
         return {
-            version: 2,
+            version: this.saveVersion,
             lvlMax: 100,
             lvlMin: 0,
             hideDupes: false,

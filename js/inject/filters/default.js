@@ -48,7 +48,7 @@ FILTER.prototype.SelectClasse = function(ev) {
             }
         }
     }
-    console.log(this.classesList, this.filter.classes);
+
     // Apply changes
     this.ApplyFilter();
 };
@@ -62,18 +62,23 @@ FILTER.prototype.SelectWeaponSlot = function(ev) {
         var target = ev.target.parentElement;
     }
 
-    // Remove the element
-    if (target.classList.contains('selected') > 0) {
+    // // Remove the element
+    if (target.classList.contains('selected')) {
         target.classList.remove('selected');
-        this.filter.slot.splice(this.filter.slot.indexOf(selected), 1);
     }
     // Add the element
     else {
-        this.filter.slot.push(selected);
-        // display css
         target.classList.add('selected');
     }
-    console.log(this.slotList, this.filter.slot);
+
+    this.filter.slot = ["multi"];
+
+    for (let i = 10, len = this.classesAndSlot.length; i < len; i++) {
+        if (this.classesAndSlot[i].classList.contains('selected')) {
+            this.filter.slot.push(this.classesAndSlot[i].dataset.slot);
+        }
+    }
+
     // Apply changes
     this.ApplyFilter();
 };
