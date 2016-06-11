@@ -1,0 +1,12 @@
+#classes li {
+   opacity: 0.5;
+}
+#classes .selected {
+   opacity: 1;
+}
+.item {
+   display: block !important;
+}
+.item.rm {
+   display: none !important;
+}
