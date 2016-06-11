@@ -23,7 +23,7 @@ FILTER.prototype.SelectClasse = function(ev) {
             this.classesAndSlot[i].classList.remove('selected');
         }
         // Reset this filter (all classes)
-        this.filter.classes = this.classesList;
+        this.filter.classes = this.classesList.slice();
     } else {
         // Remove the element
         if (target.classList.contains('selected') > 0) {
@@ -31,23 +31,24 @@ FILTER.prototype.SelectClasse = function(ev) {
             this.filter.classes.splice(this.filter.classes.indexOf(selected), 1);
             target.classList.remove('selected');
             // no classes selected
-            if (!this.filter.classes[0]) {
+            if (!this.filter.classes[1]) {
                 this.classesAndSlot[0].classList.add('selected');
                 // Reset this filter (all classes)
-                this.filter.classes = this.classesList;
+                this.filter.classes = this.classesList.slice();
             }
         }
         // Add this element
         else {
             target.classList.add('selected');
             this.classesAndSlot[0].classList.remove('selected');
-            if (this.filter.classes.length >= 9) {
-                this.filter.classes = [selected];
+            if (this.filter.classes.length >= 10) {
+                this.filter.classes = ["multi", selected];
             } else {
                 this.filter.classes.push(selected);
             }
         }
     }
+    console.log(this.classesList, this.filter.classes);
     // Apply changes
     this.ApplyFilter();
 };
@@ -65,22 +66,14 @@ FILTER.prototype.SelectWeaponSlot = function(ev) {
     if (target.classList.contains('selected') > 0) {
         target.classList.remove('selected');
         this.filter.slot.splice(this.filter.slot.indexOf(selected), 1);
-
-        // No slot selected
-        if (this.filter.slot.length == 0) {
-            this.filter.slot = this.slotList;
-        }
     }
     // Add the element
     else {
-        if (this.filter.slot.length >= 4) {
-            this.filter.slot = [selected];
-        } else {
-            this.filter.slot.push(selected);
-        }
+        this.filter.slot.push(selected);
         // display css
         target.classList.add('selected');
     }
+    console.log(this.slotList, this.filter.slot);
     // Apply changes
     this.ApplyFilter();
 };

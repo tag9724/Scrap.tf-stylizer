@@ -10,8 +10,8 @@ class FILTER {
         this.filterType = window.location.pathname.split('/')[1];
 
         // Default classes & slot
-        this.classesList = ["scout", "soldier", "pyro", "demoman", "heavy", "engineer", "medic", "sniper", "spy"];
-        this.slotList = ["primary", "secondary", "melee", "pda"];
+        this.classesList = ["multi", "scout", "soldier", "pyro", "demoman", "heavy", "engineer", "medic", "sniper", "spy"];
+        this.slotList = ["all", "primary", "secondary", "melee", "pda"];
 
         // Type of filters we need
         this.filtersAvailables = {
@@ -20,16 +20,6 @@ class FILTER {
             "items": ["level"],
             "skins": [],
             "stranges": ["levels"]
-        };
-
-        //Define and get current filters
-        this.defaultFilter = {
-            lvlMax: 100,
-            lvlMin: 0,
-            hideDupes: false,
-            classes: this.classesList,
-            slot: this.slotList,
-            query: ""
         };
 
         this.filter = this.LoadSavedFilters();
@@ -110,10 +100,10 @@ class FILTER {
         }
 
         // Apply css
-        if (this.filter.classes.length >= 9) {
+        if (this.filter.classes.length >= 10) {
             this.classesAndSlot[0].classList.add('selected');
         } else {
-            for (let i = 0; i < 10; i++) {
+            for (let i = 1; i < 10; i++) {
 
                 if (this.filter.classes.indexOf(this.classesAndSlot[i].dataset.class) >= 0) {
                     this.classesAndSlot[i].classList.add('selected');
@@ -121,15 +111,13 @@ class FILTER {
             }
         }
 
-        if (this.filter.slot.length < 4) {
-            for (let i = 10; i < 14; i++) {
-                if (this.filter.slot.indexOf(this.classesAndSlot[i].dataset.slot) >= 0) {
-                    this.classesAndSlot[i].classList.add('selected');
-                }
+        for (let i = 10; i < 14; i++) {
+            if (this.filter.slot.indexOf(this.classesAndSlot[i].dataset.slot) >= 0) {
+                this.classesAndSlot[i].classList.add('selected');
             }
         }
 
-        /* Add the reset filters bun */
+        /* Add the reset filters button */
         var clearbtn = document.getElementById('ClearSelectedReverse');
         this.clearbtn = clearbtn.cloneNode();
         this.clearbtn.removeAttribute('id');
@@ -165,13 +153,13 @@ class FILTER {
         }
 
         //Classes search
-        if (this.filter.classes.indexOf(item.dataset.classes) < 0) {
+        if (!new RegExp("(" + item.dataset.classes.replace(/ /g, '|') + ")", "i").test(this.filter.classes)) {
             item.classList.add('rm');
             return 0;
         }
 
         //Slot search
-        if (this.filter.slot.indexOf(item.dataset.slot.replace(/[0-9]/g, "")) < 0) {
+        if (this.filter.slot.indexOf(item.dataset.slot.replace(/[0-9]/g, "").replace(/(building)/g, "pda")) < 0) {
             item.classList.add('rm');
             return 0;
         }
@@ -185,21 +173,24 @@ class FILTER {
             displayed += this.Filters(this.items[i]);
         }
         // Display the number of available items
-        this.botItems.innerHTML = '(' + displayed + ')';
+        this.botItems.innerHTML = '(' + displayed + ' / ' + i + ')';
         // And Save filter
         this.SaveFilter();
     }
     ResetFilters() {
         // reset filter list
-        this.filter = Object.assign({}, this.defaultFilter);
+        this.filter = this.DefaultFilter();
 
         // Reset css Style
         this.query.value = "";
         this.hideInv.checked = false;
 
         this.classesAndSlot[0].classList.add('selected');
-        for (let i = 1, len = this.classesAndSlot.length; i < len; i++) {
+        for (let i = 1; i < 10; i++) {
             this.classesAndSlot[i].classList.remove('selected');
+        }
+        for (let i = 10; i < 14; i++) {
+            this.classesAndSlot[i].classList.add('selected');
         }
 
         this.ApplyFilter();
@@ -207,16 +198,32 @@ class FILTER {
     LoadSavedFilters() {
         if (localStorage && localStorage.getItem(this.filterType)) {
             ScrapTF.Inventory.ToggleFilters();
+            var savedConf = JSON.parse(localStorage.getItem(this.filterType));
             // Return datas
-            return JSON.parse(localStorage.getItem(this.filterType));
+            if (savedConf.version == 2) {
+                return savedConf;
+            } else {
+                return this.DefaultFilter();
+            }
         } else {
-            return Object.assign({}, this.defaultFilter);
+            return this.DefaultFilter();
         }
     }
     SaveFilter() {
         if (localStorage) {
             localStorage.setItem(this.filterType, JSON.stringify(this.filter));
         }
+    }
+    DefaultFilter() {
+        return {
+            version: 2,
+            lvlMax: 100,
+            lvlMin: 0,
+            hideDupes: false,
+            classes: this.classesList.slice(),
+            slot: this.slotList.slice(),
+            query: ""
+        };
     }
 };
 
