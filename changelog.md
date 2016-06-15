@@ -42,6 +42,8 @@
 - prevent bug : added config version
 - added filters for user backpack ( items selection payement )
 
+## 15 June 2016
+
 **v1.0.7**
 
 - Fixed bug with blur in Dark theme mode
