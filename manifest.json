@@ -3,7 +3,7 @@
 
     "name": "Scrap.tf stylizer",
     "description": "This extension give more features for scrap.tf",
-    "version": "1.0.6",
+    "version": "1.0.7",
 
     "icons": {
         "16": "img/icon.png",
@@ -17,7 +17,7 @@
     },
     "content_scripts": [{
         "matches": ["*://scrap.tf/*", "*://dev.scrap.tf/*"],
-        "js": ["js/main.js"],
+        "js": ["js/main.js", "js/DisplayFavoritesRaffles.js"],
         "run_at": "document_start"
     }, {
         "matches": ["*://*.scrap.tf/raffles/create"],
@@ -25,7 +25,12 @@
         "css": ["css/createRaffle.css"]
     }, {
         "matches": ["*://*.scrap.tf/raffles/*"],
-        "js": ["js/raffle.js"]
+        "js": ["js/raffle.js", "js/FavoritesRaffles.js"],
+        "css": ["css/raffles.css"]
+    }, {
+        "matches": ["*://*.scrap.tf/raffles/favorites"],
+        "css": ["css/favoritesRaffles.css"],
+        "run_at": "document_start"
     }, {
         "matches": ["*://*.scrap.tf/weapons/*", "*://*.scrap.tf/skins/*", "*://*.scrap.tf/stranges/*"],
         "js": ["js/lib/injectMulti.js", "js/IN_globalFilter.js"],
@@ -40,6 +45,7 @@
     ],
     "permissions": [
         "storage",
+        "unlimitedStorage",
         "*://*.scrap.tf/*"
     ]
 }

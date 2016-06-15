@@ -268,12 +268,12 @@ input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
 .modal.in .modal-dialog {
    margin: auto !important;
 }
-body> div:not(.modal), nav {
+body .container, nav {
    -webkit-filter: blur(0px) grayscale(0%);
    filter: blur(0px) grayscale(0%);
    transition: 0.4s ease-out;
 }
-.modal-open> div:not(.modal), .modal-open nav {
+body.modal-open .container, .modal-open> nav {
    -webkit-filter: blur(2px) grayscale(80%);
    filter: blur(2px) grayscale(80%);
 }

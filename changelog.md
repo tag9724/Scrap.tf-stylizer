@@ -41,3 +41,9 @@
 - fixed bug : slots filters array debugged
 - prevent bug : added config version
 - added filters for user backpack ( items selection payement )
+
+**v1.0.7**
+
+- Fixed bug with blur in Dark theme mode
+- Added favorite raffle button / page / nav menu ( datas saved in local )
+- Added "unlimitedStorage" permission

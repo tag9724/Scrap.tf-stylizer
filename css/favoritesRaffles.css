@@ -1,0 +1,13 @@
+#pid-raffles> div.container.container-margins {
+   display: none !important;
+}
+#pid-raffles> div.container.container-margins.favorites-raffles-container {
+   display: block !important;
+}
+.load {
+   text-align: center;
+   cursor: pointer;
+}
+.remove {
+   cursor: pointer;
+}
