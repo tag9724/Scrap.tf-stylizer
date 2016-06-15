@@ -18,10 +18,10 @@ Some features was added :
 ![alt tag](http://i.imgur.com/FOYNdhJ.png)
 
 - List of reclaimed items on ended raffles
-
-![alt tag](http://i.imgur.com/Vq6sczO.png)
-
 - Improved filters in weapons / skins / stranges banking
+
+![alt tag](http://i.imgur.com/z1LDxBG.png)
+
 - Added favorites raffles button and page of favorites raffles
 
 ![alt tag](http://i.imgur.com/8l2KeyD.png)
