@@ -1,4 +1,5 @@
 /* Let's change the textarea */
+var scrapTFEmotes = '43nero8killerBibleThumpNiGHTSVerdigrisVVermillionVVictoriaVVioletVViridianVVitellaryVadministratoraltariaangelcakeangry_mouseantelionantonioapplejackarcticfoxaurozbackstabballoonsbatcountrybdaybghdbigDbigMbigPbionicbunionblush_mousebrohoofbrohoof2burningrosebuttscagecakecaptainfalconcelestiacheepchrysaliscmcookiecoolpikacoolpika2derpderpmousedevsunsdflydimadimablushdimahappydimasaddogtordukeadecheepelizhappyelizhappy2elizmadelizsurprisefaxonfeeshfennekinfloofehfluttercryfluttershyfluttersmileflutteryayfoxyfryingpanfurrfurrygabengibusglassesgrizzhalehandshakehappy_mousehappykittyheyguysholyhoovyhughugpilehundkopfhuzzahhystericalicebeariesikajantranjanuduckjemmyjemmy43jibanyankappakatuenkicklakotalazypandalikeabosslittlebuddylucinalunamanfacemaxsmonkeymoon2mouseymrxnoisenolovenormanoddpandapapaparapiepillfoxpinkamenapinkiepiepinkypizzaplagueoverseerpokeballpopsicleprincesspuzzleqtquestionblockrafflerainbowdashrarecandyrarityreaperrefinedrunningbombsad_mousesaladsandvichsapscott713scramblerscrapsethshakoshamanshibaslicesmallmeepsmashballsmileinhdsmithhealzsonicthsouliespookysprintingbombsquibsquib2squib3squibbodysteamsuuslimeszoruatardistfm_confettithedocthunderbombtiptip2toottophattrumptwilightsparkleuncraftablevinylwhipwhiterabbitwoofwubzomgzorua';
 
 var BBCODE = [
     // Color
@@ -47,6 +48,24 @@ var BBCODE = [
         while (text.search(re) !== -1) {
             text = text.replace(re, '<span style="font-weight: bold;">$1</span>');
         }
+        return text;
+    },
+    // Emoticon
+    function(text) {
+        var re = /:([a-z0-9]*?):/i;
+        var tmp;
+
+        while ((result = re.exec(text)) !== null) {
+
+            tmp = new RegExp(result[1], "i").exec(scrapTFEmotes);
+
+            if (tmp) {
+                text = text.replace(re, '<img src="https://scrap.tf/img/emotes/' + tmp[0] + '.png" alt="$1" onerror="this.setAttribute(\'src\', \'https://steamcommunity-a.akamaihd.net/economy/emoticon/missing\')" >');
+            } else {
+                text = text.replace(re, '<img src="https://steamcommunity-a.akamaihd.net/economy/emoticon/$1" alt="$1" onerror="this.setAttribute(\'src\', \'https://steamcommunity-a.akamaihd.net/economy/emoticon/missing\')" >');
+            }
+        }
+
         return text;
     }
 ];

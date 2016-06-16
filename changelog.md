@@ -49,3 +49,8 @@
 - Fixed bug with blur in Dark theme mode
 - Added favorite raffle button / page / nav menu ( datas saved in local )
 - Added "unlimitedStorage" permission
+
+**v1.0.8**
+
+- Added preview emoticon ( Create raffle section )
+- Fixed buggy selector ( DisplayFavoritesRaffles.js )

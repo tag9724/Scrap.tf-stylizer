@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-  
+
     // Append FavoriteRaffle li tag in nav bar
 
     var navUL = document.querySelector('#navbar-collapse-01 > ul:nth-child(1) > li.dropdown:nth-child(2) ul');
@@ -11,11 +11,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
         /* Init the container */
 
-        var container = document.querySelector('#pid-raffles > div.container.container-margins');
+        var container = document.querySelector('#pid-raffles > div.container');
         container.style.display = "none";
 
         var newContent = document.createElement('div');
-        newContent.classList.add('container', 'container-margins', 'favorites-raffles-container');
+        newContent.classList.add('container','favorites-raffles-container');
         newContent.innerHTML = '<div class="panel panel-info favorites-raffles">' +
             '<div class="panel-heading">' +
             '<h3 class="panel-title"><i18n>Favorites Raffles</i18n></h3>' +

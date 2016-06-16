@@ -1,7 +1,7 @@
-#pid-raffles> div.container.container-margins {
+#pid-raffles> div.container {
    display: none !important;
 }
-#pid-raffles> div.container.container-margins.favorites-raffles-container {
+#pid-raffles> div.container.favorites-raffles-container {
    display: block !important;
 }
 .load {
