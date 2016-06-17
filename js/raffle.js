@@ -2,7 +2,7 @@ var ended = document.querySelector("#pid-viewraffle > div.container > div.welcom
 var isEnded = (ended) ? ended.dataset.time : false;
 
 if (isEnded == "Raffle Ended") {
-    // Nombre de gagnants
+    // Number of winners & reclaimed loots
     var reclaim = document.querySelectorAll("div.raffle-winners > div"),
         green = 0,
         orange = 0;
@@ -14,4 +14,13 @@ if (isEnded == "Raffle Ended") {
         };
     }
     ended.innerHTML += " (" + green + "/" + (green + orange) + ")";
+}
+
+/* Non whitelisted urls */
+
+var raffleMsg = document.querySelectorAll('.raffle-message');
+
+for (let i = 0, len = raffleMsg.length; i < len; i++) {
+    raffleMsg[i].innerHTML = BBCODE[0](raffleMsg[i].innerHTML);
+    raffleMsg[i].innerHTML = BBCODE[1](raffleMsg[i].innerHTML);
 }

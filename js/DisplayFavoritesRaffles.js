@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
         container.style.display = "none";
 
         var newContent = document.createElement('div');
-        newContent.classList.add('container','favorites-raffles-container');
+        newContent.classList.add('container', 'container-margins', 'favorites-raffles-container');
         newContent.innerHTML = '<div class="panel panel-info favorites-raffles">' +
             '<div class="panel-heading">' +
             '<h3 class="panel-title"><i18n>Favorites Raffles</i18n></h3>' +
@@ -45,6 +45,20 @@ document.addEventListener('DOMContentLoaded', function() {
 
         var load = newContent.querySelector('.panel-body.load');
         load.addEventListener('click', DisplayMore);
+
+        /* Export / Import saved favs */
+
+        var aBtn = document.createElement('a');
+        aBtn.classList.add('btn', 'btn-info', 'cust-btn');
+        aBtn.download = 'FavoritesRaffles.scraptf';
+        aBtn.innerHTML = 'Export';
+
+        newContent.querySelector('.panel-heading').appendChild(aBtn);
+
+        function exportRefresh(obj) {
+            var data = "text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(obj));
+            aBtn.href = 'data:' + data;
+        }
 
         /* Search saved raffles */
 
@@ -89,6 +103,9 @@ document.addEventListener('DOMContentLoaded', function() {
             }
 
             DisplayMore();
+
+            // Refresh the export btn
+            exportRefresh(res.favoritesRaffles);
         });
 
         /* Add remove form favorite event */
@@ -112,6 +129,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     }, function(err, msg) {
                         // And finally remove this element from the list
                         ev.target.parentElement.parentElement.parentElement.remove();
+                        // Refresh the export btn
+                        exportRefresh(res.favoritesRaffles);
                     });
 
                 });

@@ -3,7 +3,7 @@
 
     "name": "Scrap.tf stylizer",
     "description": "This extension give more features for scrap.tf",
-    "version": "1.0.8",
+    "version": "1.0.9",
 
     "icons": {
         "16": "img/icon.png",
@@ -21,11 +21,11 @@
         "run_at": "document_start"
     }, {
         "matches": ["*://*.scrap.tf/raffles/create"],
-        "js": ["js/lib/inject.js", "js/IN_createRaffle.js"],
+        "js": ["js/lib/BBCODE.js", "js/createRaffle.js"],
         "css": ["css/createRaffle.css"]
     }, {
         "matches": ["*://*.scrap.tf/raffles/*"],
-        "js": ["js/raffle.js", "js/FavoritesRaffles.js"],
+        "js": ["js/lib/BBCODE.js", "js/raffle.js", "js/FavoritesRaffles.js"],
         "css": ["css/raffles.css"]
     }, {
         "matches": ["*://*.scrap.tf/raffles/favorites"],

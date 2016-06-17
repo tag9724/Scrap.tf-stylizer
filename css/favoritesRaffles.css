@@ -11,3 +11,7 @@
 .remove {
    cursor: pointer;
 }
+.cust-btn {
+   float: right;
+   margin-top: -36px;
+}

@@ -54,3 +54,15 @@
 
 - Added preview emoticon ( Create raffle section )
 - Fixed buggy selector ( DisplayFavoritesRaffles.js )
+
+**v1.0.8**
+
+- Fixed margin-top on favorites raffles page
+
+## 17 June 2016
+
+**v1.0.9**
+
+- Added BBCODE for no white-listed links on raffles descriptions
+- All links appears at clickable on raffles descriptions ( in red color )
+- Added export btn on favorites raffles page
