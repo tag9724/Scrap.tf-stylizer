@@ -1,3 +1,28 @@
 button[data-infav="true"] {
    color: #FFC877 !important;
 }
+
+/* Better comment section */
+
+.raffle-commenters {
+   max-height: 600px !important;
+}
+.raffle-commenters .comment-container {
+   margin: auto;
+   padding: 4px 10px;
+   border-left: 2px solid transparent;
+}
+.raffle-commenters .linked {
+   border-color: #16a085;
+}
+.raffle-commenters .currUser {
+   border-color: #34495e;
+}
+.raffle-commenters .comment-container:nth-child(2n) {
+   background: #eee;
+}
+.comment-content {
+   padding: 0px 5px 0 55px;
+   text-align: justify;
+   line-height: 20px;
+}

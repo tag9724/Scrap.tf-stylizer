@@ -1,3 +1,4 @@
+// Don't move any entry seriously ... need to recode this ****
 var BBCODE = [
     // url
     function(text) {

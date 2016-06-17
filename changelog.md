@@ -66,3 +66,10 @@
 - Added BBCODE for no white-listed links on raffles descriptions
 - All links appears at clickable on raffles descriptions ( in red color )
 - Added export btn on favorites raffles page
+
+**v1.1.0**
+
+- Better comments box on raffles ( css injected )
+- Hover event on these comments, colored indication on linked and other user comments
+- BBCODE applied in live on comment raffle section ( Scrap.tf bug resolved )
+- Non white-listed links in the same section was clickable now

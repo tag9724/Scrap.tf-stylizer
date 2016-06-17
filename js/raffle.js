@@ -16,11 +16,101 @@ if (isEnded == "Raffle Ended") {
     ended.innerHTML += " (" + green + "/" + (green + orange) + ")";
 }
 
-/* Non whitelisted urls */
+/* Non whitelisted urls in raffle description */
 
 var raffleMsg = document.querySelectorAll('.raffle-message');
 
 for (let i = 0, len = raffleMsg.length; i < len; i++) {
     raffleMsg[i].innerHTML = BBCODE[0](raffleMsg[i].innerHTML);
     raffleMsg[i].innerHTML = BBCODE[1](raffleMsg[i].innerHTML);
+}
+
+/* Link comments by repply (mouse hover) */
+
+var comBox = document.querySelector('.raffle-commenters');
+
+if (comBox) {
+
+    // Mouse hover ( design )
+
+    function HoverTheRainbow(ev) {
+
+        // Select all comments
+        var allComs = comBox.querySelectorAll('.comment-container');
+        var users = comBox.querySelectorAll('.username');
+
+        if (ev.target && ev.target.matches(".comment-container")) {
+
+            // Check if the post was a repply
+            var userMention = ev.target.querySelector('.user-mention');
+            userMention = (userMention) ? userMention.href : null;
+
+            // get the hovered user
+            var currUser = ev.target.querySelector('.username').href;
+
+            for (let i = 0, len = users.length; i < len; i++) {
+
+                // If the hover comment was a repply to other user
+                if (users[i].href == userMention) {
+                    allComs[i].classList.add('linked');
+                } else {
+                    allComs[i].classList.remove('linked');
+                }
+
+                // If is an other post from the same curr user
+                if (users[i].href == currUser) {
+                    allComs[i].classList.add('currUser');
+                } else {
+                    allComs[i].classList.remove('currUser');
+                }
+            }
+
+        }
+    }
+
+    comBox.addEventListener('mouseover', HoverTheRainbow);
+
+    // Debug ScrapTF bug new comment ( BBCODE not applyed )
+
+    function DebugBBCODEScrapTF() {
+
+        var newCom = comBox.querySelector('.comment-container');
+
+        if (newCom && newCom.id != lastCom) {
+
+            // Update last com
+            lastCom = newCom.id;
+
+            // And execute the replacement
+            newCom = comBox.querySelector('.comment-content');
+            console.log("updated", lastCom, "&&", newCom.innerHTML);
+
+            var str = newCom.innerHTML;
+            // Urls
+            str = BBCODE[0](str);
+            str = BBCODE[1](str);
+            // colors
+            str = BBCODE[2](str);
+            // text formatting
+            str = BBCODE[3](str);
+            str = BBCODE[4](str);
+            str = BBCODE[5](str);
+            str = BBCODE[6](str);
+
+            newCom.innerHTML = str;
+        }
+    }
+
+    var allComs = comBox.querySelectorAll('.comment-content');
+    var lastCom = (allComs[0]) ? allComs[0].parentElement.parentElement.id : "";
+
+    // Apply also for all existant coms
+
+    for (let i = 0, len = allComs.length; i < len; i++) {
+        // Urls ( not whitelisteds )
+        allComs[i].innerHTML = BBCODE[0](allComs[i].innerHTML);
+        allComs[i].innerHTML = BBCODE[1](allComs[i].innerHTML);
+    }
+
+    comBox.addEventListener('DOMSubtreeModified', DebugBBCODEScrapTF);
 }
