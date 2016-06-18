@@ -38,15 +38,24 @@ if (comBox) {
         // Select all comments
         var allComs = comBox.querySelectorAll('.comment-container');
         var users = comBox.querySelectorAll('.username');
+        var target = ev.target;
 
-        if (ev.target && ev.target.matches(".comment-container")) {
+        // Search the .comment-container parent of the element ( usefull )
+        for (let i = 0, c, len = allComs.length; i < len; i++) {
+            if (allComs[i].contains(target)) {
+                target = allComs[i];
+                break;
+            }
+        }
+
+        if (target.matches(".comment-container")) {
 
             // Check if the post was a repply
-            var userMention = ev.target.querySelector('.user-mention');
+            var userMention = target.querySelector('.user-mention');
             userMention = (userMention) ? userMention.href : null;
 
             // get the hovered user
-            var currUser = ev.target.querySelector('.username').href;
+            var currUser = target.querySelector('.username').href;
 
             for (let i = 0, len = users.length; i < len; i++) {
 

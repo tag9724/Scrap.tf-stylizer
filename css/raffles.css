@@ -11,15 +11,18 @@ button[data-infav="true"] {
    margin: auto;
    padding: 4px 10px;
    border-left: 2px solid transparent;
+   border-top: 1px solid #efefef;
+   padding-top: 10px;
+   padding-bottom: 0px;
+}
+.raffle-commenters .comment-container:nth-child(1) {
+   border-top: none;
 }
 .raffle-commenters .linked {
-   border-color: #16a085;
+   border-left-color: #16a085;
 }
 .raffle-commenters .currUser {
-   border-color: #34495e;
-}
-.raffle-commenters .comment-container:nth-child(2n) {
-   background: #eee;
+   border-left-color: #34495e;
 }
 .comment-content {
    padding: 0px 5px 0 55px;

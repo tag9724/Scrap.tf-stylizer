@@ -73,3 +73,8 @@
 - Hover event on these comments, colored indication on linked and other user comments
 - BBCODE applied in live on comment raffle section ( Scrap.tf bug resolved )
 - Non white-listed links in the same section was clickable now
+
+**v1.1.1**
+
+- Removed background(2n) replaced by border-top in comments raffle section
+- Fixed selector on hover event in comment section
