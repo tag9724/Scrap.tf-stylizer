@@ -78,3 +78,15 @@
 
 - Removed background(2n) replaced by border-top in comments raffle section
 - Fixed selector on hover event in comment section
+
+## 20 June 2016
+
+**v1.1.2**
+
+- Fixed red urls in raffles
+- Fixed comment section style for the Dark theme
+- Added hidden text btn on create raffle section
+- Added disbale tip btn on create raffle section
+- Fixed bug BBCODE btn on create raffle section disappear
+- Hidens text fixed on raffles
+- Possibility to save a template of your raffle ( create raffle section )

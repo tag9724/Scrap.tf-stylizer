@@ -13,7 +13,7 @@ var BBCODE = [
         var re = /((https?|ftps?):\/\/[^"|'<\s]+)(?![^<>]*>|[^"]*?<\/a)/ig;
 
         while (text.search(re) !== -1) {
-            text = text.replace(re, '<a target="_blank" href="$1" style="color:#e74c3c;">$1</a>');
+            text = text.replace(re, '<a target="_blank" href="$1">$1</a>');
         }
 
         return text;
@@ -76,4 +76,25 @@ var BBCODE = [
 
         return text;
     }
+];
+
+var BBCODE_EXTRAS = [
+    // url
+    function(text) {
+        var re = /\[url=(\S+)\]([^[]*(?:\[(?!url=\S+\]|\/url\])[^[]*)*)\[\/url\]/ig;
+        while (text.search(re) !== -1) {
+            text = text.replace(re, '<a target="_blank" href="$1" style="color:#e74c3c;">$2</a>');
+        }
+        return text;
+    },
+    // Unofficials urls
+    function(text) {
+        var re = /((https?|ftps?):\/\/[^"|'<\s]+)(?![^<>]*>|[^"]*?<\/a)/ig;
+
+        while (text.search(re) !== -1) {
+            text = text.replace(re, '<a target="_blank" href="$1" style="color:#e74c3c;">$1</a>');
+        }
+
+        return text;
+    },
 ];

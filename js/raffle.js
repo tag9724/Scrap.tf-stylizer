@@ -21,8 +21,8 @@ if (isEnded == "Raffle Ended") {
 var raffleMsg = document.querySelectorAll('.raffle-message');
 
 for (let i = 0, len = raffleMsg.length; i < len; i++) {
-    raffleMsg[i].innerHTML = BBCODE[0](raffleMsg[i].innerHTML);
-    raffleMsg[i].innerHTML = BBCODE[1](raffleMsg[i].innerHTML);
+    raffleMsg[i].innerHTML = BBCODE_EXTRAS[0](raffleMsg[i].innerHTML);
+    raffleMsg[i].innerHTML = BBCODE_EXTRAS[1](raffleMsg[i].innerHTML);
 }
 
 /* Link comments by repply (mouse hover) */
@@ -96,8 +96,8 @@ if (comBox) {
 
             var str = newCom.innerHTML;
             // Urls
-            str = BBCODE[0](str);
-            str = BBCODE[1](str);
+            str = BBCODE_EXTRAS[0](str);
+            str = BBCODE_EXTRAS[1](str);
             // colors
             str = BBCODE[2](str);
             // text formatting
@@ -117,8 +117,8 @@ if (comBox) {
 
     for (let i = 0, len = allComs.length; i < len; i++) {
         // Urls ( not whitelisteds )
-        allComs[i].innerHTML = BBCODE[0](allComs[i].innerHTML);
-        allComs[i].innerHTML = BBCODE[1](allComs[i].innerHTML);
+        allComs[i].innerHTML = BBCODE_EXTRAS[0](allComs[i].innerHTML);
+        allComs[i].innerHTML = BBCODE_EXTRAS[1](allComs[i].innerHTML);
     }
 
     comBox.addEventListener('DOMSubtreeModified', DebugBBCODEScrapTF);

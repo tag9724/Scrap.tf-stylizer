@@ -104,6 +104,9 @@ nav .iconic:before {
    background: #151515 !important;
    border-top: 1px solid #3e3e3e !important;
 }
+.raffle-message span[style="color:#f7f9fa;"], .raffle-message span[style="color:#F7F9FA;"] {
+   color: #151515 !important;
+}
 .raffle-box-row, .raffle-opts-row, .raffle-mod-row, .auction-bid-desc {
    background: #000000 !important;
 }
@@ -137,11 +140,8 @@ nav .iconic:before {
    border-color: #828282 !important;
    color: #ddd !important;
 }
-.raffle-commenters .comment-container:nth-child(odd) {
-   background: #222 !important;
-}
-.raffle-commenters .comment-container:nth-child(even) {
-   background: #191919 !important;
+.raffle-commenters .comment-container {
+   border-top-color: #333 !important;
 }
 .form-group.focus .input-group-btn .btn, .input-group.focus .input-group-btn .btn {
    color: #cacaca;

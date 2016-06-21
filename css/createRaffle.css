@@ -1,3 +1,7 @@
+.btn-saveConf {
+   float: right;
+   cursor: pointer;
+}
 #Content {
    min-height: 30px;
    display: none;
@@ -19,17 +23,21 @@
 textarea {
    text-align: center;
 }
-#formatting {
+.formattingHelp {
    width: 100px;
    float: right;
 }
-#formatting i {
+.formattingHelp i {
    margin: 5px;
    cursor: pointer;
    transition: 0.1s ease-out;
 }
-#formatting i:hover {
+.formattingHelp i:hover {
    transform: scale(1.25);
+}
+.formattingHelp i.fa-ban:hover {
+   transform: scale(1);
+   border-bottom: 1px solid;
 }
 .create-raffle-inv {
    overflow: auto;
@@ -39,8 +47,32 @@ textarea {
 #chars {
    display: inline-table;
 }
+
+/* Saved Raffle section */
+
+#appendHere .form-group {
+   cursor: pointer;
+   transition: 0.1s ease-out;
+   position: relative;
+}
+#appendHere .form-group .form-control {
+   padding-right: 50px;
+}
+#appendHere .form-group:hover .form-control {
+   background: #efefef;
+}
+#appendHere .form-group .btnDel {
+   position: absolute;
+   top: 6px;
+   right: 12px;
+}
+.NewModal {
+   display: block !important;
+   background: rgba(25, 25, 25, 0.4);
+   padding-right: 12px;
+}
 @media (max-width: 991px) {
-   #formatting {
+   .formattingHelp {
       width: auto;
    }
 }

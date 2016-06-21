@@ -17,6 +17,11 @@ Some features was added :
 
 ![alt tag](http://i.imgur.com/FOYNdhJ.png)
 
+- Better design for the raffle comments section
+- Possibility to save/load a predefine raffle (create raffle section)
+
+![alt tag](http://i.imgur.com/ItL4zpx.png)
+
 - List of reclaimed items on ended raffles
 - Improved filters in weapons / skins / stranges banking
 
