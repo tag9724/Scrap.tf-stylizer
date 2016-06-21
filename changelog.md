@@ -98,3 +98,8 @@
 - Removed text-align justify in raffle.css ( meh )
 - Now available for Opera
 - Better comment section added for profiles
+
+**v1.1.4**
+
+- Options popup redesigned
+- Reduced .zip size ( .git filder excluded )

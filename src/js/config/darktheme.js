@@ -1,4 +1,4 @@
-const CHECK = document.querySelector('.formcheck input[type="checkbox"]');
+const CHECK = document.getElementById('EnableDarkTheme');
 
 /* Get saved configuration */
 

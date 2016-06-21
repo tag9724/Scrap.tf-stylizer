@@ -3,14 +3,14 @@
 function StyleApply(res) {
     // Remove .curr to all
     var rmAll = SOUND.querySelectorAll('input');
-    for (let i = 0, len = rmAll.length; i < len; i++) rmAll[i].classList.remove('curr');
+    for (let i = 0, len = rmAll.length; i < len; i++) rmAll[i].classList.remove('btn-success');
 
     // Change the style of this element
     if (res.soundSelected && res.soundSelected.indexOf('#') == 0) {
-        SOUND.querySelector('input[value="' + res.soundSelected + '"]').classList.add('curr');
+        SOUND.querySelector('input[value="' + res.soundSelected + '"]').classList.add('btn-success');
     } else {
-        var url = SOUND.querySelector('.ownSoundURL');
-        url.classList.add('curr');
+        var url = SOUND.querySelector('#soundUrl');
+        url.classList.add('btn-success');
         // Display the saved url
         (res.sound) ? url.value = res.sound: "";
     }
@@ -20,7 +20,7 @@ chrome.storage.sync.get(["sound", "soundSelected"], StyleApply);
 
 /* Set the configuration */
 
-const SOUND = document.querySelector('.block.sound');
+const SOUND = document.getElementById('soundBox');
 const SOUND_FORM = SOUND.querySelector('form');
 
 function SaveSound(url, choosen) {
@@ -53,7 +53,7 @@ function SubmitSound(ev) {
 
     ev.preventDefault();
 
-    var url = SOUND_FORM.querySelector('.ownSoundURL').value;
+    var url = SOUND_FORM.querySelector('#soundUrl').value;
 
     // Play the sound
     if (url != "") {
