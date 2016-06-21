@@ -97,3 +97,4 @@
 
 - Removed text-align justify in raffle.css ( meh )
 - Now available for Opera
+- Better comment section added for profiles
