@@ -26,6 +26,5 @@ button[data-infav="true"] {
 }
 .comment-content {
    padding: 0px 5px 0 55px;
-   text-align: justify;
    line-height: 20px;
 }

@@ -90,3 +90,10 @@
 - Fixed bug BBCODE btn on create raffle section disappear
 - Hidens text fixed on raffles
 - Possibility to save a template of your raffle ( create raffle section )
+
+## 21 June 2016
+
+**v1.1.3**
+
+- Removed text-align justify in raffle.css ( meh )
+- Now available for Opera

@@ -34,3 +34,7 @@ Some features was added :
 ## Chrome web store
 
 <https://chrome.google.com/webstore/detail/scraptf-stylizer/gjejbbmaadafncfilaidnlbchdlppggg>
+
+## Opera
+
+<https://addons.opera.com/fr/extensions/details/scraptf-stylizer/>
