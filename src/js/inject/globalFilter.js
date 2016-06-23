@@ -36,7 +36,7 @@ class FILTER {
         // Items already in inventory
 
         this.loadingInv = document.createElement('img');
-        this.loadingInv.src = "http://i.imgur.com/thbqmMm.gif";
+        this.loadingInv.src = LOADINGGIF;
         this.loadingInv.style.height = "30px";
         this.loadingInv.style.marginTop = "-5px";
 
