@@ -106,3 +106,10 @@
 - Background config saved in local now
 - Can add a local background in config
 - Background no longer appears delayed with the page loading
+
+**v1.1.5**
+
+- Kappa icon parsed
+- Fixed bug on loading puzzle raffle template, all inputs appear now
+- Added the level filter on weapons/hats/items/stranges banking
+- Custom bonking search are now on weapons/skins/hats/items/stranges/killstreaks banking

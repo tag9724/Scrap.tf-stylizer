@@ -1,1 +1,1 @@
-InjectMulti(['globalFilter.js', 'filters/default.js', 'filters/level.js']);
+InjectMulti(['globalFilter.js', 'filters/default.js', 'filters/level.js','filters/craftable.js']);

@@ -150,6 +150,17 @@ chrome.storage.local.get(["savedCreateRaffle"], function(res) {
                             document.getElementById('raffle-password').value = conf.pwd;
                             document.getElementById('puzzlesolution').value = (conf.solution) ? conf.solution : "";
 
+                            // Display the password box
+                            if (conf.privateRaffle == 2 || conf.privateRaffle == 7 || conf.privateRaffle == 8) {
+                                document.getElementById('raffle-password-out').style.display = "block";
+                            }
+
+                            // Display the solution box
+                            if (conf.privateRaffle == 7) {
+                                document.querySelector('.puzzle-solution').style.display = "block";
+                                document.querySelector('.puzzle-ban-warning').style.display = "block";
+                            }
+
                             // Raffle time
 
                             document.getElementById('raffle-length').value = conf.length;

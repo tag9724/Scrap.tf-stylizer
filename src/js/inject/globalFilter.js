@@ -2,8 +2,9 @@
 
 class FILTER {
     constructor() {
+      
         // For debugging the saved configuration
-        this.saveVersion = 3;
+        this.saveVersion = 4;
         // Select allitems & classes box
         this.buyContainer = document.getElementById('buy-container');
         this.buyItems = document.querySelectorAll('#buy-container div .item');
@@ -16,17 +17,20 @@ class FILTER {
 
         // Default classes & slot
         this.classesList = ["multi", "scout", "soldier", "pyro", "demoman", "heavy", "engineer", "medic", "sniper", "spy"];
-        this.slotList = ["all", "primary", "secondary", "melee", "pda"];
+        this.slotList = [];
+        this.slotHatList = [];
 
         // Type of filters we need
         this.filtersAvailables = {
-            "weapons": ["level"],
-            "hats": ["level"],
-            "items": ["level"],
-            "skins": [],
-            "stranges": ["levels"]
+            "weapons": ["slot", "level"],
+            "hats": ["slotHat", "level"],
+            "items": ["slot", "level"],
+            "skins": ["slot"],
+            "stranges": ["slot", "levels"],
+            "killstreaks": ["slot"]
         };
 
+        this.currFilter = this.BuildFilterObject();
         this.filter = this.LoadSavedFilters();
 
         // Items already in inventory
@@ -102,8 +106,12 @@ class FILTER {
                 this.classesAndSlot[i].addEventListener("click", this.SelectClasse.bind(this));
             }
             // Weapon slot selection
-            else {
+            else if (this.currFilter.slot) {
                 this.classesAndSlot[i].addEventListener("click", this.SelectWeaponSlot.bind(this));
+            }
+            // Hat slot selection
+            else if (this.currFilter.slotHat) {
+                this.classesAndSlot[i].addEventListener("click", this.SelectCraftable.bind(this));
             }
         }
 
@@ -112,16 +120,26 @@ class FILTER {
             this.classesAndSlot[0].classList.add('selected');
         } else {
             for (let i = 1; i < 10; i++) {
-
                 if (this.filter.classes.indexOf(this.classesAndSlot[i].dataset.class) >= 0) {
                     this.classesAndSlot[i].classList.add('selected');
                 }
             }
         }
 
-        for (let i = 10; i < 14; i++) {
-            if (this.filter.slot.indexOf(this.classesAndSlot[i].dataset.slot) >= 0) {
-                this.classesAndSlot[i].classList.add('selected');
+        // Slot filters
+        if (this.currFilter.slot) {
+            for (let i = 10, len = this.classesAndSlot.length; i < len; i++) {
+                if (this.filter.slot.indexOf(this.classesAndSlot[i].dataset.slot) < 0) {
+                    this.classesAndSlot[i].classList.add('selected');
+                }
+            }
+        }
+        // Hat slot filter
+        else if (this.currFilter.slotHat) {
+            for (let i = 10, len = this.classesAndSlot.length; i < len; i++) {
+                if (this.filter.slotHat.indexOf(this.classesAndSlot[i].dataset.slot) < 0) {
+                    this.classesAndSlot[i].classList.add('selected');
+                }
             }
         }
 
@@ -149,9 +167,10 @@ class FILTER {
             this.sellUserInvDisplayed = true;
             this.ApplyFilter();
         }.bind(this));
+
     }
     InjectFilters() {
-        // TODO
+        if (this.currFilter.level) this.AppendLevelFilter();
     }
     Filters(item, ingnoreDupes) {
 
@@ -174,9 +193,27 @@ class FILTER {
         }
 
         //Slot search
-        if (this.filter.slot.indexOf(item.dataset.slot.replace(/[0-9]/g, "").replace(/(building)/g, "pda")) < 0) {
+        if (this.currFilter.slot && this.filter.slot.indexOf(item.dataset.slot.replace(/[0-9]/g, "").replace(/(building)/g, "pda")) > -1) {
             item.classList.add('rm');
             return 0;
+        }
+
+        // Hat slot (craftable / uncraftable / valuable)
+
+        if (this.currFilter.slotHat && this.filter.slotHat.indexOf(item.dataset.slot) > -1) {
+            item.classList.add('rm');
+            return 0;
+        }
+
+        // Level filter
+
+        if (this.currFilter.level) {
+            let level = Number(item.dataset.content.match(/(\d+)/)[0]);
+
+            if (level <= this.filter.lvlMin || level >= this.filter.lvlMax) {
+                item.classList.add('rm');
+                return 0;
+            }
         }
 
         // This item must be displayed
@@ -217,10 +254,17 @@ class FILTER {
         for (let i = 1; i < 10; i++) {
             this.classesAndSlot[i].classList.remove('selected');
         }
-        for (let i = 10; i < 14; i++) {
+        // Slots filters
+        for (let i = 10, len = this.classesAndSlot.length; i < len; i++) {
             this.classesAndSlot[i].classList.add('selected');
         }
 
+        /* Extras filters */
+
+        // Level
+        if (this.currFilter.level) this.ResetLevelFilter();
+
+        // Apply the default filters
         this.ApplyFilter();
     }
     LoadSavedFilters() {
@@ -229,6 +273,7 @@ class FILTER {
             var savedConf = JSON.parse(localStorage.getItem(this.filterType));
             // Return datas
             if (savedConf.version == this.saveVersion) {
+                if (!savedConf.lvlMax) savedConf.lvlMax = Infinity;
                 return savedConf;
             } else {
                 return this.DefaultFilter();
@@ -245,13 +290,23 @@ class FILTER {
     DefaultFilter() {
         return {
             version: this.saveVersion,
-            lvlMax: 100,
+            lvlMax: Infinity,
             lvlMin: 0,
             hideDupes: false,
             classes: this.classesList.slice(),
             slot: this.slotList.slice(),
+            slotHat: this.slotHatList.slice(),
             query: ""
         };
+    }
+    BuildFilterObject() {
+        var obj = {};
+
+        for (let key in this.filtersAvailables[this.filterType]) {
+            obj[this.filtersAvailables[this.filterType][key]] = true;
+        }
+
+        return obj;
     }
 };
 

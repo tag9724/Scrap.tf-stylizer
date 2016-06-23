@@ -62,7 +62,7 @@ FILTER.prototype.SelectWeaponSlot = function(ev) {
         var target = ev.target.parentElement;
     }
 
-    // // Remove the element
+    // Remove the element
     if (target.classList.contains('selected')) {
         target.classList.remove('selected');
     }
@@ -71,10 +71,10 @@ FILTER.prototype.SelectWeaponSlot = function(ev) {
         target.classList.add('selected');
     }
 
-    this.filter.slot = ["multi"];
+    this.filter.slot = [];
 
     for (let i = 10, len = this.classesAndSlot.length; i < len; i++) {
-        if (this.classesAndSlot[i].classList.contains('selected')) {
+        if (!this.classesAndSlot[i].classList.contains('selected')) {
             this.filter.slot.push(this.classesAndSlot[i].dataset.slot);
         }
     }
