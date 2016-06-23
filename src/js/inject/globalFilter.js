@@ -2,7 +2,7 @@
 
 class FILTER {
     constructor() {
-      
+
         // For debugging the saved configuration
         this.saveVersion = 4;
         // Select allitems & classes box
@@ -35,13 +35,38 @@ class FILTER {
 
         // Items already in inventory
 
+        this.loadingInv = document.createElement('img');
+        this.loadingInv.src = "http://i.imgur.com/thbqmMm.gif";
+        this.loadingInv.style.height = "30px";
+        this.loadingInv.style.marginTop = "-5px";
+
+        document.querySelector('.hide-dupes-checkbox').appendChild(this.loadingInv);
+
         this.myInventory = {};
+        this.maxInterval = 100;
+        this.currInterval = 0;
+
         var CheckUserInv = setInterval(function() {
+
             if (!Array.isArray(ScrapTF.Inventory.MyDefindexes)) {
+
                 this.myInventory = ScrapTF.Inventory.MyDefindexes;
+                this.loadingInv.remove();
+
                 if (this.filter.hideDupes) this.ApplyFilter();
                 clearInterval(CheckUserInv);
             }
+            // More than 12sec of retry (impossible to load inventoy)
+            else if (this.currInterval >= this.maxInterval) {
+                this.myInventory = {};
+                this.loadingInv.parentElement.style.setProperty("color", "#c0392b", "important");
+                this.loadingInv.remove();
+
+                clearInterval(CheckUserInv);
+            }
+
+            this.currInterval++;
+
         }.bind(this), 250);
 
         // List of visible items in bot inventory
@@ -175,7 +200,7 @@ class FILTER {
     Filters(item, ingnoreDupes) {
 
         // Query Search
-        if (!new RegExp("(" + this.filter.query + ")", "i").test(item.dataset.title)) {
+        if (!new RegExp("(" + this.filter.query + ")", "i").test(item.dataset.content)) {
             item.classList.add('rm');
             return 0;
         }
@@ -210,7 +235,7 @@ class FILTER {
         if (this.currFilter.level) {
             let level = Number(item.dataset.content.match(/(\d+)/)[0]);
 
-            if (level <= this.filter.lvlMin || level >= this.filter.lvlMax) {
+            if (level < this.filter.lvlMin || level > this.filter.lvlMax) {
                 item.classList.add('rm');
                 return 0;
             }

@@ -109,7 +109,15 @@
 
 **v1.1.5**
 
-- Kappa icon parsed
+- Kappa icon parsed ( create raffle only )
 - Fixed bug on loading puzzle raffle template, all inputs appear now
 - Added the level filter on weapons/hats/items/stranges banking
-- Custom bonking search are now on weapons/skins/hats/items/stranges/killstreaks banking
+- Custom banking search are now on weapons/skins/hats/items/stranges/killstreaks banking
+
+**v1.1.6**
+
+- Kappa emote is totally parsed now
+- White background on puzzle raffle message
+- Fixed query search match not only the item name now
+- Added loading gif on the duplicated checkbox
+- Fixed minor bug on level filter

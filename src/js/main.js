@@ -13,6 +13,15 @@ chrome.storage.sync.get(["sound", "background", "dark"], function(res) {
             /* Change the logo (darktheme) */
 
             if (res.dark) {
+                var isRaffle = document.querySelector(".raffle-message");
+
+                if (isRaffle) {
+                    isRaffle.style.opacity = 1;
+                    if (document.querySelector('div.welcome-overlay-container > ol > li:nth-child(1) > a > i18n').innerHTML.indexOf("Puzzle") >= 0) {
+                        document.querySelector(".raffle-message").classList.add('puzzle');
+                    }
+                }
+
                 document.querySelector('.navbar-brand.big-logo').setAttribute('src', chrome.extension.getURL('img/logo-v3-white.svg'));
             }
         }
@@ -38,6 +47,7 @@ chrome.storage.sync.get(["sound", "background", "dark"], function(res) {
         dark.setAttribute('rel', 'stylesheet');
         dark.setAttribute('href', chrome.extension.getURL('css/darktheme.css'));
         document.head.appendChild(dark);
+
     }
 });
 

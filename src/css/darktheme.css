@@ -101,11 +101,21 @@ nav .iconic:before {
    background-color: #151515 !important;
 }
 .raffle-message {
+   opacity: 0;
+   transition: 0.4s ease-out opacity;
+}
+.raffle-message.puzzle {
+   color: #2A2826 !important;
+}
+.raffle-message:not(.puzzle) {
    background: #151515 !important;
    border-top: 1px solid #3e3e3e !important;
 }
-.raffle-message span[style="color:#f7f9fa;"], .raffle-message span[style="color:#F7F9FA;"] {
+.raffle-message:not(.puzzle)  span[style="color:#f7f9fa;"], .raffle-message:not(.puzzle)  span[style="color:#F7F9FA;"]{
    color: #151515 !important;
+}
+.raffle-message.raffle-entered-msg {
+   opacity: 1;
 }
 .raffle-box-row, .raffle-opts-row, .raffle-mod-row, .auction-bid-desc {
    background: #000000 !important;
