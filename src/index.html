@@ -4,6 +4,15 @@
 
 <head>
    <link rel="stylesheet" href="css/bootstrap.min.css">
+   <style>
+      ::-webkit-scrollbar {
+         width: 12px;
+      }
+
+      ::-webkit-scrollbar-thumb {
+         background: linear-gradient(90deg, #eee, #f8f8f8, #eee);
+      }
+   </style>
 </head>
 
 <body style="min-width: 460px;">
@@ -53,32 +62,48 @@
                <a target="blank" class="btn btn-default btn-sm pull-right" href="https://www.myinstants.com/">You can also found a sound here</a>
             </div>
          </div>
-
-         <hr>
-
-         <!-- Apply a custom background -->
-         <h3 class="panel-header">Change the scrap.tf default background</h3>
-
-         <!-- User own url -->
-         <form class="row" id="backgroundUrlForm">
-            <div class="col-sm-10">
-               <input type="text" placeholder="The background url goes here" id="ownBackURL" class="form-control">
-            </div>
-            <br/>
-            <div class="col-sm-2">
-               <input type="submit" value="OK" class="btn btn-info form-control" />
-            </div>
-         </form>
-
-         <!-- User file -->
-         <form class="row" id="backgroundFileForm">
-
-         </form>
       </div>
+      <hr>
 
-      <script src="js/config/darktheme.js"></script>
-      <script src="js/config/sound.js"></script>
-      <script src="js/config/background.js"></script>
+      <!-- Apply a custom background -->
+      <h3 class="panel-header">Change the scrap.tf default background</h3>
+
+      <!-- User own url -->
+      <form class="row" id="backgroundUrlForm">
+         <div class="col-sm-10">
+            <input type="text" placeholder="The background url goes here" id="ownBackURL" class="form-control">
+         </div>
+         <br/>
+         <div class="col-sm-2">
+            <input type="submit" value="OK" class="btn btn-info form-control" />
+         </div>
+      </form>
+
+      <!-- User file -->
+      <br/>
+
+      <form class="form-horizontal" id="FormLocalFile">
+         <div class="form-group">
+            <label for="inputPassword3" class="col-sm-2 control-label">Or import an image from your computer</label>
+            <div class="col-sm-6">
+               <div class="fileinput fileinput-new" data-provides="fileinput">
+                  <span style="position: relative;overflow: hidden;" class="form-control">
+                     <span id="fileName">Choose file</span>
+                  <input type="file" id="LocalImage" accept="image/*" style="cursor:pointer;opacity: 0;position: absolute;top: -50px;background: #000;left: 0;height: 400%;" />
+                  </span>
+               </div>
+            </div>
+         </div>
+         <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+               <button type="submit" class="form-control btn-info">OK</button>
+            </div>
+         </div>
+      </form>
+   </div>
+   <script src="js/config/darktheme.js"></script>
+   <script src="js/config/sound.js"></script>
+   <script src="js/config/background.js"></script>
 </body>
 
 </html>

@@ -10,18 +10,25 @@ chrome.storage.sync.get(["sound", "background", "dark"], function(res) {
                 notifSound.setAttribute('src', res.sound);
             }
 
-            /* Set the background */
-
-            if (res.background && res.background != "") {
-                document.body.style.background = 'url("' + res.background + '") center top / cover fixed';
-            }
-
             /* Change the logo (darktheme) */
 
             if (res.dark) {
                 document.querySelector('.navbar-brand.big-logo').setAttribute('src', chrome.extension.getURL('img/logo-v3-white.svg'));
             }
         }
+    }
+
+    /* Get the background ( Remove that in few days ) */
+
+    if (res.background && res.background != "") {
+        let back = document.createElement('style');
+        back.innerHTML = "body {background: url('" + res.background + "') center top / cover fixed !important;}";
+        document.head.appendChild(back);
+
+        chrome.storage.local.set({
+            background: res.background
+        });
+        chrome.storage.sync.remove(["background"]);
     }
 
     /* Apply the darktheme */
@@ -31,5 +38,15 @@ chrome.storage.sync.get(["sound", "background", "dark"], function(res) {
         dark.setAttribute('rel', 'stylesheet');
         dark.setAttribute('href', chrome.extension.getURL('css/darktheme.css'));
         document.head.appendChild(dark);
+    }
+});
+
+/* The background can't no longer be saved in the sync storage */
+
+chrome.storage.local.get(["background"], function(res) {
+    if (res.background && res.background != "") {
+        let back = document.createElement('style');
+        back.innerHTML = "body {background: url('" + res.background + "') center top / cover fixed !important;}";
+        document.head.appendChild(back);
     }
 });

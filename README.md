@@ -8,7 +8,7 @@ In options you can :
 - Use a custom notification sound
 - Set your own background
 
-![alt tag](http://i.imgur.com/jJ5ugkO.png)
+![alt tag](http://i.imgur.com/2y5BJzy.png)
 
 Some features was added :
 

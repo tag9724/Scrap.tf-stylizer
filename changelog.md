@@ -103,3 +103,6 @@
 
 - Options popup redesigned
 - Reduced .zip size ( .git filder excluded )
+- Background config saved in local now
+- Can add a local background in config
+- Background no longer appears delayed with the page loading
