@@ -4,7 +4,7 @@ class FILTER {
     constructor() {
 
         // For debugging the saved configuration
-        this.saveVersion = 4;
+        this.saveVersion = 5;
         // Select allitems & classes box
         this.buyContainer = document.getElementById('buy-container');
         this.buyItems = document.querySelectorAll('#buy-container div .item');
@@ -26,7 +26,7 @@ class FILTER {
             "hats": ["slotHat", "level"],
             "items": ["slot", "level"],
             "skins": ["slot"],
-            "stranges": ["slot", "levels"],
+            "stranges": ["slot", "level"],
             "killstreaks": ["slot"]
         };
 
@@ -48,7 +48,7 @@ class FILTER {
 
         var CheckUserInv = setInterval(function() {
 
-            if (!Array.isArray(ScrapTF.Inventory.MyDefindexes)) {
+            if (ScrapTF && !Array.isArray(ScrapTF.Inventory.MyDefindexes)) {
 
                 this.myInventory = ScrapTF.Inventory.MyDefindexes;
                 this.loadingInv.remove();
@@ -200,7 +200,7 @@ class FILTER {
     Filters(item, ingnoreDupes) {
 
         // Query Search
-        if (!new RegExp("(" + this.filter.query + ")", "i").test(item.dataset.content)) {
+        if (!new RegExp("(" + this.filter.query + ")", "i").test(item.dataset.content) && !new RegExp("(" + this.filter.query + ")", "i").test(item.dataset.title)) {
             item.classList.add('rm');
             return 0;
         }
@@ -334,8 +334,3 @@ class FILTER {
         return obj;
     }
 };
-
-document.addEventListener('DOMContentLoaded', function() {
-    console.log('DOM loaded');
-    TEMP = new FILTER();
-});

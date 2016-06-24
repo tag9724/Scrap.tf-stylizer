@@ -121,3 +121,12 @@
 - Fixed query search match not only the item name now
 - Added loading gif on the duplicated checkbox
 - Fixed minor bug on level filter
+
+**v1.1.7**
+
+- Bug fixed, filters don't be launched
+
+**v1.1.8**
+
+- Query search fixed
+- level filter on strange banking
