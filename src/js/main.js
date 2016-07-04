@@ -1,4 +1,4 @@
-chrome.storage.sync.get(["sound", "background", "dark"], function(res) {
+chrome.storage.sync.get(["sound", "dark"], function(res) {
 
     document.onreadystatechange = function() {
         if (document.readyState == "interactive") {
@@ -25,19 +25,6 @@ chrome.storage.sync.get(["sound", "background", "dark"], function(res) {
                 document.querySelector('.navbar-brand.big-logo').setAttribute('src', chrome.extension.getURL('img/logo-v3-white.svg'));
             }
         }
-    }
-
-    /* Get the background ( Remove that in few days ) */
-
-    if (res.background && res.background != "") {
-        let back = document.createElement('style');
-        back.innerHTML = "body {background: url('" + res.background + "') center top / cover fixed !important;}";
-        document.head.appendChild(back);
-
-        chrome.storage.local.set({
-            background: res.background
-        });
-        chrome.storage.sync.remove(["background"]);
     }
 
     /* Apply the darktheme */

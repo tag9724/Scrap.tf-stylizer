@@ -67,7 +67,7 @@ nav .iconic:before {
 .breadcrumb {
    background-color: #000000 !important;
 }
-.well {
+.well, #pid-announcement #dynamic-height-slate .container {
    background: #151515 !important;
    color: #ababab !important;
    border: 1px solid #383838 !important;
@@ -100,7 +100,7 @@ nav .iconic:before {
    color: #3498dbd4 !important;
    background-color: #151515 !important;
 }
-.raffle-message {
+.raffle-message:not(.raffle-password) {
    opacity: 0;
    transition: 0.4s ease-out opacity;
 }

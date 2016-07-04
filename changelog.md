@@ -130,3 +130,12 @@
 
 - Query search fixed
 - level filter on strange banking
+
+## 4 July 2016
+
+**v1.1.9**
+
+- Bug dark theme not applied on announcement
+- Bug dark theme solution button on puzzle not appear
+- Minimalist stats on profiles
+- Clean after maj : main.js & background.js 

@@ -109,16 +109,20 @@ var BBCODE_EXTRAS = [
 
         return text;
     },
-    // Kappa icon and Yep I'm serious with this code 
+    // Kappa icon and Yep I'm serious with this code
     function(tag) {
-        var kappaImg = tag.querySelectorAll('img[title="kappa"]:not([data-kappa])');
+        var kappaImg = tag.querySelectorAll('img:not([data-kappa])'),
+            exp = /Kappa/i;
+            
         for (let i = 0, len = kappaImg.length; i < len; i++) {
-            kappaImg[i].dataset.kappa = true;
-            kappaImg[i].onload = function(ev) {
-              ev.target.src = kappaIcon;
-              ev.target.onload = null;
-              console.log('ev');
-            };
+            if (exp.test(kappaImg[i].title)) {
+                kappaImg[i].dataset.kappa = true;
+                kappaImg[i].onload = function(ev) {
+                    ev.target.src = kappaIcon;
+                    ev.target.onload = null;
+                    console.log('ev');
+                };
+            }
         }
     }
 ];

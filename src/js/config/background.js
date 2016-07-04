@@ -3,22 +3,6 @@ const LOCALFILE = document.getElementById('LocalImage');
 const FILENAME = document.getElementById('fileName');
 const LOCALFILEFORM = document.getElementById('FormLocalFile');
 
-/* Get saved background url OLD */
-
-chrome.storage.sync.get("background", function(res) {
-
-    if (res.background) {
-        console.log("sync trouvé");
-        BACK.querySelector('#ownBackURL').value = (res.background) ? res.background : "";
-
-        // For the update transition
-        chrome.storage.local.set({
-            background: res.background
-        });
-        chrome.storage.sync.remove(["background"]);
-    }
-});
-
 /* Get saved background url */
 
 chrome.storage.local.get(["background", "localBackground"], function(res) {
