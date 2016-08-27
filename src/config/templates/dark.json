@@ -1,0 +1,33 @@
+{
+    "id": "dark",
+    "name": "Dark Theme",
+    "isDefault": true,
+    "colors": {
+        "back1": "#252525",
+        "back2": "#202020",
+        "backMsg": "#252525",
+        "border": "#5b5b5b",
+        "link": "#608b9f",
+        "text": "#d8d8d8"
+    },
+    "avatarBorders": [0.1, 0.1, 0.1, 0.1],
+    "buttons": {
+        "btn1": "#bc3e3c",
+        "btn2": "#547a8c",
+        "btn3": "#5c7e8c",
+        "btn4": "#117768",
+        "btntext": "#f4e6dc",
+        "radius": 0.2
+    },
+    "background": {
+        "fixed": true,
+        "image": "",
+        "size": "cover"
+    },
+    "fonts": {
+        "fontList": {},
+        "global": "",
+        "title": ""
+    },
+    "customCSS": "::-webkit-scrollbar-track{-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);border-radius: 10px;}::-webkit-scrollbar{width:12px;background:#202020 !important}::-webkit-scrollbar-thumb{border-radius: 10px;-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3) !important;background-color: #444 !important;}"
+}

@@ -1,0 +1,33 @@
+{
+    "name": "Default",
+    "id": "default",
+    "isDefault": true,
+    "colors": {
+        "text": "#2A2826",
+        "link": "#16A085",
+        "back1": "#ffffff",
+        "back2": "#F7F9FA",
+        "backMsg": "#d6eaf8",
+        "border": "#dddddd"
+    },
+    "avatarBorders": [4, 4, 4, 4],
+    "buttons": {
+        "btntext": "#ffffff",
+        "btn1": "#e74c3c",
+        "btn2": "#3498DB",
+        "btn3": "#34495e",
+        "btn4": "#16A085",
+        "radius": 0.4
+    },
+    "background": {
+        "image": "",
+        "size": "cover",
+        "fixed": true
+    },
+    "fonts": {
+        "global": "",
+        "title": "",
+        "fontList": {}
+    },
+    "customCSS": ""
+}
