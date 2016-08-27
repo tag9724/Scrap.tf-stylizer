@@ -140,7 +140,7 @@
 - Minimalist stats on profiles
 - Clean after maj : main.js & background.js 
 
-## 6 August 2016
+## 27 August 2016
 
 **v1.2.0**
 
@@ -151,4 +151,4 @@
 - HTML CSS JS files minified
 - Converted .ttf in .woff2
 - Removed Background and dark theme features
-- Added the template management
+- Added the template management 

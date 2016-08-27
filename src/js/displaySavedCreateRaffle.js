@@ -40,6 +40,7 @@ chrome.storage.local.get(["savedCreateRaffle"], function(res) {
         var appendBox = document.getElementById('appendHere');
 
         for (let i = 0, nextStep, len = res.savedCreateRaffle.length; i < len; i++) {
+            console.log(res.savedCreateRaffle[i]);
 
             nextStep = (res.savedCreateRaffle[i].privateRaffle == 0 || res.savedCreateRaffle[i].privateRaffle == 7) ? false : true;
             nextStep = 'ScrapTF.Raffles.NextStep(' + nextStep + ')';
@@ -84,6 +85,7 @@ chrome.storage.local.get(["savedCreateRaffle"], function(res) {
 
                     // First configuration
                     if (!res.savedCreateRaffle) {
+                        console.log("Construct config");
                         res.savedCreateRaffle = [];
                     }
 
@@ -100,6 +102,8 @@ chrome.storage.local.get(["savedCreateRaffle"], function(res) {
                     // Save the new config
                     chrome.storage.local.set({
                         savedCreateRaffle: res.savedCreateRaffle
+                    }, function(err, msg) {
+                        console.log("Config saved", err, msg);
                     });
 
                 });

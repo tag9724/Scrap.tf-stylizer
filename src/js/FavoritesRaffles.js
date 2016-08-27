@@ -42,11 +42,13 @@ chrome.storage.local.get(["favoritesRaffles"], function(res) {
             // First configuration
 
             if (!res.favoritesRaffles) {
+                console.log("Construct config");
                 res.favoritesRaffles = [];
             }
 
             // Delete item
             if (datas.add == false) {
+                console.log("Delete item");
                 for (let i = 0, len = res.favoritesRaffles.length; i < len; i++) {
                     if (res.favoritesRaffles[i].raffleID == datas.raffleID) {
                         res.favoritesRaffles.splice(i, 1);
@@ -56,11 +58,16 @@ chrome.storage.local.get(["favoritesRaffles"], function(res) {
             }
             // Add item
             else {
+                console.log("Add item");
                 res.favoritesRaffles.push(datas);
             };
 
+            console.log("Save this", res.favoritesRaffles);
+
             chrome.storage.local.set({
                 favoritesRaffles: res.favoritesRaffles
+            }, function(err, msg) {
+                console.log("Config saved", err, msg);
             });
 
         });

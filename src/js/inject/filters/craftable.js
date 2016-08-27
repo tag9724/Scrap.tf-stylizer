@@ -2,6 +2,8 @@
 
 FILTER.prototype.SelectCraftable = function(ev) {
 
+    console.log(ev);
+
     var selected = ev.target.dataset.slot.replace(/[0-9]/g, "");
     var target = ev.target;
 

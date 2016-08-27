@@ -38,8 +38,6 @@ chrome.storage.local.get(["profileStats"], function(res) {
         stats[1] = Date.parse(stats[1].replace(/([a-z]+)/ig, "$1 ").replace(/[0-9].([st|th|rd]+)/gi, ""));
         if (stats[1] <= res['profileStats'][1].value) {
             res['profileStats'][1].value = stats[1];
-            res['profileStats'][1].id = stats[0];
-
             STATS[1].innerHTML += iElem;
         };
 
@@ -49,16 +47,8 @@ chrome.storage.local.get(["profileStats"], function(res) {
             stats[i] = Number(stats[i]);
             if (stats[i] >= res['profileStats'][i].value) {
                 res['profileStats'][i].value = stats[i];
-                res['profileStats'][i].id = stats[0];
-
                 STATS[i].innerHTML += iElem;
             }
-
-            /* Next update */
-
-            /* STATS[i].innerHTML = `<a href="/profile/` + res['profileStats'][i].id + `">
-                          ` + STATS[i].innerHTML + `
-                        </a>`;*/
         }
 
         /* Save new Datas */
