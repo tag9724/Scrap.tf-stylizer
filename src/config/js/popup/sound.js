@@ -37,7 +37,6 @@ function SaveSound(url, choosen) {
 // Magic appear here
 
 function ChooseSound(ev) {
-    console.log(ev);
     // Preselected sounds
     if (ev.target.type == "button") {
         // Play the sound

@@ -139,3 +139,14 @@
 - Bug dark theme solution button on puzzle not appear
 - Minimalist stats on profiles
 - Clean after maj : main.js & background.js 
+
+## 6 August 2016
+
+**v1.2.0**
+
+- Bug user id not saved on profile stats
+- Updated scraptf emotes list ( BBCODE parser )
+- Reduced images size
+- Reduced mp3 size
+- HTML CSS JS files minified
+- Converted .ttf in .woff2
