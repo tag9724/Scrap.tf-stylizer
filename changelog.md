@@ -150,3 +150,5 @@
 - Reduced mp3 size
 - HTML CSS JS files minified
 - Converted .ttf in .woff2
+- Removed Background and dark theme features
+- Added the template management
