@@ -1,0 +1,15 @@
+{
+    "name": "Src-minifier_html_js_css",
+    "version": "0.0.1",
+    "devDependencies": {
+        "gulp": "latest",
+        "gulp-folders": "^1.1.0",
+        "gulp-load-plugins": "latest",
+        "gulp-recursive-concat": "^0.2.0",
+        "gulp-htmlmin": "latest",
+        "gulp-csso": "latest",
+        "gulp-jsmin": "latest",
+        "gulp-clean": "latest",
+        "gulp-sync-task" : "1.0.3"
+    }
+}
