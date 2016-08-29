@@ -79,7 +79,8 @@
         "*://*.scrap.tf/*",
         "*://fonts.googleapis.com/*",
         "*://fonts.gstatic.com/*",
-        "*://*.backpack.tf/profiles/*"
+        "*://*.backpack.tf/*",
+        "*://backpack.tf/*"
     ],
     "background": {
         "scripts": ["js/addon-background.js"]
