@@ -1,4 +1,7 @@
 /bin
 /node_modules
-gulpfile.js
-package.json
+addon.pem
+bin.zip
+src.zip
+bin.nex
+src.nex

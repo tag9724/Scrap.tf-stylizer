@@ -16,7 +16,7 @@ function StyleApply(res) {
     }
 }
 
-chrome.storage.sync.get(["sound", "soundSelected"], StyleApply);
+chrome.storage.local.get(["sound", "soundSelected"], StyleApply);
 
 /* Set the configuration */
 
@@ -24,7 +24,7 @@ const SOUND = document.getElementById('soundBox');
 const SOUND_FORM = SOUND.querySelector('form');
 
 function SaveSound(url, choosen) {
-    chrome.storage.sync.set({
+    chrome.storage.local.set({
         sound: url,
         soundSelected: choosen
     }, function() {

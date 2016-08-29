@@ -107,9 +107,11 @@ class TemplatesManage {
             let change = this.colorForm[i].dataset.ctarget;
             let color = this.curr.colors[change] || this.curr.buttons[change];
 
-            this.colorForm[i].querySelectorAll('input').forEach(function(elem) {
-                elem.value = color;
-            });
+            let colorForm = this.colorForm[i].querySelectorAll('input');
+
+            for (let i = 0, len = colorForm.length; i < len; i++) {
+              colorForm[i].value = color;
+            }
         }
 
         // Avatar borders radius

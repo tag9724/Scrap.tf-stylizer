@@ -1,0 +1,22 @@
+.pull-right.rev-bot-name {
+   width: 100%;
+   font-size: 15px;
+   line-height: 14px;
+}
+div> div> div.well-padding {
+   position: relative;
+}
+.bpLink {
+   height: 50px;
+   width: 75px;
+   position: absolute;
+   right: 0;
+   background-position: center;
+   background-size: cover;
+   background-repeat: no-repeat;
+}
+.bank-selector-box .bpLink {
+   height: 25px;
+   width: 40px;
+   top: -10px;
+}

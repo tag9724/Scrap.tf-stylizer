@@ -288,10 +288,13 @@ nav .iconic:before {
    color: var(--btntext) !important;
 }
 
-/* Avatars borders */
+/* Avatars */
 
 .avatar-container img {
    border-radius: var(--avatarBorders) !important;
+}
+.avatar-hat{
+  background-color: transparent !important;
 }
 
 /* Modal */

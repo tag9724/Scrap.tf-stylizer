@@ -152,3 +152,11 @@
 - Converted .ttf in .woff2
 - Removed Background and dark theme features
 - Added the template management 
+
+## 29 August 2016
+
+**v1.2.1**
+
+- Added shortlink to backpack.tf for all bots
+- Sound are saved in local now ( firefox compatibility )
+- Some parts of code rewrite for firefox

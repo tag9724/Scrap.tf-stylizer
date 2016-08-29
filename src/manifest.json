@@ -3,7 +3,7 @@
 
     "name": "Scrap.tf stylizer",
     "description": "This extension give more features for scrap.tf",
-    "version": "1.2.0",
+    "version": "1.2.1",
 
     "icons": {
         "16": "img/icon.png",
@@ -21,7 +21,12 @@
         "run_at": "document_start"
     }, {
         "matches": ["*://*.scrap.tf/raffles/create"],
-        "js": ["js/lib/BBCODE.js", "js/createRaffle.js", "js/displaySavedCreateRaffle.js", "js/saveCreateRaffle.js"],
+        "js": [
+            "js/lib/BBCODE.js",
+            "js/createRaffle.js",
+            "js/displaySavedCreateRaffle.js",
+            "js/saveCreateRaffle.js"
+        ],
         "css": ["css/createRaffle.css"]
     }, {
         "matches": ["*://*.scrap.tf/raffles/*"],
@@ -32,10 +37,30 @@
         "css": ["css/favoritesRaffles.css"],
         "run_at": "document_start"
     }, {
-        "matches": ["*://*.scrap.tf/weapons/*", "*://*.scrap.tf/skins/*", "*://*.scrap.tf/stranges/*", "*://*.scrap.tf/hats/*", "*://*.scrap.tf/items/*", "*://*.scrap.tf/killstreaks/*"],
+        "matches": [
+            "*://*.scrap.tf/weapons/*",
+            "*://*.scrap.tf/skins/*",
+            "*://*.scrap.tf/stranges/*",
+            "*://*.scrap.tf/hats/*",
+            "*://*.scrap.tf/items/*",
+            "*://*.scrap.tf/killstreaks/*"
+        ],
         "js": ["js/lib/injectMulti.js", "js/IN_globalFilter.js"],
         "css": ["css/filter.css"],
         "run_at": "document_start"
+    }, {
+        "matches": [
+            "*://*.scrap.tf/weapons/*",
+            "*://*.scrap.tf/hats/*",
+            "*://*.scrap.tf/items/*",
+            "*://*.scrap.tf/unusuals/*",
+            "*://*.scrap.tf/skins/*",
+            "*://*.scrap.tf/killstreaks/*",
+            "*://*.scrap.tf/stranges/*"
+        ],
+        "js": ["js/lib/bot-list.js", "js/banking.js"],
+        "css": ["css/banking.css"],
+        "run_at": "document_end"
     }, {
         "matches": ["*://*.scrap.tf/profile/*"],
         "js": ["js/profileStats.js"],

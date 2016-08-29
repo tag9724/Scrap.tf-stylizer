@@ -123,6 +123,7 @@ class TemplateList {
 
         } else {
             chrome.storage.local.remove('UsedTemplate');
+            chrome.storage.local.remove('CurrentTemplate');
         }
     }
     ConstructSavedTemplate(id) {
