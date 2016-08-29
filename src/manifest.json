@@ -78,7 +78,8 @@
         "unlimitedStorage",
         "*://*.scrap.tf/*",
         "*://fonts.googleapis.com/*",
-        "*://fonts.gstatic.com/*"
+        "*://fonts.gstatic.com/*",
+        "*://*.backpack.tf/profiles/*"
     ],
     "background": {
         "scripts": ["js/addon-background.js"]

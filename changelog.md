@@ -160,3 +160,4 @@
 - Added shortlink to backpack.tf for all bots
 - Sound are saved in local now ( firefox compatibility )
 - Some parts of code rewrite for firefox
+- Added permission for backpack.tf ( js/banking.js )
