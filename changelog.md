@@ -164,7 +164,7 @@
 
 **v1.2.2**
 
-- Removed tab permission
+- Replaced tab permission by activeTab
 - autocomplete input max level in filters
 - Fixed sound for chrome & opera
 - Fixed some ui element with custom theme

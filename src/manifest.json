@@ -74,6 +74,7 @@
     ],
     "permissions": [
         "storage",
+        "activeTab",
         "unlimitedStorage",
         "*://*.scrap.tf/*",
         "*://fonts.googleapis.com/*",
