@@ -29,7 +29,6 @@ FILTER.prototype.Level = function(ev) {
     // Auto set the max based to the min input
     if (min > max) {
         max = min;
-        this.levelBox.children[1].value = min;
     }
 
     // Refrsh the filters

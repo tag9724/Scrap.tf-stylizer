@@ -1,5 +1,4 @@
 /* Global */
-
 :root {
    --hover: brightness(1.2) !important;
 }
@@ -9,68 +8,122 @@ body {
 * {
    font-family: var(--globalFont);
 }
-h1, h2, h3, h1 *, h2 *, h3 * {
+h1,
+h1 *,
+h2,
+h2 *,
+h3,
+h3 * {
    font-family: var(--titleFont) !important;
 }
-a:not(.username), a:hover:not(.username), a:active:not(.username), a:focus:not(.username) {
+a:active:not(.username),
+a:focus:not(.username),
+a:hover:not(.username),
+a:not(.username) {
    color: var(--link) !important;
 }
-a:hover, a:active, a:focus {
+a:active,
+a:focus,
+a:hover {
    -webkit-filter: var(--hover) !important;
    filter: var(--hover) !important;
 }
-
 /* Buttons input & labels */
-
 .form-inline .form-control {
    color: var(--text) !important;
    background-color: var(--back1) !important;
 }
-b.label, .btn, .btn a, a.btn, a.btn:hover, a.btn:active, a.btn:focus, .rev-banking-background a {
+.btn,
+.btn a,
+.rev-banking-background a,
+a.btn,
+a.btn:active,
+a.btn:focus,
+a.btn:hover,
+b.label {
    color: var(--btntext) !important;
    border-radius: var(--radius) !important;
 }
-.nav-pills>li>a, .btn-success {
+.btn-success,
+.nav-pills > li > a {
    color: var(--btntext) !important;
    background-color: var(--btn4) !important;
 }
-.btn:hover, .btn:active, .btn:focus {
+.btn:active,
+.btn:focus,
+.btn:hover {
    -webkit-filter: var(--hover) !important;
    filter: var(--hover) !important;
    transition: 0.4s ease-out;
 }
-.nav-pills>li.active>a, .nav-pills>li.open>a, .nav-pills>li.active>a:hover, .nav-pills>li.open>a:hover, .nav-pills>li>a:hover, .nav-pills>li>a:focus {
+.nav-pills > li > a:focus,
+.nav-pills > li > a:hover,
+.nav-pills > li.active > a,
+.nav-pills > li.active > a:hover,
+.nav-pills > li.open > a,
+.nav-pills > li.open > a:hover {
    background-color: var(--btn4) !important;
    -webkit-filter: var(--hover) !important;
    filter: var(--hover) !important;
 }
-.btn.btn-danger, .btn.btn-danger:active, .btn.btn-danger.active, .open>.dropdown-toggle.btn.btn-danger, .progress-bar-danger {
+.btn.btn-danger,
+.btn.btn-danger.active,
+.btn.btn-danger:active,
+.open > .dropdown-toggle.btn.btn-danger,
+.progress-bar-danger {
    background-color: var(--btn1) !important;
    border-color: var(--btn1) !important;
 }
-.btn.btn-info, .btn.btn-info:active, .btn.btn-info.active, .open>.dropdown-toggle.btn.btn-info, .btn.btn-default, .btn.btn-default:hover, .btn.btn-default:active, .btn.btn-default.active, .open>.dropdown-toggle.btn.btn-default, .progress-bar-info {
+.btn.btn-default,
+.btn.btn-default.active,
+.btn.btn-default:active,
+.btn.btn-default:hover,
+.btn.btn-info,
+.btn.btn-info.active,
+.btn.btn-info:active,
+.open > .dropdown-toggle.btn.btn-default,
+.open > .dropdown-toggle.btn.btn-info,
+.progress-bar-info {
    background-color: var(--btn2) !important;
    border-color: var(--btn2) !important;
 }
-.btn.btn-inverse, .btn.btn-inverse:active, .btn.btn-inverse.active, .open>.dropdown-toggle.btn.btn-inverse {
+.btn.btn-inverse,
+.btn.btn-inverse.active,
+.btn.btn-inverse:active,
+.open > .dropdown-toggle.btn.btn-inverse {
    background-color: var(--btn3) !important;
    border-color: var(--btn3) !important;
 }
-.btn.btn-primary, .btn-primary:active, .btn-primary.active, .open>.dropdown-toggle.btn-primary {
+.btn-primary.active,
+.btn-primary:active,
+.btn.btn-primary,
+.open > .dropdown-toggle.btn-primary {
    background-color: var(--btn4) !important;
    border-color: var(--btn4) !important;
 }
-
 /* Select input */
-
-.select-default .select2-choice, .select-default .select2-choice:hover, .select-default .select2-choice.hover, .select-default .select2-choice:focus, .select-default .select2-choice:active, .select2-drop .select2-result-selectable .select2-result-label:focus, .select2-drop .select2-result-selectable .select2-result-label:hover, .select2-drop .select2-result-selectable .select2-result-label:active {
+.select-default .select2-choice,
+.select-default .select2-choice.hover,
+.select-default .select2-choice:active,
+.select-default .select2-choice:focus,
+.select-default .select2-choice:hover,
+.select2-drop .select2-result-selectable .select2-result-label:active,
+.select2-drop .select2-result-selectable .select2-result-label:focus,
+.select2-drop .select2-result-selectable .select2-result-label:hover {
    background-color: var(--btn4) !important;
    color: var(--btntext) !important;
 }
-.select2-drop .select2-result-selectable .select2-result-label, .dropdown-menu>li>a, .yamm-content li>a {
+.dropdown-menu > li > a,
+.select2-drop .select2-result-selectable .select2-result-label,
+.yamm-content li > a {
    color: var(--text) !important;
 }
-.select-primary .select2-choice:hover, .select-primary .select2-choice.hover, .select-primary .select2-choice:focus, .select-primary .select2-choice:active, .select-primary .select2-choice, .select2-drop .select2-highlighted>.select2-result-label {
+.select-primary .select2-choice,
+.select-primary .select2-choice.hover,
+.select-primary .select2-choice:active,
+.select-primary .select2-choice:focus,
+.select-primary .select2-choice:hover,
+.select2-drop .select2-highlighted > .select2-result-label {
    background-color: var(--btn4) !important;
    color: var(--btntext) !important;
 }
@@ -81,48 +134,74 @@ nav .iconic:before {
    color: var(--text) !important;
    opacity: 0.2;
 }
-.dropdown-menu>li>a:hover, .dropdown-menu>li>a:focus {
+.dropdown-menu > li > a:focus,
+.dropdown-menu > li > a:hover {
    background-color: var(--btn4) !important;
    color: var(--btntext) !important;
 }
-
 /* Checkbox & switch btn */
-
-.checkbox input[type="checkbox"].custom-checkbox:checked+.icons .icon-checked, .radio input[type="checkbox"].custom-checkbox:checked+.icons .icon-checked, .checkbox input[type="radio"].custom-radio:checked+.icons .icon-checked, .radio input[type="radio"].custom-radio:checked+.icons .icon-checked {
+.checkbox input[type="checkbox"].custom-checkbox:checked+.icons .icon-checked,
+.checkbox input[type="radio"].custom-radio:checked+.icons .icon-checked,
+.radio input[type="checkbox"].custom-checkbox:checked+.icons .icon-checked,
+.radio input[type="radio"].custom-radio:checked+.icons .icon-checked {
    background-color: var(--btn4) !important;
 }
-.inv-switcher a, .item-group-switcher a, .search-switcher a {
+.inv-switcher a,
+.item-group-switcher a,
+.search-switcher a {
    background-color: var(--btn4) !important;
    color: var(--btntext) !important;
 }
-.inv-switcher .active, .search-switcher .active, .toggle-chat-button {
+.inv-switcher .active,
+.search-switcher .active,
+.toggle-chat-button {
    background-color: var(--btn2) !important;
    color: var(--btntext) !important;
 }
-
 /* comments mention & page navigation */
-
-.user-mention, .user-mention:visited, .user-mention:focus, .user-mention:hover {
+a.user-mention,
+a.user-mention:focus,
+a.user-mention:hover,
+a.user-mention:visited {
    background-color: var(--btn4) !important;
    border-color: var(--btn4) !important;
+   color: var(--btntext) !important;
 }
-.pagination>ul, .dataTables_paginate>ul {
+.raffle-commenters .currUser {
+   border-left-color: var(--btn2) !important;
+}
+.raffle-commenters .linked {
+   border-left-color: var(--btn4) !important;
+}
+.dataTables_paginate > ul,
+.pagination > ul {
    background: var(--back2) !important;
 }
-.pagination li.active>a, .pagination li.active>span, .dataTables_paginate li.active>a, .dataTables_paginate li.active>span {
+.dataTables_paginate li.active > a,
+.dataTables_paginate li.active > span,
+.pagination li.active > a,
+.pagination li.active > span {
    background-color: var(--btn4) !important;
    border-color: var(--btn4) !important;
 }
-.pagination li>a, .pagination li>span, .dataTables_paginate li>a, .dataTables_paginate li>span {
+.dataTables_paginate li > a,
+.dataTables_paginate li > span,
+.pagination li > a,
+.pagination li > span {
    border-color: var(--border) !important;
 }
-.pagination li>a:hover, .pagination li>span:hover, .pagination li>a:focus, .pagination li>span:focus, .dataTables_paginate li>a:hover, .dataTables_paginate li>span:hover, .dataTables_paginate li>a:focus, .dataTables_paginate li>span:focus {
+.dataTables_paginate li > a:focus,
+.dataTables_paginate li > a:hover,
+.dataTables_paginate li > span:focus,
+.dataTables_paginate li > span:hover,
+.pagination li > a:focus,
+.pagination li > a:hover,
+.pagination li > span:focus,
+.pagination li > span:hover {
    background-color: var(--btn4) !important;
    border-color: var(--btn4) !important;
 }
-
 /* Infos box */
-
 .tooltip-inner {
    background-color: var(--btn3) !important;
 }
@@ -141,9 +220,7 @@ nav .iconic:before {
 .bg-info {
    background-color: transparent !important;
 }
-
 /* Main page & navbar */
-
 .welcome {
    overflow: hidden;
    position: relative;
@@ -161,32 +238,38 @@ nav .iconic:before {
    border: 2px solid var(--text) !important;
    color: var(--text) !important;
 }
-.bank-selector-box a:hover, .bank-selector-box a:active, .bank-selector-box a:focus {
+.bank-selector-box a:active,
+.bank-selector-box a:focus,
+.bank-selector-box a:hover {
    filter: none;
    -webkit-filter: none;
 }
-.welcome, .welcome-status a {
+.welcome,
+.welcome-status a {
    color: var(--text) !important;
 }
-.welcome-status a:hover, .welcome-status a:focus {
+.welcome-status a:focus,
+.welcome-status a:hover {
    color: var(--btn4) !important;
 }
-.navbar-default, .flat-slate {
+.flat-slate,
+.navbar-default {
    background-color: var(--back1) !important;
 }
-.dropdown-menu, .select2-drop {
+.dropdown-menu,
+.select2-drop {
    background-color: var(--back2) !important;
 }
-.navbar-nav>li>a:not(.nav-userdropdown):hover, .navbar-nav>li>a:not(.nav-userdropdown):focus, .navbar .nav ul a:hover {
+.navbar .nav ul a:hover,
+.navbar-nav > li > a:not(.nav-userdropdown):focus,
+.navbar-nav > li > a:not(.nav-userdropdown):hover {
    color: var(--btntext) !important;
    background-color: var(--btn4) !important;
 }
-.navbar-default .navbar-nav>li>a {
+.navbar-default .navbar-nav > li > a {
    color: var(--text) !important;
 }
-
 /* Logo */
-
 .svg {
    width: 171px;
    padding: 8px 12px;
@@ -201,7 +284,7 @@ nav .iconic:before {
    .small-logo {
       display: none;
    }
-   nav> div.container {
+   nav > div.container {
       width: 100% !important;
    }
 }
@@ -210,26 +293,30 @@ nav .iconic:before {
       width: 140px;
       padding: 10px 2px 0;
    }
-   #navbar-collapse-01> ul:nth-child(1)> li:nth-child(3) {
+   #navbar-collapse-01 > ul:nth-child(1) > li:nth-child(3) {
       display: none;
    }
 }
-
 /* Raffle page, ( panel, panel-heading etc) */
-
 #raffles-list .panel-left {
    background-color: #2A2826;
    border-right: 1px solid var(--border) !important;
 }
-.breadcrumb li, .breadcrumb li::after {
+.breadcrumb li,
+.breadcrumb li::after {
    color: var(--text) !important;
 }
-.panel, .well, .form-control, .panel-info>.panel-heading {
+.form-control,
+.panel,
+.panel-info > .panel-heading,
+.well {
    color: var(--text) !important;
    background-color: var(--back1) !important;
    border-color: var(--border) !important;
 }
-.panel-raffle, .panel-info>.panel-heading, .panel-raffle .panel-heading {
+.panel-info > .panel-heading,
+.panel-raffle,
+.panel-raffle .panel-heading {
    color: var(--btn2) !important;
    background-color: var(--back2) !important;
    border-color: var(--border) !important;
@@ -237,7 +324,10 @@ nav .iconic:before {
 .panel-heading h3 {
    color: var(--btn2) !important;
 }
-.raffle-box-row, .raffle-info-col, .raffle-opts-row, .breadcrumb {
+.breadcrumb,
+.raffle-box-row,
+.raffle-info-col,
+.raffle-opts-row {
    color: var(--text) !important;
    background-color: var(--back2) !important;
    border-color: var(--border) !important;
@@ -259,47 +349,52 @@ nav .iconic:before {
 .raffle-entered-msg {
    background-color: var(--enterMsgColor) !important;
 }
-.raffle-box-row, .raffle-info-col, .raffle-opts-row .col-xs-7, .raffle-commenters, .input-group-btn .btn, .raffle-index-list {
+.input-group-btn .btn,
+.raffle-box-row,
+.raffle-commenters,
+.raffle-index-list,
+.raffle-info-col,
+.raffle-opts-row .col-xs-7 {
    border-color: var(--border) !important;
 }
 .raffle-commenters .comment-container {
    border-top-color: var(--border) !important;
 }
-
+/* Create Raffle */
+.btn-saveConf {
+   font-family: FontAwesome !important;
+}
 /* Profile */
-
 .profile-about {
    border-color: var(--border) !important;
    color: #d0d0d0;
 }
-.profile-stat, .profile-stat:not(:last-child) {
+.profile-stat,
+.profile-stat:not(:last-child) {
    border-color: var(--border) !important;
    color: #919191;
 }
-
 /* help */
-
-.help-bg, .tab-content {
+.help-bg,
+.tab-content {
    background-color: var(--back1) !important;
    border-color: var(--border) !important;
 }
-.label-info, .label-info[href] {
+.label-info,
+.label-info[href] {
    background-color: var(--btn2) !important;
    color: var(--btntext) !important;
 }
-
 /* Avatars */
-
 .avatar-container img {
    border-radius: var(--avatarBorders) !important;
 }
-.avatar-hat{
-  background-color: transparent !important;
+.avatar-hat {
+   background-color: transparent !important;
 }
-
 /* Modal */
-
-.modal-content, .modal-header {
+.modal-content,
+.modal-header {
    background-color: var(--back1) !important;
    border-color: var(--border) !important;
 }
@@ -312,18 +407,27 @@ nav .iconic:before {
 .fullpage-well {
    background: var(--back1) !important;
 }
-.flat-dialog-inside, #Content {
+#Content,
+.flat-dialog-inside {
    background: var(--back2) !important;
    color: var(--text) !important;
    border-color: var(--border) !important;
 }
-
 /* Table */
-
-.table-bordered, .table-bordered>thead>tr>th, .table-bordered>tbody>tr>th, .table-bordered>tfoot>tr>th, .table-bordered>thead>tr>td, .table-bordered>tbody>tr>td, .table-bordered>tfoot>tr>td, .table>tbody>tr>td, .table th {
+.table > tbody > tr > td,
+.table th,
+.table-bordered,
+.table-bordered > tbody > tr > td,
+.table-bordered > tbody > tr > th,
+.table-bordered > tfoot > tr > td,
+.table-bordered > tfoot > tr > th,
+.table-bordered > thead > tr > td,
+.table-bordered > thead > tr > th {
    border-color: var(--border) !important;
 }
-.table>thead>tr>th, .table>tbody>tr>th, .table>tfoot>tr>th {
+.table > tbody > tr > th,
+.table > tfoot > tr > th,
+.table > thead > tr > th {
    color: var(--btn3);
 }
 td div div {
@@ -336,23 +440,22 @@ td div div div:first-child {
 td div div div:last-child {
    background-color: var(--btn4) !important;
 }
-
 /* Help center & About */
-
 .jumbotron {
    background-color: transparent !important;
 }
-.panel-success>.panel-heading, .panel-danger>.panel-heading {
+.panel-danger > .panel-heading,
+.panel-success > .panel-heading {
    background-color: var(--back2) !important;
    border-color: var(--border) !important;
 }
-.panel-success>.panel-heading {
+.panel-success > .panel-heading {
    color: var(--btn4) !important;
 }
-.panel-danger>.panel-heading {
+.panel-danger > .panel-heading {
    color: var(--btn1) !important;
 }
-.panel-info>.panel-heading+.panel-collapse>.panel-body {
+.panel-info > .panel-heading+.panel-collapse > .panel-body {
    border-color: var(--border) !important;
 }
 .user-helper {

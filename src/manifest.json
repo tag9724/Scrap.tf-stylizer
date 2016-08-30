@@ -3,7 +3,7 @@
 
     "name": "Scrap.tf stylizer",
     "description": "This extension give more features for scrap.tf",
-    "version": "1.2.1",
+    "version": "1.2.2",
 
     "icons": {
         "16": "img/icon.png",
@@ -74,7 +74,6 @@
     ],
     "permissions": [
         "storage",
-        "tabs",
         "unlimitedStorage",
         "*://*.scrap.tf/*",
         "*://fonts.googleapis.com/*",

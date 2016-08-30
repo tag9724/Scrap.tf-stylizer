@@ -35,9 +35,14 @@ if (chrome.storage.sync) {
                 sound: res.sound
             });
             chrome.storage.sync.remove('sound');
+
+            // Append the sound from sync
+            AppendCustomSound(res);
+
+        } else {
+            chrome.storage.local.get("sound", AppendCustomSound);
         }
 
-        AppendCustomSound(res);
     });
 } else {
     // The future was here

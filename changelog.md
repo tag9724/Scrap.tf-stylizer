@@ -161,3 +161,10 @@
 - Sound are saved in local now ( firefox compatibility )
 - Some parts of code rewrite for firefox
 - Added permission for backpack.tf ( js/banking.js )
+
+**v1.2.2**
+
+- Removed tab permission
+- autocomplete input max level in filters
+- Fixed sound for chrome & opera
+- Fixed some ui element with custom theme
