@@ -31,14 +31,6 @@ gulp.task('html', function() {
         .pipe(gulp.dest('bin'));
 });
 
-gulp.task('css', function() {
-    console.log("[CSS] minify ...");
-
-    return gulp.src(bin + '/**/*.css')
-        .pipe(plugins.csso())
-        .pipe(gulp.dest(bin));
-});
-
 gulp.task('js', function() {
     console.log("[JS] minify ...");
 
@@ -47,5 +39,9 @@ gulp.task('js', function() {
         .pipe(gulp.dest(bin));
 });
 
-gulp.task('minify', ['html', 'css', 'js']);
+/*
+  DON'T ADD CSS MINIFICATION ANYMORE
+*/
+
+gulp.task('minify', ['html', 'js']);
 gulp.task('default', gulp_sync_task('clean', 'copy', 'minify'));

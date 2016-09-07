@@ -1,17 +1,54 @@
-#pid-raffles> div.container {
+#pid-raffles > div.container {
    display: none !important;
 }
-#pid-raffles> div.container.favorites-raffles-container {
+
+#pid-raffles > div.container.favorites-raffles-container {
    display: block !important;
 }
+
 .load {
    text-align: center;
    cursor: pointer;
 }
+
 .remove {
    cursor: pointer;
 }
+
 .cust-btn {
    float: right;
    margin-top: -36px;
+   margin-left: 10px;
+   position: relative;
+   overflow: hidden;
+}
+
+.cust-btn input {
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   opacity: 0;
+}
+
+.full {
+   height: 100%;
+   width: 100%;
+}
+/* Modal content */
+.errorMsg {
+   display: none;
+}
+
+.error .errorMsg {
+   display: block;
+}
+
+.error .saveContain {
+   display: none;
+}
+
+.error #confim {
+   display: none;
 }

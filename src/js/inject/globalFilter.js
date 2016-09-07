@@ -8,6 +8,11 @@ class FILTER {
         // Select allitems & classes box
         this.buyContainer = document.getElementById('buy-container');
         this.buyItems = document.querySelectorAll('#buy-container div .item');
+
+        // Don't add filters on the wrong page
+        if (!this.buyContainer)
+            return false;
+
         // User backpack
         this.sellContainer = document.getElementById('sell-container');
         this.classes = document.getElementById('classes');

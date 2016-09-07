@@ -2,7 +2,20 @@
    font-family: "Open Sans";
    src: url("../font/OpenSans-Regular.ttf");
 }
+
+* {
+   font-size: 15px;
+}
+
 body {
    font-family: "Open Sans";
    background-color: #f4f4f4;
+}
+
+var.selector {
+   color: #D5854F;
+}
+
+var.rule {
+   color: #31708f;
 }

@@ -1,5 +1,12 @@
+button[data-infav="true"] {
+   color: #FFC877 !important;
+}
+
 /* Better comment section */
 
+.raffle-well .raffle-commenters {
+   max-height: 600px !important;
+}
 .raffle-commenters .comment-container {
    margin: auto;
    padding: 4px 10px;

@@ -63,8 +63,8 @@ chrome.storage.local.get('CurrentTemplate', function(res) {
 
         /* Append <style> */
 
-        document.head.appendChild(templateBox);
         document.head.appendChild(customTemplate);
+        document.head.appendChild(templateBox);
 
         /* Update Logo */
 

@@ -162,9 +162,28 @@
 - Some parts of code rewrite for firefox
 - Added permission for backpack.tf ( js/banking.js )
 
+## 30 August 2016
+
 **v1.2.2**
 
 - Replaced tab permission by activeTab
 - autocomplete input max level in filters
 - Fixed sound for chrome & opera
 - Fixed some ui element with custom theme
+
+## 8 September 2016
+
+**v1.2.3**
+
+- Deleted old config files
+- Added short link to polls history and announcement
+- Fixed bot-list.js for stranges
+- Fixed bug : trying to add filters on the wrong page
+- Template not applied on announcement
+- raffle.css and profile.css replaced by global.css 
+- bug template.css solution button don't appear
+- Injected style tag before template.css on main.js
+- Reduced size : Open-Sans font ( 60Ko => 5Ko )
+- Added import feature on favorites raffles page
+- Stop minify .css anymore
+- Added help page for CustomCSS with templates

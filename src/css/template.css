@@ -2,12 +2,15 @@
 :root {
    --hover: brightness(1.2) !important;
 }
+
 body {
    color: var(--text) !important;
 }
+
 * {
    font-family: var(--globalFont);
 }
+
 h1,
 h1 *,
 h2,
@@ -16,12 +19,18 @@ h3,
 h3 * {
    font-family: var(--titleFont) !important;
 }
+
+.fa {
+   font-family: FontAwesome !important;
+}
+
 a:active:not(.username),
 a:focus:not(.username),
 a:hover:not(.username),
 a:not(.username) {
    color: var(--link) !important;
 }
+
 a:active,
 a:focus,
 a:hover {
@@ -33,6 +42,7 @@ a:hover {
    color: var(--text) !important;
    background-color: var(--back1) !important;
 }
+
 .btn,
 .btn a,
 .rev-banking-background a,
@@ -44,11 +54,13 @@ b.label {
    color: var(--btntext) !important;
    border-radius: var(--radius) !important;
 }
+
 .btn-success,
 .nav-pills > li > a {
    color: var(--btntext) !important;
    background-color: var(--btn4) !important;
 }
+
 .btn:active,
 .btn:focus,
 .btn:hover {
@@ -56,6 +68,7 @@ b.label {
    filter: var(--hover) !important;
    transition: 0.4s ease-out;
 }
+
 .nav-pills > li > a:focus,
 .nav-pills > li > a:hover,
 .nav-pills > li.active > a,
@@ -66,6 +79,7 @@ b.label {
    -webkit-filter: var(--hover) !important;
    filter: var(--hover) !important;
 }
+
 .btn.btn-danger,
 .btn.btn-danger.active,
 .btn.btn-danger:active,
@@ -74,6 +88,7 @@ b.label {
    background-color: var(--btn1) !important;
    border-color: var(--btn1) !important;
 }
+
 .btn.btn-default,
 .btn.btn-default.active,
 .btn.btn-default:active,
@@ -87,6 +102,7 @@ b.label {
    background-color: var(--btn2) !important;
    border-color: var(--btn2) !important;
 }
+
 .btn.btn-inverse,
 .btn.btn-inverse.active,
 .btn.btn-inverse:active,
@@ -94,6 +110,7 @@ b.label {
    background-color: var(--btn3) !important;
    border-color: var(--btn3) !important;
 }
+
 .btn-primary.active,
 .btn-primary:active,
 .btn.btn-primary,
@@ -113,11 +130,13 @@ b.label {
    background-color: var(--btn4) !important;
    color: var(--btntext) !important;
 }
+
 .dropdown-menu > li > a,
 .select2-drop .select2-result-selectable .select2-result-label,
 .yamm-content li > a {
    color: var(--text) !important;
 }
+
 .select-primary .select2-choice,
 .select-primary .select2-choice.hover,
 .select-primary .select2-choice:active,
@@ -127,13 +146,16 @@ b.label {
    background-color: var(--btn4) !important;
    color: var(--btntext) !important;
 }
+
 .select2-chosen {
    color: var(--btntext) !important;
 }
+
 nav .iconic:before {
    color: var(--text) !important;
    opacity: 0.2;
 }
+
 .dropdown-menu > li > a:focus,
 .dropdown-menu > li > a:hover {
    background-color: var(--btn4) !important;
@@ -146,16 +168,25 @@ nav .iconic:before {
 .radio input[type="radio"].custom-radio:checked+.icons .icon-checked {
    background-color: var(--btn4) !important;
 }
+
 .inv-switcher a,
 .item-group-switcher a,
 .search-switcher a {
    background-color: var(--btn4) !important;
    color: var(--btntext) !important;
 }
+
 .inv-switcher .active,
 .search-switcher .active,
 .toggle-chat-button {
    background-color: var(--btn2) !important;
+   color: var(--btntext) !important;
+}
+
+.nav-notice a,
+.nav-notice a:active,
+.nav-notice a:focus,
+.nav-notice a:hover {
    color: var(--btntext) !important;
 }
 /* comments mention & page navigation */
@@ -167,16 +198,20 @@ a.user-mention:visited {
    border-color: var(--btn4) !important;
    color: var(--btntext) !important;
 }
+
 .raffle-commenters .currUser {
    border-left-color: var(--btn2) !important;
 }
+
 .raffle-commenters .linked {
    border-left-color: var(--btn4) !important;
 }
+
 .dataTables_paginate > ul,
 .pagination > ul {
    background: var(--back2) !important;
 }
+
 .dataTables_paginate li.active > a,
 .dataTables_paginate li.active > span,
 .pagination li.active > a,
@@ -184,12 +219,14 @@ a.user-mention:visited {
    background-color: var(--btn4) !important;
    border-color: var(--btn4) !important;
 }
+
 .dataTables_paginate li > a,
 .dataTables_paginate li > span,
 .pagination li > a,
 .pagination li > span {
    border-color: var(--border) !important;
 }
+
 .dataTables_paginate li > a:focus,
 .dataTables_paginate li > a:hover,
 .dataTables_paginate li > span:focus,
@@ -205,18 +242,23 @@ a.user-mention:visited {
 .tooltip-inner {
    background-color: var(--btn3) !important;
 }
+
 .tooltip.top .tooltip-arrow {
    border-top-color: var(--btn3) !important;
 }
+
 .tooltip.bottom .tooltip-arrow {
    border-bottom-color: var(--btn3) !important;
 }
+
 .tooltip.left .tooltip-arrow {
    border-left-color: var(--btn3) !important;
 }
+
 .tooltip.right .tooltip-arrow {
    border-right-color: var(--btn3) !important;
 }
+
 .bg-info {
    background-color: transparent !important;
 }
@@ -225,6 +267,7 @@ a.user-mention:visited {
    overflow: hidden;
    position: relative;
 }
+
 .welcome::before {
    content: "";
    background: var(--back1) !important;
@@ -234,38 +277,59 @@ a.user-mention:visited {
    left: 0;
    opacity: 0.45;
 }
+
 .welcome-button {
    border: 2px solid var(--text) !important;
    color: var(--text) !important;
 }
+
+.welcome-status .tooltip {
+   display: none !important;
+}
+
+.bank-selector-box a:focus,
+.bank-selector-box a:hover,
+.bank-selector-box a:hover,
+a[rel="tooltip"],
+a[rel="tooltip"]:hover {
+   filter: none !important;
+   -webkit-filter: none !important;
+}
+
 .bank-selector-box a:active,
 .bank-selector-box a:focus,
 .bank-selector-box a:hover {
    filter: none;
    -webkit-filter: none;
 }
+
 .welcome,
 .welcome-status a {
    color: var(--text) !important;
 }
+
 .welcome-status a:focus,
 .welcome-status a:hover {
    color: var(--btn4) !important;
 }
+
 .flat-slate,
 .navbar-default {
    background-color: var(--back1) !important;
 }
+
 .dropdown-menu,
 .select2-drop {
    background-color: var(--back2) !important;
 }
+
 .navbar .nav ul a:hover,
 .navbar-nav > li > a:not(.nav-userdropdown):focus,
 .navbar-nav > li > a:not(.nav-userdropdown):hover {
    color: var(--btntext) !important;
    background-color: var(--btn4) !important;
 }
+
 .navbar-default .navbar-nav > li > a {
    color: var(--text) !important;
 }
@@ -276,6 +340,7 @@ a.user-mention:visited {
    display: block;
    transition: filter, -webkit-filter 0.4s ease-out;
 }
+
 .svg:hover {
    -webkit-filter: var(--hover) !important;
    filter: var(--hover) !important;
@@ -284,6 +349,7 @@ a.user-mention:visited {
    .small-logo {
       display: none;
    }
+
    nav > div.container {
       width: 100% !important;
    }
@@ -293,6 +359,7 @@ a.user-mention:visited {
       width: 140px;
       padding: 10px 2px 0;
    }
+
    #navbar-collapse-01 > ul:nth-child(1) > li:nth-child(3) {
       display: none;
    }
@@ -302,10 +369,12 @@ a.user-mention:visited {
    background-color: #2A2826;
    border-right: 1px solid var(--border) !important;
 }
+
 .breadcrumb li,
 .breadcrumb li::after {
    color: var(--text) !important;
 }
+
 .form-control,
 .panel,
 .panel-info > .panel-heading,
@@ -314,6 +383,7 @@ a.user-mention:visited {
    background-color: var(--back1) !important;
    border-color: var(--border) !important;
 }
+
 .panel-info > .panel-heading,
 .panel-raffle,
 .panel-raffle .panel-heading {
@@ -321,9 +391,11 @@ a.user-mention:visited {
    background-color: var(--back2) !important;
    border-color: var(--border) !important;
 }
+
 .panel-heading h3 {
    color: var(--btn2) !important;
 }
+
 .breadcrumb,
 .raffle-box-row,
 .raffle-info-col,
@@ -332,23 +404,32 @@ a.user-mention:visited {
    background-color: var(--back2) !important;
    border-color: var(--border) !important;
 }
+
 .raffle-message:not(.raffle-entered-msg) {
    opacity: 0;
    transition: opacity 0.4s ease-out;
 }
+
 .raffle-message:not(.puzzle) {
    color: var(--text) !important;
    background-color: var(--back2) !important;
    border-color: var(--border) !important;
 }
+
+.raffle-password {
+   opacity: 1 !important;
+}
+
 .raffle-message.puzzle {
    color: #2A2826 !important;
    background-color: #F7F9FA !important;
    border-color: var(--border) !important;
 }
+
 .raffle-entered-msg {
    background-color: var(--enterMsgColor) !important;
 }
+
 .input-group-btn .btn,
 .raffle-box-row,
 .raffle-commenters,
@@ -357,18 +438,16 @@ a.user-mention:visited {
 .raffle-opts-row .col-xs-7 {
    border-color: var(--border) !important;
 }
+
 .raffle-commenters .comment-container {
    border-top-color: var(--border) !important;
-}
-/* Create Raffle */
-.btn-saveConf {
-   font-family: FontAwesome !important;
 }
 /* Profile */
 .profile-about {
    border-color: var(--border) !important;
    color: #d0d0d0;
 }
+
 .profile-stat,
 .profile-stat:not(:last-child) {
    border-color: var(--border) !important;
@@ -380,15 +459,17 @@ a.user-mention:visited {
    background-color: var(--back1) !important;
    border-color: var(--border) !important;
 }
+
 .label-info,
 .label-info[href] {
    background-color: var(--btn2) !important;
    color: var(--btntext) !important;
 }
 /* Avatars */
-.avatar-container img {
+.avatar-container img[alt="Avatar"] {
    border-radius: var(--avatarBorders) !important;
 }
+
 .avatar-hat {
    background-color: transparent !important;
 }
@@ -398,15 +479,24 @@ a.user-mention:visited {
    background-color: var(--back1) !important;
    border-color: var(--border) !important;
 }
+
 .modal-footer {
    background-color: var(--back2) !important;
 }
+
 .modal-header .close {
    color: var(--text) !important;
 }
+
+.modal-backdrop {
+   background-color: var(--back1) !important;
+   opacity: 0.85 !important;
+}
+
 .fullpage-well {
    background: var(--back1) !important;
 }
+
 #Content,
 .flat-dialog-inside {
    background: var(--back2) !important;
@@ -425,18 +515,26 @@ a.user-mention:visited {
 .table-bordered > thead > tr > th {
    border-color: var(--border) !important;
 }
+
 .table > tbody > tr > th,
 .table > tfoot > tr > th,
 .table > thead > tr > th {
    color: var(--btn3);
 }
+
+.tooltip-arrow {
+   background-color: transparent !important;
+}
+
 td div div {
    color: var(--btntext) !important;
    background-color: var(--btn4) !important;
 }
+
 td div div div:first-child {
    background-color: var(--btn1) !important;
 }
+
 td div div div:last-child {
    background-color: var(--btn4) !important;
 }
@@ -444,23 +542,42 @@ td div div div:last-child {
 .jumbotron {
    background-color: transparent !important;
 }
+
 .panel-danger > .panel-heading,
 .panel-success > .panel-heading {
    background-color: var(--back2) !important;
    border-color: var(--border) !important;
 }
+
 .panel-success > .panel-heading {
    color: var(--btn4) !important;
 }
+
 .panel-danger > .panel-heading {
    color: var(--btn1) !important;
 }
+
 .panel-info > .panel-heading+.panel-collapse > .panel-body {
    border-color: var(--border) !important;
 }
+
 .user-helper {
    background: var(--back2);
 }
+
 .about-inside * {
    color: #ddd !important;
+}
+/* Announcement */
+.flat-block {
+   background-color: var(--back2) !important;
+   border: 1px solid var(--border) !important;
+}
+
+.notices-container .alert-danger {
+   background-color: var(--back1) !important;
+}
+
+.notices-container .alert-danger:after {
+   border-top-color: var(--back1) !important;
 }
