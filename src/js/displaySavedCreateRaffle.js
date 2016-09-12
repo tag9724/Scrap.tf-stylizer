@@ -16,7 +16,7 @@ var coloredType = ["btn-success", "btn-info", "btn-info", "btn-primary", "btn-in
 
 /* Load All saved raffles */
 
-chrome.storage.local.get(["savedCreateRaffle"], function(res) {
+chrome.storage.local.get(["savedCreateRaffle"], function (res) {
 
     if (res.savedCreateRaffle && res.savedCreateRaffle[0]) {
 
@@ -38,29 +38,81 @@ chrome.storage.local.get(["savedCreateRaffle"], function(res) {
         // Append saved conf
 
         var appendBox = document.getElementById('appendHere');
+        var DOMFrag = BuildDOM.NewDocFrag();
 
-        for (let i = 0, nextStep, len = res.savedCreateRaffle.length; i < len; i++) {
+        console.time('appendSaveDOM');
 
-            nextStep = (res.savedCreateRaffle[i].privateRaffle == 0 || res.savedCreateRaffle[i].privateRaffle == 7) ? false : true;
+        for (let i = 0, len = res.savedCreateRaffle.length; i < len; i++) {
+
+            let nextStep = (res.savedCreateRaffle[i].privateRaffle == 0 || res.savedCreateRaffle[i].privateRaffle == 7) ? false : true;
             nextStep = 'ScrapTF.Raffles.NextStep(' + nextStep + ')';
 
-            appendBox.insertAdjacentHTML('beforeend',
-                '<div class="form-group" data-k="' + res.savedCreateRaffle[i].raffleID + '">' +
-                '   <div class="form-control" onclick="' + nextStep + '">' +
-                '      <span class="form-control-static"><i class="fa ' + (res.savedCreateRaffle[i].type ? 'fa-users' : 'fa-user') + '"></i> <i18n>' + res.savedCreateRaffle[i].savedName + '</i18n></span>' +
-                '      <div class="pull-right">' +
-                '         <span class="btn btn-xs ' + (res.savedCreateRaffle[i].nocmt ? 'btn-danger' : 'btn-default') + '"><i class="fa fa-comments-o "></i></span>' +
-                '         <span class="btn btn-xs ' + coloredType[res.savedCreateRaffle[i].privateRaffle] + '">' + typeRaffle[res.savedCreateRaffle[i].privateRaffle] + '</span>' +
-                '         <span class="btn btn-xs btn-default">' + DateFormat(res.savedCreateRaffle[i].length) + '</span>' +
-                '         <span class="btn btn-xs btn-default"><i class="fa fa-user"></i> ' + res.savedCreateRaffle[i].maxentries + '</span>' +
-                '      </div>' +
-                '   </div>' +
-                '   <div class="pull-right btnDel">' +
-                '      <button class="btn btn-xs btn-danger rm"><i class="fa fa-remove rm"></i></button>' +
-                '   </div>' +
-                '</div>'
+            // Yup it's ugly
+
+            DOMFrag.appendChild(
+                BuildDOM.Create({
+                    tag: 'div',
+                    classList: ['form-group'],
+                    dataset: {
+                        k: res.savedCreateRaffle[i].raffleID
+                    },
+                    childrens: [{
+                        tag: 'div',
+                        classList: ['form-control'],
+                        attributes: {
+                            onclick: nextStep
+                        },
+                        childrens: [{
+                            tag: 'span',
+                            classList: ['form-control-static'],
+                            childrens: [{
+                                tag: 'i',
+                                classList: ['fa', (res.savedCreateRaffle[i].type ? 'fa-users' : 'fa-user')]
+                            }, {
+                                tag: 'i18n',
+                                innerText: res.savedCreateRaffle[i].savedName
+                            }]
+                        }, {
+                            tag: 'div',
+                            classList: ['pull-right'],
+                            childrens: [{
+                                tag: 'span',
+                                classList: ['btn', 'btn-xs', (res.savedCreateRaffle[i].nocmt ? 'btn-danger' : 'btn-default')],
+                                innerHTML: '<i class="fa fa-comments-o"></i></span>'
+                            }, {
+                                tag: 'span',
+                                classList: ['btn', 'btn-xs', coloredType[res.savedCreateRaffle[i].privateRaffle]],
+                                innerText: typeRaffle[res.savedCreateRaffle[i].privateRaffle]
+                            }, {
+                                tag: 'span',
+                                classList: ['btn', 'btn-xs', 'btn-default'],
+                                innerText: DateFormat(res.savedCreateRaffle[i].length)
+                            }, {
+                                tag: 'span',
+                                classList: ['btn', 'btn-xs', 'btn-default'],
+                                childrens: [{
+                                    tag: 'i',
+                                    classList: ['fa', 'fa-users']
+                                }, {
+                                    tag: 'span',
+                                    classList: ['entries'],
+                                    innerText: res.savedCreateRaffle[i].maxentries
+                                }]
+                            }]
+                        }]
+                    }, {
+                        tag: 'div',
+                        classList: ['pull-right', 'btnDel'],
+                        innerHTML: '<button class="btn btn-xs btn-danger rm"><i class="fa fa-remove rm"></i></button>'
+                    }]
+                })
             );
-        }
+
+        } // End for
+
+        appendBox.appendChild(DOMFrag);
+
+        console.timeEnd('appendSaveDOM');
 
         // Event Add and Delete
 
@@ -80,7 +132,7 @@ chrome.storage.local.get(["savedCreateRaffle"], function(res) {
 
             if (ev.target.matches('.rm')) {
 
-                chrome.storage.local.get(["savedCreateRaffle"], function(res) {
+                chrome.storage.local.get(["savedCreateRaffle"], function (res) {
 
                     // First configuration
                     if (!res.savedCreateRaffle) {
@@ -114,7 +166,7 @@ chrome.storage.local.get(["savedCreateRaffle"], function(res) {
 
                 // And ... continue
 
-                chrome.storage.local.get(["savedCreateRaffle"], function(res) {
+                chrome.storage.local.get(["savedCreateRaffle"], function (res) {
 
                     if (res.savedCreateRaffle) {
 
@@ -160,16 +212,16 @@ chrome.storage.local.get(["savedCreateRaffle"], function(res) {
                             // Raffle time
 
                             document.getElementById('raffle-length').value = conf.length;
-                            document.getElementById('select2-chosen-1').innerHTML = DateFormat(conf.length);
+                            document.getElementById('select2-chosen-1').innerText = DateFormat(conf.length);
 
                             // Number of winners
 
                             document.getElementById('raffle-method').value = conf.type ? "2" : "1";
-                            document.getElementById('select2-chosen-2').innerHTML = conf.type ? "Multiple winners" : "One winner";
+                            document.getElementById('select2-chosen-2').innerText = conf.type ? "Multiple winners" : "One winner";
 
                             document.getElementById(conf.isPrivate ? "raffle-private" : "raffle-public").value = conf.privateRaffle;
-                            document.getElementById('select2-chosen-3').innerHTML = typeRaffle[conf.privateRaffle];
-                            document.getElementById('select2-chosen-4').innerHTML = typeRaffle[conf.privateRaffle];
+                            document.getElementById('select2-chosen-3').innerText = typeRaffle[conf.privateRaffle];
+                            document.getElementById('select2-chosen-4').innerText = typeRaffle[conf.privateRaffle];
 
                             // Disable comments
 

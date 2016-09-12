@@ -1,13 +1,37 @@
 /* Favorites raffles */
 
-chrome.storage.local.get(["favoritesRaffles"], function(res) {
+chrome.storage.local.get(["favoritesRaffles"], function (res) {
 
     function FavoriteRaffle() {
         // This element need to enter in the top raffles
         if (newBtn.dataset.infav == "false") {
 
             // Select informations
-            var userContainer = document.querySelector('.raffle-box-row .raffle-username a');
+            let userContainer = document.querySelector('.raffle-box-row .raffle-username a');
+
+            /* Build Item list to JSON */
+
+            let e = document.querySelector('.raffle-items');
+            let itemsArr = [];
+
+            // Convert into BuildDOM object
+
+            for (let o = 0, len = e.children.length; o < len; o++) {
+                itemsArr.push({
+                    tag: 'div',
+                    classList: Array.from(e.children[o].classList),
+                    attributes: {
+                        style: e.children[o].getAttribute('style') || ""
+                    },
+                    dataset: {
+                        content: e.children[o].dataset.content,
+                        title: e.children[o].dataset.title
+                    }
+                });
+            }
+
+            /* Build JSON save */
+
             var datas = {
                 raffleID: window.location.pathname.replace('/raffles/', ""),
                 title: document.querySelector('.raffle-well .subtitle').innerHTML,
@@ -18,7 +42,7 @@ chrome.storage.local.get(["favoritesRaffles"], function(res) {
                     color: userContainer.style.color
 
                 },
-                items: document.querySelector('.raffle-items').innerHTML,
+                items: itemsArr,
                 date: Date.now(),
                 add: true
             };
@@ -37,7 +61,7 @@ chrome.storage.local.get(["favoritesRaffles"], function(res) {
 
         // save informations
 
-        chrome.storage.local.get(["favoritesRaffles"], function(res) {
+        chrome.storage.local.get(["favoritesRaffles"], function (res) {
 
             // First configuration
 

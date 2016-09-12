@@ -324,8 +324,8 @@ a[rel="tooltip"]:hover {
 }
 
 .navbar .nav ul a:hover,
-.navbar-nav > li > a:not(.nav-userdropdown):focus,
-.navbar-nav > li > a:not(.nav-userdropdown):hover {
+ul.navbar-nav > li > a:not(.nav-userdropdown):focus,
+ul.navbar-nav > li > a:not(.nav-userdropdown):hover {
    color: var(--btntext) !important;
    background-color: var(--btn4) !important;
 }
@@ -386,7 +386,8 @@ a[rel="tooltip"]:hover {
 
 .panel-info > .panel-heading,
 .panel-raffle,
-.panel-raffle .panel-heading {
+.panel-raffle .panel-heading,
+.raffle-mod {
    color: var(--btn2) !important;
    background-color: var(--back2) !important;
    border-color: var(--border) !important;
@@ -466,7 +467,7 @@ a[rel="tooltip"]:hover {
    color: var(--btntext) !important;
 }
 /* Avatars */
-.avatar-container img[alt="Avatar"] {
+.avatar-container img[alt="Avatar"], .comment-avatar img[alt="Avatar"] {
    border-radius: var(--avatarBorders) !important;
 }
 
@@ -580,4 +581,20 @@ td div div div:last-child {
 
 .notices-container .alert-danger:after {
    border-top-color: var(--back1) !important;
+}
+
+.notices-container .alert-warning {
+   background-color: var(--back2) !important;
+}
+
+.notices-container .alert-warning:after {
+   border-top-color: var(--back2) !important;
+}
+
+.notices-container .alert-info {
+   background-color: var(--back2) !important;
+}
+
+.notices-container .alert-info:after {
+   border-top-color: var(--back2) !important;
 }

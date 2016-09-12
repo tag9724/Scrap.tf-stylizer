@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
 
     // Append FavoriteRaffle and polls history li tag in nav bar
 
@@ -16,19 +16,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
         var container = document.querySelector('#pid-raffles > div.container');
         container.style.display = "none";
-        container.innerHTML = "";
+        container.innerText = "";
 
         var newContent = document.createElement('div');
         newContent.classList.add('container', 'container-margins', 'favorites-raffles-container');
         newContent.innerHTML = '<div class="panel panel-info favorites-raffles">' +
-            '<div class="panel-heading">' +
-            '<h3 class="panel-title"><i18n>Favorites Raffles</i18n></h3>' +
-            '</div>' +
-            '<div class="panel-bg">' +
-            '<div id="favs-raffles-list"></div>' +
-            '<div class="panel-body load">Load More</div>' +
-            '</div>' +
-            '</div>';
+            '<div class="panel-heading"><h3 class="panel-title"><i18n>Favorites Raffles</i18n></h3></div>' +
+            '<div class="panel-bg"><div id="favs-raffles-list"></div><div class="panel-body load">Load More</div>' +
+            '</div></div>';
 
         container.insertAdjacentElement('afterend', newContent);
 
@@ -43,7 +38,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
 
             if (hiddens.length <= MAXDISPLAY) {
-                load.innerHTML = "That's all no more !";
+                load.innerText = "That's all no more !";
             }
         }
 
@@ -57,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function() {
         let aBtn = document.createElement('a');
         aBtn.classList.add('btn', 'btn-info', 'btn-embossed', 'cust-btn');
         aBtn.download = 'FavoritesRaffles.scraptf';
-        aBtn.innerHTML = 'Export';
+        aBtn.innerText = 'Export';
 
         panelHead.appendChild(aBtn);
 
@@ -70,7 +65,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         let iBtn = document.createElement('a');
         iBtn.classList.add('btn', 'btn-info', 'btn-embossed', 'cust-btn');
-        iBtn.innerHTML = "Import";
+        iBtn.innerText = "Import";
 
         let importBtn = document.createElement('input');
         importBtn.setAttribute('type', 'file');
@@ -128,15 +123,15 @@ document.addEventListener('DOMContentLoaded', function() {
                 importBtn.addEventListener('change', this.OpenModal.bind(this));
             }
             UpdateNbSaved(current, arrive) {
-                this.nbSaved[0].innerHTML = current;
-                this.nbSaved[1].innerHTML = arrive;
+                this.nbSaved[0].innerText = current;
+                this.nbSaved[1].innerText = arrive;
             }
             OpenModal(ev) {
 
                 var reader = new FileReader();
                 reader.readAsText(ev.target.files[0], 'utf-8');
 
-                reader.onload = function(e) {
+                reader.onload = function (e) {
                     var obj = reader.result;
 
                     // Parse and check the JSON
@@ -192,7 +187,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 // Clear and update the list of saved raffles
 
-                rafflesList.innerHTML = "";
+                rafflesList.innerText = "";
                 DisplayAllFavorites({
                     favoritesRaffles: this.NewSave
                 });
@@ -229,36 +224,128 @@ document.addEventListener('DOMContentLoaded', function() {
         function DisplayAllFavorites(res) {
             // Debug
             res.favoritesRaffles = res.favoritesRaffles || [];
+            let needUpdate = false,
+                append = BuildDOM.NewDocFrag();
 
             for (let i = res.favoritesRaffles.length - 1, len = res.favoritesRaffles.length; i >= 0; i--) {
 
-                rafflesList.innerHTML += '<div class="panel-raffle hidden">' +
-                    '<div class="panel-heading"><div class="raffle-name"><a href="/raffles/' + res.favoritesRaffles[i].raffleID + '">' +
-                    res.favoritesRaffles[i].title +
-                    '</a></div>' +
-                    '<span class="pull-right"><i18n>Added</i18n>: <span class="raffle-time-left">' +
-                    new Date(res.favoritesRaffles[i].date).toDateString() +
-                    '</span><i class="fa fa-fw fa-trash remove" data-rid="' + res.favoritesRaffles[i].raffleID + '"></i></span></div>' +
-                    '<div class="panel-left"><div class="panel-body">' +
-                    '<div class="avatar-container " style="height: 60px; width: 60px;"><img style="border-color: ' +
-                    res.favoritesRaffles[i].owner.color +
-                    '; border-width: 2px;" src="' +
-                    res.favoritesRaffles[i].owner.avatar +
-                    '" alt="Avatar"></div>' +
-                    '<div class="raffle-username"><span><a href="' +
-                    res.favoritesRaffles[i].owner.url +
-                    '" class="username" style="color:' +
-                    res.favoritesRaffles[i].owner.color +
-                    '">' +
-                    res.favoritesRaffles[i].owner.name +
-                    '</a></span></div>' +
-                    '</div></div>' +
-                    '<div class="panel-right">' +
-                    '<div class="panel-raffle-items">' +
-                    res.favoritesRaffles[i].items +
-                    '</div></div></div></div>';
+                /* Updated the saved content ( Firefox update v1.2.4 ) */
+
+                if (typeof res.favoritesRaffles[i].items === 'string') {
+
+                    // Parse HTML string
+
+                    let e = document.createElement('div');
+                    e.innerHTML = res.favoritesRaffles[i].items;
+                    res.favoritesRaffles[i].items = [];
+
+                    // Convert into BuildDOM object
+
+                    for (let o = 0, len = e.children.length; o < len; o++) {
+                        res.favoritesRaffles[i].items.push({
+                            tag: 'div',
+                            classList: Array.from(e.children[o].classList),
+                            attributes: {
+                                style: e.children[o].getAttribute('style') || ""
+                            },
+                            dataset: {
+                                content: e.children[o].dataset.content,
+                                title: e.children[o].dataset.title
+                            }
+                        });
+                    }
+
+                    // Update the save later
+                    needUpdate = true;
+                }
+
+                console.log(res.favoritesRaffles[i].items);
+
+                /* Create a new Box for this saved raffle  */
+
+                append.appendChild(BuildDOM.Create({
+                    tag: 'div',
+                    classList: ['panel-raffle', 'hidden'],
+                    childrens: [{
+                        tag: 'div',
+                        classList: ['panel-heading'],
+                        childrens: [{
+                            tag: 'div',
+                            classList: ['raffle-name'],
+                            childrens: [{
+                                tag: 'a',
+                                attributes: {
+                                    href: '/raffles/' + res.favoritesRaffles[i].raffleID
+                                },
+                                innerText: res.favoritesRaffles[i].title
+                            }]
+                        }, {
+                            tag: 'div',
+                            classList: ['pull-right'],
+                            innerText: 'Added: ',
+                            childrens: [{
+                                tag: 'span',
+                                classList: ['raffle-time-left'],
+                                innerText: new Date(res.favoritesRaffles[i].date).toDateString()
+                            }, {
+                                tag: 'i',
+                                classList: ['fa', 'fa-fw', 'fa-trash', 'remove'],
+                                dataset: {
+                                    rid: res.favoritesRaffles[i].raffleID
+                                }
+                            }]
+                        }]
+                    }, {
+                        tag: 'div',
+                        classList: ['panel-left'],
+                        childrens: [{
+                            tag: 'div',
+                            classList: ['panel-body'],
+                            childrens: [{
+                                tag: 'div',
+                                classList: ['avatar-container'],
+                                attributes: {
+                                    style: "height: 60px; width: 60px"
+                                },
+                                childrens: [{
+                                    tag: 'img',
+                                    attributes: {
+                                        style: 'border-color: ' + res.favoritesRaffles[i].owner.color + '; border-width: 2px',
+                                        src: res.favoritesRaffles[i].owner.avatar
+                                    }
+                                }]
+                            }, {
+                                tag: 'div',
+                                classList: ['raffle-username'],
+                                childrens: [{
+                                    tag: 'span',
+                                    childrens: [{
+                                        tag: 'a',
+                                        classList: ['username'],
+                                        attributes: {
+                                            href: res.favoritesRaffles[i].owner.url,
+                                            style: 'color:' + res.favoritesRaffles[i].owner.color
+                                        }
+                                    }]
+                                }]
+                            }]
+                        }]
+                    }, {
+                        tag: 'div',
+                        classList: ['panel-right'],
+                        childrens: [{
+                            tag: 'div',
+                            classList: ['panel-raffle-items'],
+                            childrens: res.favoritesRaffles[i].items
+                        }]
+                    }]
+                }));
+
             }
 
+            // Append the result and display the first raffles
+
+            rafflesList.appendChild(append);
             DisplayMore();
 
             // Refresh the export btn
@@ -266,6 +353,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // Update the list of current raffle for import
             Modal.UpdateSave(res.favoritesRaffles);
+
+            // And update the items on save
+            if (needUpdate) {
+                chrome.storage.local.set({
+                    favoritesRaffles: res.favoritesRaffles
+                }, function () {
+                    console.log('UPDATE DONE');
+                });
+            }
         }
 
         chrome.storage.local.get(["favoritesRaffles"], DisplayAllFavorites);
@@ -275,7 +371,7 @@ document.addEventListener('DOMContentLoaded', function() {
         function RemoveFavorite(ev) {
             if (ev.target.classList.contains('remove')) {
 
-                chrome.storage.local.get(["favoritesRaffles"], function(res) {
+                chrome.storage.local.get(["favoritesRaffles"], function (res) {
 
                     // Search and remove
 
@@ -288,7 +384,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
                     chrome.storage.local.set({
                         favoritesRaffles: res.favoritesRaffles
-                    }, function(err, msg) {
+                    }, function (err, msg) {
                         // And finally remove this element from the list
                         ev.target.parentElement.parentElement.parentElement.remove();
                         // Refresh the export btn

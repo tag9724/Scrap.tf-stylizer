@@ -13,7 +13,7 @@ if (isEnded == "Raffle Ended") {
             orange++
         };
     }
-    ended.innerHTML += " (" + green + "/" + (green + orange) + ")";
+    ended.innerText += " (" + green + "/" + (green + orange) + ")";
 }
 
 /* Non whitelisted urls in raffle description */
@@ -94,7 +94,6 @@ if (comBox) {
 
             // And execute the replacement
             newCom = comBox.querySelector('.comment-content');
-            console.log("updated", lastCom, "&&", newCom.innerHTML);
 
             var str = newCom.innerHTML;
             // Urls

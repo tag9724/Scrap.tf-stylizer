@@ -3,7 +3,7 @@
 
     "name": "Scrap.tf stylizer",
     "description": "This extension give more features for scrap.tf",
-    "version": "1.2.3",
+    "version": "1.2.4",
 
     "icons": {
         "16": "img/icon.png",
@@ -17,13 +17,14 @@
     },
     "content_scripts": [{
         "matches": ["*://scrap.tf/*", "*://dev.scrap.tf/*"],
-        "js": ["js/main.js", "js/DisplayFavoritesRaffles.js"],
+        "js": ["js/lib/constructDOM.js", "js/main.js"],
         "css": ["css/global.css"],
         "run_at": "document_start"
     }, {
         "matches": ["*://*.scrap.tf/raffles/create"],
         "js": [
             "js/lib/BBCODE.js",
+            "js/lib/constructDOM.js",
             "js/createRaffle.js",
             "js/displaySavedCreateRaffle.js",
             "js/saveCreateRaffle.js"
@@ -31,7 +32,7 @@
         "css": ["css/createRaffle.css"]
     }, {
         "matches": ["*://*.scrap.tf/raffles/*"],
-        "js": ["js/lib/BBCODE.js", "js/raffle.js", "js/FavoritesRaffles.js"]
+        "js": ["js/lib/constructDOM.js", "js/lib/BBCODE.js", "js/raffle.js", "js/FavoritesRaffles.js", "js/DisplayFavoritesRaffles.js"]
     }, {
         "matches": ["*://*.scrap.tf/raffles/favorites"],
         "css": ["css/favoritesRaffles.css"],
@@ -67,6 +68,7 @@
     }],
     "web_accessible_resources": [
         "js/inject/*",
+        "js/lib/constructDOM.js",
         "mp3/*",
         "css/*",
         "img/*"

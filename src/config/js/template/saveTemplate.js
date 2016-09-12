@@ -1,4 +1,4 @@
-TemplatesManage.prototype.Save = function(use) {
+TemplatesManage.prototype.Save = function (use) {
 
     /* Build JSON save */
 
@@ -74,7 +74,7 @@ TemplatesManage.prototype.Save = function(use) {
 
     /* Save the template */
 
-    chrome.storage.local.get("AvailableTemplates", function(list) {
+    chrome.storage.local.get("AvailableTemplates", function (list) {
 
         // For the first saved template
         if (!list.AvailableTemplates) list.AvailableTemplates = {};
@@ -100,31 +100,48 @@ TemplatesManage.prototype.Save = function(use) {
 
     this.curr = NewSave;
 
-    updateBox = document.querySelector(`#openSection .box[data-load="${this.templateID}"] h4`);
+    updateBox = document.querySelector(`#openSection .box[data-load="${this.templateID}"]`);
 
-    // Get updated colors
+    /* Get updated content */
 
-    var newColors = "";
+    var newColors = [];
 
-    for (let i = 0, len = colors.length; i < len; i++)
-        newColors += `<div class="btn-group color" style="background: ${colors[i]};"></div>`;
+    for (let i = 0, len = colors.length; i < len; i++) {
+        newColors.push({
+            tag: 'div',
+            classList: ['btn-group', 'color'],
+            attributes: {
+                style: "background:" + colors[i]
+            }
+        });
+    }
+
+    var newContent = BuildDOM.NewDocFrag({
+        tag: 'h4',
+        classList: ['pull-left'],
+        innerText: NewSave.name
+    }, {
+        tag: 'div',
+        classList: ['color-group'],
+        childrens: newColors
+    });
 
     // Update the template box in the main page
 
     if (updateBox) {
-        updateBox.innerHTML = NewSave.name;
-        updateBox.parentElement.querySelector('.color-group').innerHTML = newColors;
+        updateBox.innerHTML = "";
+        updateBox.appendChild(newContent);
     } else {
+        let box = BuildDOM.Create({
+          tag: 'div',
+          classList: ['box'],
+          dataset: {
+            load: this.templateID
+          }
+        });
 
-        let colors = "";
-
-        for (let i = 0, len = colors.length; i < len; i++)
-            colors += `<div class="btn-group color" style="background: ${colors[i]};"></div>`;
-
-        let box = `<div class="box" data-load="${this.templateID}"><h4 class="pull-left">${NewSave.name}</h4>
-              <div class="color-group" role="toolbar">${newColors}</div></div>`;
-
-        saveTemplate.innerHTML += box;
+        box.appendChild(newContent);
+        saveTemplate.appendChild(box);
     }
 
     /* If the user want to use him */
@@ -132,7 +149,7 @@ TemplatesManage.prototype.Save = function(use) {
     if (use === true) {
         chrome.storage.local.set({
             'UsedTemplate': this.templateID
-        }, function() {
+        }, function () {
             BuildUsedTemplate();
         });
     } else {
@@ -140,7 +157,7 @@ TemplatesManage.prototype.Save = function(use) {
     }
 }
 
-TemplatesManage.prototype.GenID = function() {
+TemplatesManage.prototype.GenID = function () {
     var converted_string = "",
         actual_date = Date.now() + "";
     var convert_arr = ["ABCDEFGHIJ", "abcdefghij"];

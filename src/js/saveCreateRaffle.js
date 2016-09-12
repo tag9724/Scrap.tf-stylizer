@@ -60,7 +60,7 @@ function SaveModalRaffle() {
     });
 
     // Close the modal
-    NewModal.classList.add('hidden');
+    CancelModalRaffle();
 }
 
 function CancelModalRaffle() {

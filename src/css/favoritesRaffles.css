@@ -4,6 +4,7 @@
 
 #pid-raffles > div.container.favorites-raffles-container {
    display: block !important;
+   min-height: 51vh;
 }
 
 .load {

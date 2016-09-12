@@ -187,3 +187,16 @@
 - Added import feature on favorites raffles page
 - Stop minify .css anymore
 - Added help page for CustomCSS with templates
+
+**v1.2.4**
+
+- Fixed some UI bugs with template.css
+- Added "DOM constructor" class ( Firefox aprobation )
+- Replaced innerHTML by BuildDOM in : displaySavedCreateRaffle.js, templates-selection.js,
+  googleFont.js, display.js, saveTemplate.js, DisplayFavoritesRaffle.js  
+
+- Saved raffles items was saved as JSON object ( previously saved as HTML string )
+- Replaced innerHTML by innerText for simple text inject ( style and script tag content also )
+- Escaped variables in main.js ( svg content )
+- Deleted useless image ( loading.gif )
+- Modified manifest.json for adding constructDOM.js and move DisplayFavoritesRaffles.js in a better place

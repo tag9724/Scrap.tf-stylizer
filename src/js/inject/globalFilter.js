@@ -257,7 +257,7 @@ class FILTER {
                 displayed += this.Filters(this.buyItems[i], false);
             }
             // Display the number of available items
-            this.botItems.innerHTML = '(' + displayed + ' / ' + i + ')';
+            this.botItems.innerText = '(' + displayed + ' / ' + i + ')';
         }
         // Sell container
         else {
@@ -266,7 +266,7 @@ class FILTER {
                 displayed += this.Filters(this.sellItems[i], true);
             }
             // Display the number of available items
-            this.userItems.innerHTML = '(' + displayed + ' / ' + i + ')';
+            this.userItems.innerText = '(' + displayed + ' / ' + i + ')';
         }
 
         // And Save filter

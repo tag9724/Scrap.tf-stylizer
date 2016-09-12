@@ -1,26 +1,55 @@
 var defTemplate = document.getElementById('defTemplate');
 var saveTemplate = document.getElementById('saveTemplates');
 
+/* Generate a box of default/saved templates */
+
+function GenViewBoxes(id, name, couleurs) {
+
+    let colors = [];
+
+    for (let k in couleurs) {
+        if (["border", "btntext"].indexOf(k) === -1) {
+            colors.push({
+                tag: 'div',
+                classList: ['btn-group', 'color'],
+                attributes: {
+                    style: 'background-color:' + couleurs[k]
+                }
+            });
+        }
+    }
+
+    return BuildDOM.Create({
+        tag: 'div',
+        classList: ['box'],
+        dataset: {
+            load: id
+        },
+        childrens: [{
+            tag: 'h4',
+            classList: ['pull-left'],
+            innerText: name
+        }, {
+            tag: 'div',
+            classList: ['color-group'],
+            childrens: colors
+        }]
+    });
+
+}
+
 /* Load from defaults template */
 
 function LoadDefaults() {
 
-    var append = "";
+    var append = BuildDOM.NewDocFrag();
 
     for (var i = 0, len = DEFAULT.length; i < len; i++) {
-
-        let colors = "";
-
-        for (let k in DEFAULT[i].colors) {
-            if (["border", "btntext"].indexOf(k) === -1)
-                colors += `<div class="btn-group color" style="background: ${DEFAULT[i].colors[k]};"></div>`;
-        }
-
-        append += `<div class="box" data-load="${DEFAULT[i].id}"><h4 class="pull-left">${DEFAULT[i].name}</h4>
-        <div class="color-group" role="toolbar">${colors}</div></div>`;
+        append.appendChild(GenViewBoxes(DEFAULT[i].id, DEFAULT[i].name, DEFAULT[i].colors));
     }
 
-    defTemplate.innerHTML = append;
+    defTemplate.innerHTML = "";
+    defTemplate.appendChild(append);
 
 }
 
@@ -28,34 +57,29 @@ function LoadDefaults() {
 
 function LoadSaved() {
 
-    chrome.storage.local.get(["AvailableTemplates"], function(res) {
+    chrome.storage.local.get(["AvailableTemplates"], function (res) {
 
         res = res['AvailableTemplates'];
+        let append = BuildDOM.NewDocFrag();
+
+        // Build the list of templates
 
         if (res) {
-
-            let append = "";
-
-            // Build the list of templates
-
             for (let k in res) {
-
-                let colors = "";
-
-                for (let i = 0; i < 9; i++) {
-                    colors += `<div class="btn-group color" style="background: ${res[k].colors[i]};"></div>`;
-                }
-
-                append += `<div class="box" data-load="${k}"><h4 class="pull-left">${res[k].name}</h4>
-                <div class="color-group" role="toolbar">${colors}</div></div>`;
+                append.appendChild(GenViewBoxes(k, res[k].name, res[k].colors));
             }
 
-            // Display the list of templates
-            saveTemplate.innerHTML = append;
-
         } else {
-            saveTemplate.innerHTML = "<p>You don't have any saved template</p>"; // TEMP next maj add the "import template" button;
+            append.appendChild(BuildDOM.Create({
+                tag: 'p',
+                innerText: "You don't have any saved template"
+            })); // TEMP next maj add the "import template" button;
         }
+
+        // Display the list of templates
+        saveTemplate.innerHTML = "";
+        saveTemplate.appendChild(append);
+
     });
 
 }
@@ -95,7 +119,7 @@ function OpenEditSection(ev) {
 
 var TemplateManage;
 
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
 
     TemplateManage = new TemplatesManage();
 

@@ -40,7 +40,7 @@ class FontManagement {
 
         /* Get css datas for this font / save and apply for demo */
 
-        this.GetCssFontDatas(url).then(function(res) {
+        this.GetCssFontDatas(url).then(function (res) {
 
             /* Match all font available */
 
@@ -75,7 +75,7 @@ class FontManagement {
             that.ChangeGlobalFont("");
             that.ChangeTitleFont("");
 
-        }).catch(function(err) {
+        }).catch(function (err) {
             console.log('prom not ok', err);
         });
 
@@ -84,10 +84,10 @@ class FontManagement {
 
         /* Load css style for these google fonts */
 
-        return new Promise(function(resolve, reject) {
+        return new Promise(function (resolve, reject) {
 
             var xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function() {
+            xhttp.onreadystatechange = function () {
 
                 if (xhttp.readyState == 4) {
 
@@ -104,26 +104,49 @@ class FontManagement {
         });
     }
     UpdateAvailableFonts(fontList) {
-        var fontAvailable = `<option value="">Default</option>`,
+        let fontAvailable = BuildDOM.NewDocFrag(),
             cssRules = "";
+
+        fontAvailable.appendChild(BuildDOM.Create({
+            tag: 'option',
+            attributes: {
+                value: ""
+            },
+            innerText: 'Default'
+        }));
 
         for (let key in fontList) {
             // Input select
-            fontAvailable += `<option value="` + key + `">` + key + `</option>`;
+
+            fontAvailable.appendChild(BuildDOM.Create({
+                tag: 'option',
+                attributes: {
+                    value: key
+                },
+                innerText: key
+            }));
 
             for (let i = 0, len = fontList[key].style.length; i < len; i++) {
                 cssRules += "@font-face" + fontList[key].style[i];
             }
         }
 
-        // Update content for demos
-        this.cssBox.innerHTML = cssRules;
+        /* Update content for demos */
 
-        this.formGlobal.querySelector('select').innerHTML = fontAvailable;
-        this.formTitle.querySelector('select').innerHTML = fontAvailable;
+        this.cssBox.innerText = cssRules;
+
+        var globSelect = this.formGlobal.querySelector('select');
+        var titleSelect = this.formTitle.querySelector('select');
+
+        globSelect.innerHTML = "";
+        titleSelect.innerHTML = "";
+
+        globSelect.appendChild(fontAvailable.cloneNode(true));
+        titleSelect.appendChild(fontAvailable);
+
+        // Disable/enable select font inputs
 
         var isFontListEmpty = !Object.keys(fontList).length;
-
         for (let i = 0; i < 2; i++) {
             this.selectTag[i].disabled = isFontListEmpty;
         }

@@ -1,7 +1,7 @@
 class TemplateList {
     constructor() {
         this.appendBox = document.getElementById('templates');
-        this.listTemplates = "";
+        this.listTemplates = BuildDOM.NewDocFrag();
 
         /* TemplateURL */
 
@@ -16,15 +16,39 @@ class TemplateList {
         this.appendBox.addEventListener('click', this.SelectTemplate.bind(this));
     }
     ConstructContent(name, id, colors, isDefault) {
-        let colorBoxes = "";
+        let colorBoxes = [];
 
         for (let k in colors) {
-            if (["border", "btntext"].indexOf(k) === -1)
-                colorBoxes += `<div class="btn-group color" style="background: ${colors[k]};"></div>`;
+            if (["border", "btntext"].indexOf(k) === -1) {
+                colorBoxes.push({
+                    tag: 'div',
+                    classList: ['btn-group', 'color'],
+                    attributes: {
+                        style: "background-color:" + colors[k] + ";"
+                    }
+                });
+            }
         }
 
-        this.listTemplates += `<div class="box" data-def="${isDefault}" data-load="${id}"><h4 class="pull-left">${name}</h4>
-        <div class="color-group" role="toolbar">${colorBoxes}</div></div>`;
+        this.appendBox.appendChild(
+            BuildDOM.Create({
+                tag: 'div',
+                classList: ['box'],
+                dataset: {
+                    def: isDefault,
+                    load: id
+                },
+                childrens: [{
+                    tag: 'h4',
+                    classList: ['pull-left'],
+                    innerText: name
+                }, {
+                    tag: 'div',
+                    classList: ['color-group'],
+                    childrens: colorBoxes
+                }]
+            })
+        );
     }
     ConstructList() {
         this.AppendDefault();
@@ -36,7 +60,7 @@ class TemplateList {
         }
     }
     AppendSaved() {
-        chrome.storage.local.get(["AvailableTemplates"], function(res) {
+        chrome.storage.local.get(["AvailableTemplates"], function (res) {
             res = res['AvailableTemplates'];
 
             if (res) {
@@ -46,13 +70,9 @@ class TemplateList {
                 }
             }
 
-            // Append the content
-
-            this.appendBox.innerHTML = this.listTemplates;
-
             // And check what template is used
 
-            chrome.storage.local.get('UsedTemplate', function(res) {
+            chrome.storage.local.get('UsedTemplate', function (res) {
                 if (res.UsedTemplate) {
                     let box = document.querySelector('.box[data-load="' + res.UsedTemplate + '"]');
 
@@ -102,7 +122,7 @@ class TemplateList {
 
             var xhttp = new XMLHttpRequest();
             xhttp.open("GET", "templates/" + id + ".json");
-            xhttp.onreadystatechange = function(data) {
+            xhttp.onreadystatechange = function (data) {
 
                 // Save the template
 
@@ -114,7 +134,7 @@ class TemplateList {
 
                     chrome.storage.local.set(
                         newSave,
-                        function() {
+                        function () {
                             BuildUsedTemplate();
                         });
                 }
@@ -130,7 +150,7 @@ class TemplateList {
         chrome.storage.local.set({
                 'UsedTemplate': id
             },
-            function() {
+            function () {
                 BuildUsedTemplate();
             });
     }
