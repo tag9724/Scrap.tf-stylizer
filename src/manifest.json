@@ -51,6 +51,13 @@
         "run_at": "document_start"
     }, {
         "matches": [
+            "*://*.scrap.tf/weapons",
+            "*://*.scrap.tf/hats",
+            "*://*.scrap.tf/items",
+            "*://*.scrap.tf/unusuals",
+            "*://*.scrap.tf/skins",
+            "*://*.scrap.tf/killstreaks",
+            "*://*.scrap.tf/stranges",
             "*://*.scrap.tf/weapons/*",
             "*://*.scrap.tf/hats/*",
             "*://*.scrap.tf/items/*",

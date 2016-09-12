@@ -119,7 +119,7 @@ function OpenEditSection(ev) {
 
 var TemplateManage;
 
-document.addEventListener("DOMContentLoaded", function () {
+function StartLoading() {
 
     TemplateManage = new TemplatesManage();
 
@@ -128,4 +128,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
     defTemplate.addEventListener('click', OpenEditSection);
     saveTemplate.addEventListener('click', OpenEditSection);
-});
+}
+/* Execute */
+
+if (document.readyState == "interactive" || document.readyState == "complete") {
+    StartLoading();
+} else {
+    document.addEventListener("DOMContentLoaded", StartLoading);
+}

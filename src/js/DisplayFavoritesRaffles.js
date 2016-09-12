@@ -1,16 +1,10 @@
-document.addEventListener('DOMContentLoaded', function () {
-
-    // Append FavoriteRaffle and polls history li tag in nav bar
-
-    var navUL = document.querySelector('#navbar-collapse-01 > ul:nth-child(1) > li.dropdown:nth-child(2) ul');
-    navUL.innerHTML += '<li><a href="/raffles/favorites"><i class="fa fa-fw fa-star"></i><i18n>Favorites Raffles</i18n></a></li>' +
-        '<li class="divider"></li>' +
-        '<li><a href="/polls/history"><i class="fa fa-fw fa-pie-chart"></i><i18n>Polls History</i18n></a></li>' +
-        '<li><a href="/announcement"><i class="fa fa-fw fa-bullhorn"></i><i18n>Announcement</i18n></a></li>';
+function AppendAllSavedRaffle() {
 
     // Display Datas saved
 
     if (window.location.pathname == '/raffles/favorites') {
+
+        console.log('Location checked');
 
         /* Init the container */
 
@@ -400,4 +394,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
         rafflesList.addEventListener('click', RemoveFavorite);
     }
-});
+}
+
+/* Execute */
+
+if (document.readyState == "interactive" || document.readyState == "complete") {
+    AppendAllSavedRaffle();
+} else {
+    document.addEventListener("DOMContentLoaded", AppendAllSavedRaffle);
+}

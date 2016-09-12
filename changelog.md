@@ -200,3 +200,6 @@
 - Escaped variables in main.js ( svg content )
 - Deleted useless image ( loading.gif )
 - Modified manifest.json for adding constructDOM.js and move DisplayFavoritesRaffles.js in a better place
+- Fixed banking.js matches in manifest.json ( firefox )
+- Readapted "DOMContentLoaded" event on some files for firefox
+- Fixed font url in help.css, he's no longer trying to load a .tff than a .woff2
