@@ -41,7 +41,7 @@ class TemplateList {
                 childrens: [{
                     tag: 'h4',
                     classList: ['pull-left'],
-                    innerText: name
+                    textContent: name
                 }, {
                     tag: 'div',
                     classList: ['color-group'],

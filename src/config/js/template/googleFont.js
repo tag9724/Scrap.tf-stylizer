@@ -112,7 +112,7 @@ class FontManagement {
             attributes: {
                 value: ""
             },
-            innerText: 'Default'
+            textContent: 'Default'
         }));
 
         for (let key in fontList) {
@@ -123,7 +123,7 @@ class FontManagement {
                 attributes: {
                     value: key
                 },
-                innerText: key
+                textContent: key
             }));
 
             for (let i = 0, len = fontList[key].style.length; i < len; i++) {
@@ -133,13 +133,13 @@ class FontManagement {
 
         /* Update content for demos */
 
-        this.cssBox.innerText = cssRules;
+        this.cssBox.textContent = cssRules;
 
         var globSelect = this.formGlobal.querySelector('select');
         var titleSelect = this.formTitle.querySelector('select');
 
-        globSelect.innerHTML = "";
-        titleSelect.innerHTML = "";
+        globSelect.textContent = "";
+        titleSelect.textContent = "";
 
         globSelect.appendChild(fontAvailable.cloneNode(true));
         titleSelect.appendChild(fontAvailable);

@@ -5,7 +5,7 @@ function ParseArea(ev) {
     for (let i = 0, len = BBCODE.length; i < len; i++) c = BBCODE[i](c);
     content.innerHTML = c;
     // display the number of caracters left
-    document.querySelector('#chars span').innerText = 3500 - raffleArea.value.length;
+    document.querySelector('#chars span').textContent = 3500 - raffleArea.value.length;
 }
 
 function DisplayArea() {

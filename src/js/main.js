@@ -22,7 +22,7 @@ function AppendCustomSound(res) {
     function AppendSound() {
         if (res.sound && res.sound != "") {
             let notifSound = document.getElementById('chatBeep');
-            notifSound.innerText = '';
+            notifSound.textContent = '';
             notifSound.setAttribute('src', res.sound);
         }
     }
@@ -72,7 +72,7 @@ chrome.storage.local.get('CurrentTemplate', function (res) {
 
     if (res.CurrentTemplate) {
         let templateBox = document.createElement('style');
-        templateBox.innerText = res.CurrentTemplate.style;
+        templateBox.textContent = res.CurrentTemplate.style;
 
         let customTemplate = document.createElement('link');
         customTemplate.setAttribute('rel', 'stylesheet');

@@ -1,10 +1,10 @@
 FILTER.prototype.QuerySearch = function(ev) {
-    this.filter.query = ev.target.value;
-    this.ApplyFilter();
+    this.filter.query = ev.target.value.toLowerCase();
+    this.ApplyFilter('query');
 };
 FILTER.prototype.HideDupes = function(ev) {
     this.filter.hideDupes = ev.target.checked;
-    this.ApplyFilter();
+    this.ApplyFilter('hideDupes');
 };
 FILTER.prototype.SelectClasse = function(ev) {
 
@@ -19,7 +19,7 @@ FILTER.prototype.SelectClasse = function(ev) {
     if (selected == "multi") {
         // Want to show all classes
         this.classesAndSlot[0].classList.add('selected');
-        for (let i = 1, len = this.classesAndSlot.length; i < len; i++) {
+        for (let i = 1; i < 10; i++) {
             this.classesAndSlot[i].classList.remove('selected');
         }
         // Reset this filter (all classes)
@@ -50,7 +50,7 @@ FILTER.prototype.SelectClasse = function(ev) {
     }
 
     // Apply changes
-    this.ApplyFilter();
+    this.ApplyFilter('classes');
 };
 FILTER.prototype.SelectWeaponSlot = function(ev) {
 
@@ -80,6 +80,6 @@ FILTER.prototype.SelectWeaponSlot = function(ev) {
     }
 
     // Apply changes
-    this.ApplyFilter();
+    this.ApplyFilter('slot');
 };
 console.log('FILTER Default');

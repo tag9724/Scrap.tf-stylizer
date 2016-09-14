@@ -70,7 +70,7 @@ chrome.storage.local.get(["savedCreateRaffle"], function (res) {
                                 classList: ['fa', (res.savedCreateRaffle[i].type ? 'fa-users' : 'fa-user')]
                             }, {
                                 tag: 'i18n',
-                                innerText: res.savedCreateRaffle[i].savedName
+                                textContent: res.savedCreateRaffle[i].savedName
                             }]
                         }, {
                             tag: 'div',
@@ -82,11 +82,11 @@ chrome.storage.local.get(["savedCreateRaffle"], function (res) {
                             }, {
                                 tag: 'span',
                                 classList: ['btn', 'btn-xs', coloredType[res.savedCreateRaffle[i].privateRaffle]],
-                                innerText: typeRaffle[res.savedCreateRaffle[i].privateRaffle]
+                                textContent: typeRaffle[res.savedCreateRaffle[i].privateRaffle]
                             }, {
                                 tag: 'span',
                                 classList: ['btn', 'btn-xs', 'btn-default'],
-                                innerText: DateFormat(res.savedCreateRaffle[i].length)
+                                textContent: DateFormat(res.savedCreateRaffle[i].length)
                             }, {
                                 tag: 'span',
                                 classList: ['btn', 'btn-xs', 'btn-default'],
@@ -96,7 +96,7 @@ chrome.storage.local.get(["savedCreateRaffle"], function (res) {
                                 }, {
                                     tag: 'span',
                                     classList: ['entries'],
-                                    innerText: res.savedCreateRaffle[i].maxentries
+                                    textContent: res.savedCreateRaffle[i].maxentries
                                 }]
                             }]
                         }]
@@ -212,16 +212,16 @@ chrome.storage.local.get(["savedCreateRaffle"], function (res) {
                             // Raffle time
 
                             document.getElementById('raffle-length').value = conf.length;
-                            document.getElementById('select2-chosen-1').innerText = DateFormat(conf.length);
+                            document.getElementById('select2-chosen-1').textContent = DateFormat(conf.length);
 
                             // Number of winners
 
                             document.getElementById('raffle-method').value = conf.type ? "2" : "1";
-                            document.getElementById('select2-chosen-2').innerText = conf.type ? "Multiple winners" : "One winner";
+                            document.getElementById('select2-chosen-2').textContent = conf.type ? "Multiple winners" : "One winner";
 
                             document.getElementById(conf.isPrivate ? "raffle-private" : "raffle-public").value = conf.privateRaffle;
-                            document.getElementById('select2-chosen-3').innerText = typeRaffle[conf.privateRaffle];
-                            document.getElementById('select2-chosen-4').innerText = typeRaffle[conf.privateRaffle];
+                            document.getElementById('select2-chosen-3').textContent = typeRaffle[conf.privateRaffle];
+                            document.getElementById('select2-chosen-4').textContent = typeRaffle[conf.privateRaffle];
 
                             // Disable comments
 

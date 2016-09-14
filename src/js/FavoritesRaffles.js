@@ -34,11 +34,11 @@ chrome.storage.local.get(["favoritesRaffles"], function (res) {
 
             var datas = {
                 raffleID: window.location.pathname.replace('/raffles/', ""),
-                title: document.querySelector('.raffle-well .subtitle').innerHTML,
+                title: document.querySelector('.raffle-well .subtitle').textContent,
                 owner: {
                     avatar: document.querySelector('.raffle-box-row .avatar-container img').src,
                     url: userContainer.href,
-                    name: userContainer.innerHTML,
+                    name: userContainer.textContent,
                     color: userContainer.style.color
 
                 },

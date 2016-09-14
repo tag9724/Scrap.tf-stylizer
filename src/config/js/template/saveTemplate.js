@@ -119,7 +119,7 @@ TemplatesManage.prototype.Save = function (use) {
     var newContent = BuildDOM.NewDocFrag({
         tag: 'h4',
         classList: ['pull-left'],
-        innerText: NewSave.name
+        textContent: NewSave.name
     }, {
         tag: 'div',
         classList: ['color-group'],
@@ -129,7 +129,7 @@ TemplatesManage.prototype.Save = function (use) {
     // Update the template box in the main page
 
     if (updateBox) {
-        updateBox.innerHTML = "";
+        updateBox.textContent = "";
         updateBox.appendChild(newContent);
     } else {
         let box = BuildDOM.Create({

@@ -6,7 +6,7 @@ FILTER.prototype.AppendLevelFilter = function (min, max) {
     this.levelBox = BuildDOM.Create({
         tag: 'label',
         classList: ['form-inline'],
-        innerText: 'Level : ',
+        textContent: 'Level : ',
         childrens: [{
             tag: 'input',
             classList: ['levelInput', 'form-control', 'input-sm'],
@@ -28,7 +28,7 @@ FILTER.prototype.AppendLevelFilter = function (min, max) {
         }]
     });
 
-    this.levelBox.addEventListener('keyup', this.Level.bind(this));
+    this.levelBox.addEventListener('input', this.Level.bind(this));
     appendBox.insertAdjacentElement('afterEnd', this.levelBox);
 };
 
@@ -54,6 +54,6 @@ FILTER.prototype.Level = function (ev) {
     this.filter.lvlMax = max;
 
     // And apply the result
-    this.ApplyFilter();
+    this.ApplyFilter('level');
 };
 console.log('FILTER Levels');

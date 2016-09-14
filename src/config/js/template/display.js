@@ -28,7 +28,7 @@ function GenViewBoxes(id, name, couleurs) {
         childrens: [{
             tag: 'h4',
             classList: ['pull-left'],
-            innerText: name
+            textContent: name
         }, {
             tag: 'div',
             classList: ['color-group'],
@@ -48,7 +48,7 @@ function LoadDefaults() {
         append.appendChild(GenViewBoxes(DEFAULT[i].id, DEFAULT[i].name, DEFAULT[i].colors));
     }
 
-    defTemplate.innerHTML = "";
+    defTemplate.textContent = "";
     defTemplate.appendChild(append);
 
 }
@@ -72,12 +72,12 @@ function LoadSaved() {
         } else {
             append.appendChild(BuildDOM.Create({
                 tag: 'p',
-                innerText: "You don't have any saved template"
+                textContent: "You don't have any saved template"
             })); // TEMP next maj add the "import template" button;
         }
 
         // Display the list of templates
-        saveTemplate.innerHTML = "";
+        saveTemplate.textContent = "";
         saveTemplate.appendChild(append);
 
     });

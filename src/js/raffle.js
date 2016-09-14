@@ -13,7 +13,7 @@ if (isEnded == "Raffle Ended") {
             orange++
         };
     }
-    ended.innerText += " (" + green + "/" + (green + orange) + ")";
+    ended.textContent += " (" + green + "/" + (green + orange) + ")";
 }
 
 /* Non whitelisted urls in raffle description */

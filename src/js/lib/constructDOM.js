@@ -4,71 +4,74 @@
 @Object {
     tag : String
     classList : Array
-    innerText || innerHTML : String
+    textContent || innerHTML : String
     dataset : Object
     childrens : Array[@Object]
 }
  */
+if (typeof BuildDOM === "undefined") {
 
-const BuildDOM = new class DOMBuilder {
-    Create(obj) {
-        return this.CreateDOMforElement(obj);
-    }
-    CreateDOMforElement(obj) {
-
-        // Create the new element
-        let box = document.createElement(obj.tag);
-
-        // Append classList
-        if (obj.classList) {
-            box.classList.add.apply(box.classList, obj.classList);
+    var BuildDOM = new class DOMBuilder {
+        Create(obj) {
+            return this.CreateDOMforElement(obj);
         }
+        CreateDOMforElement(obj) {
 
-        // Append text node
-        if (obj.innerText) {
-            box.innerText = obj.innerText;
-        } else if (obj.innerHTML) {
-            box.innerHTML = obj.innerHTML;
-        }
+            // Create the new element
+            let box = document.createElement(obj.tag);
 
-        // Append dataset
-        if (obj.dataset) {
-            for (let k in obj.dataset) {
-                box.dataset[k] = obj.dataset[k];
+            // Append classList
+            if (obj.classList) {
+                box.classList.add.apply(box.classList, obj.classList);
             }
-        }
 
-        // Set attributes
-        if (obj.attributes) {
-            for (let k in obj.attributes) {
-                box.setAttribute(k, obj.attributes[k]);
+            // Append text node
+            if (obj.textContent) {
+                box.textContent = obj.textContent;
+            } else if (obj.innerHTML) {
+                box.innerHTML = obj.innerHTML;
             }
-        }
 
-        // Check and create childrens
-        if (obj.childrens) {
-            for (let i = 0, len = obj.childrens.length; i < len; i++) {
-                box.appendChild(this.CreateDOMforElement(obj.childrens[i]));
+            // Append dataset
+            if (obj.dataset) {
+                for (let k in obj.dataset) {
+                    box.dataset[k] = obj.dataset[k];
+                }
             }
+
+            // Set attributes
+            if (obj.attributes) {
+                for (let k in obj.attributes) {
+                    box.setAttribute(k, obj.attributes[k]);
+                }
+            }
+
+            // Check and create childrens
+            if (obj.childrens) {
+                for (let i = 0, len = obj.childrens.length; i < len; i++) {
+                    box.appendChild(this.CreateDOMforElement(obj.childrens[i]));
+                }
+            }
+
+            return box;
         }
+        NewDocFrag(...args) {
+            let docFrag = document.createDocumentFragment();
 
-        return box;
-    }
-    NewDocFrag(...args) {
-        let docFrag = document.createDocumentFragment();
+            for (let i = 0, len = args.length; i < len; i++) {
+                docFrag.appendChild(this.CreateDOMforElement(args[i]));
+            }
 
-        for (let i = 0, len = args.length; i < len; i++) {
-            docFrag.appendChild(this.CreateDOMforElement(args[i]));
+            return docFrag;
         }
+        escapeHtml(text) {
+            return text
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+    };
 
-        return docFrag;
-    }
-    escapeHtml(text) {
-        return text
-            .replace(/&/g, "&amp;")
-            .replace(/</g, "&lt;")
-            .replace(/>/g, "&gt;")
-            .replace(/"/g, "&quot;")
-            .replace(/'/g, "&#039;");
-    }
-};
+}

@@ -10,7 +10,7 @@ function AppendAllSavedRaffle() {
 
         var container = document.querySelector('#pid-raffles > div.container');
         container.style.display = "none";
-        container.innerText = "";
+        container.textContent = "";
 
         var newContent = document.createElement('div');
         newContent.classList.add('container', 'container-margins', 'favorites-raffles-container');
@@ -32,7 +32,7 @@ function AppendAllSavedRaffle() {
             }
 
             if (hiddens.length <= MAXDISPLAY) {
-                load.innerText = "That's all no more !";
+                load.textContent = "That's all no more !";
             }
         }
 
@@ -46,7 +46,7 @@ function AppendAllSavedRaffle() {
         let aBtn = document.createElement('a');
         aBtn.classList.add('btn', 'btn-info', 'btn-embossed', 'cust-btn');
         aBtn.download = 'FavoritesRaffles.scraptf';
-        aBtn.innerText = 'Export';
+        aBtn.textContent = 'Export';
 
         panelHead.appendChild(aBtn);
 
@@ -59,7 +59,7 @@ function AppendAllSavedRaffle() {
 
         let iBtn = document.createElement('a');
         iBtn.classList.add('btn', 'btn-info', 'btn-embossed', 'cust-btn');
-        iBtn.innerText = "Import";
+        iBtn.textContent = "Import";
 
         let importBtn = document.createElement('input');
         importBtn.setAttribute('type', 'file');
@@ -117,8 +117,8 @@ function AppendAllSavedRaffle() {
                 importBtn.addEventListener('change', this.OpenModal.bind(this));
             }
             UpdateNbSaved(current, arrive) {
-                this.nbSaved[0].innerText = current;
-                this.nbSaved[1].innerText = arrive;
+                this.nbSaved[0].textContent = current;
+                this.nbSaved[1].textContent = arrive;
             }
             OpenModal(ev) {
 
@@ -181,7 +181,7 @@ function AppendAllSavedRaffle() {
 
                 // Clear and update the list of saved raffles
 
-                rafflesList.innerText = "";
+                rafflesList.textContent = "";
                 DisplayAllFavorites({
                     favoritesRaffles: this.NewSave
                 });
@@ -271,16 +271,16 @@ function AppendAllSavedRaffle() {
                                 attributes: {
                                     href: '/raffles/' + res.favoritesRaffles[i].raffleID
                                 },
-                                innerText: res.favoritesRaffles[i].title
+                                textContent: res.favoritesRaffles[i].title
                             }]
                         }, {
                             tag: 'div',
                             classList: ['pull-right'],
-                            innerText: 'Added: ',
+                            textContent: 'Added: ',
                             childrens: [{
                                 tag: 'span',
                                 classList: ['raffle-time-left'],
-                                innerText: new Date(res.favoritesRaffles[i].date).toDateString()
+                                textContent: new Date(res.favoritesRaffles[i].date).toDateString()
                             }, {
                                 tag: 'i',
                                 classList: ['fa', 'fa-fw', 'fa-trash', 'remove'],

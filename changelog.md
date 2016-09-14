@@ -188,6 +188,8 @@
 - Stop minify .css anymore
 - Added help page for CustomCSS with templates
 
+## 12 September 2016
+
 **v1.2.4**
 
 - Fixed some UI bugs with template.css
@@ -203,3 +205,16 @@
 - Fixed banking.js matches in manifest.json ( firefox )
 - Readapted "DOMContentLoaded" event on some files for firefox
 - Fixed font url in help.css, he's no longer trying to load a .tff than a .woff2
+
+## 14 September 2016
+
+**v1.2.5**
+
+- Replaced all innerText by textContent ( more performant )
+- Improved performances for filters 
+- Saved in localstorage the userinventory for filters 
+- Level filters "keyup" event for input changed for "input" 
+- Filters fixed bug select "multi" remove selected class on slots buttons
+- Fixed UI bug on filters : hover on classes and slot buttons
+- Fixed bug in filters : items not displayed on validated trade page
+- Fixed bug with BuildDOM on raffle with main.js

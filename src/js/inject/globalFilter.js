@@ -1,13 +1,14 @@
-/* Init filters */
+/* Init filters */ // <= TODO add more explicit comments
 
 class FILTER {
     constructor() {
 
         // For debugging the saved configuration
-        this.saveVersion = 5;
+        this.saveVersion = 6;
         // Select allitems & classes box
         this.buyContainer = document.getElementById('buy-container');
         this.buyItems = document.querySelectorAll('#buy-container div .item');
+        this.BuildSearchDatas(this.buyItems);
 
         // Don't add filters on the wrong page
         if (!this.buyContainer)
@@ -27,16 +28,18 @@ class FILTER {
 
         // Type of filters we need
         this.filtersAvailables = {
-            "weapons": ["slot", "level"],
-            "hats": ["slotHat", "level"],
-            "items": ["slot", "level"],
-            "skins": ["slot"],
-            "stranges": ["slot", "level"],
-            "killstreaks": ["slot"]
+            "weapons": ["query", "hideDupes", "classes", "slot", "level"],
+            "hats": ["query", "hideDupes", "classes", "slotHat", "level"],
+            "items": ["query", "hideDupes", "classes", "slot", "level"],
+            "skins": ["query", "hideDupes", "classes", "slot"],
+            "stranges": ["query", "hideDupes", "classes", "slot", "level"],
+            "killstreaks": ["query", "hideDupes", "classes", "slot"]
         };
+        this.rmClassList = ['rm-query', 'rm-dupes', 'rm-classes', 'rm-slot', 'rm-hat-slot', 'rm-level'];
 
         this.currFilter = this.BuildFilterObject();
         this.filter = this.LoadSavedFilters();
+        console.log('Filter loaded ', this.filterType, this.filter);
 
         // Items already in inventory
 
@@ -47,15 +50,14 @@ class FILTER {
 
         document.querySelector('.hide-dupes-checkbox').appendChild(this.loadingInv);
 
-        this.myInventory = {};
         this.maxInterval = 100;
         this.currInterval = 0;
 
-        var CheckUserInv = setInterval(function() {
+        var CheckUserInv = setInterval(function () {
 
             if (ScrapTF && !Array.isArray(ScrapTF.Inventory.MyDefindexes)) {
 
-                this.myInventory = ScrapTF.Inventory.MyDefindexes;
+                this.filter.myInventory = ScrapTF.Inventory.MyDefindexes;
                 this.loadingInv.remove();
 
                 if (this.filter.hideDupes) this.ApplyFilter();
@@ -63,7 +65,7 @@ class FILTER {
             }
             // More than 12sec of retry (impossible to load inventoy)
             else if (this.currInterval >= this.maxInterval) {
-                this.myInventory = {};
+                this.filter.myInventory = {};
                 this.loadingInv.parentElement.style.setProperty("color", "#c0392b", "important");
                 this.loadingInv.remove();
 
@@ -86,6 +88,58 @@ class FILTER {
 
         // Reset events
         this.ResetDefaultEvents();
+
+        /* Filters execution */
+
+        this.Exec = {
+            query: function (filter, item) {
+
+                if (item.datas['data-title'].toLowerCase().indexOf(filter.query) >= 0 || item.datas['data-content'].toLowerCase().indexOf(filter.query) >= 0) {
+                    item.classList.remove('rm-query');
+                    return false;
+                }
+
+                item.classList.add('rm-query');
+
+            },
+            hideDupes: function (filter, item) {
+                if (filter.hideDupes && filter.myInventory[item.datas['data-defindex']]) {
+                    item.classList.add('rm-dupes');
+                    return false;
+                }
+                item.classList.remove('rm-dupes');
+            },
+            classes: function (filter, item) {
+                for (let i = 0, len = filter.classes.length; i < len; i++) {
+                    if (item.datas['data-classes'].indexOf(filter.classes[i]) >= 0) {
+                        item.classList.remove('rm-classes');
+                        return false;
+                    }
+                }
+                item.classList.add('rm-classes');
+            },
+            slot: function (filter, item) {
+                if (filter.slot.indexOf(item.datas['data-slot'].replace(/[0-9]/g, "").replace(/(building)/g, "pda")) > -1) {
+                    item.classList.add('rm-slot');
+                    return false;
+                }
+                item.classList.remove('rm-slot');
+            },
+            slotHat: function (filter, item) {
+                if (filter.slotHat.indexOf(item.datas['data-slot']) > -1) {
+                    item.classList.add('rm-hat-slot');
+                    return false;
+                }
+                item.classList.remove('rm-hat-slot');
+            },
+            level: function (filter, item) {
+                if (item.datas.level < filter.lvlMin || item.datas.level > filter.lvlMax) {
+                    item.classList.add('rm-level');
+                    return false;
+                }
+                item.classList.remove('rm-level');
+            }
+        };
 
         // Apply these filters
         this.ApplyFilter();
@@ -193,7 +247,7 @@ class FILTER {
         /* Items payement */
 
         this.payementBtn = document.querySelector('#reverse-header > div.rev-filters > div.row.text-center > div.pull-right.text-right > button.btn.btn-embossed.btn-primary.btn-trade.btn-stage2');
-        this.payementBtn.addEventListener('click', function() {
+        this.payementBtn.addEventListener('click', function () {
             this.sellUserInvDisplayed = true;
             this.ApplyFilter();
         }.bind(this));
@@ -202,81 +256,86 @@ class FILTER {
     InjectFilters() {
         if (this.currFilter.level) this.AppendLevelFilter();
     }
-    Filters(item, ingnoreDupes) {
+    ApplyFilter(filter) {
 
-        // Query Search
-        if (!new RegExp("(" + this.filter.query + ")", "i").test(item.dataset.content) && !new RegExp("(" + this.filter.query + ")", "i").test(item.dataset.title)) {
-            item.classList.add('rm');
-            return 0;
-        }
+        // Set what filter we are goinig to apply
+        filter = (filter) ? [filter] : this.filtersAvailables[this.filterType];
 
-        // Hide items in my inventory
-        if (!ingnoreDupes && this.filter.hideDupes && this.myInventory[item.dataset.defindex]) {
-            item.classList.add('rm');
-            return 0;
-        }
-
-        //Classes search
-        if (!new RegExp("(" + item.dataset.classes.replace(/ /g, '|') + ")", "i").test(this.filter.classes)) {
-            item.classList.add('rm');
-            return 0;
-        }
-
-        //Slot search
-        if (this.currFilter.slot && this.filter.slot.indexOf(item.dataset.slot.replace(/[0-9]/g, "").replace(/(building)/g, "pda")) > -1) {
-            item.classList.add('rm');
-            return 0;
-        }
-
-        // Hat slot (craftable / uncraftable / valuable)
-
-        if (this.currFilter.slotHat && this.filter.slotHat.indexOf(item.dataset.slot) > -1) {
-            item.classList.add('rm');
-            return 0;
-        }
-
-        // Level filter
-
-        if (this.currFilter.level) {
-            let level = Number(item.dataset.content.match(/(\d+)/)[0]);
-
-            if (level < this.filter.lvlMin || level > this.filter.lvlMax) {
-                item.classList.add('rm');
-                return 0;
-            }
-        }
-
-        // This item must be displayed
-        item.classList.remove('rm');
-        return true;
-    }
-    ApplyFilter() {
         // Buy container
         if (!this.sellUserInvDisplayed) {
-            for (var i = 0, displayed = 0, len = this.buyItems.length; i < len; i++) {
-                displayed += this.Filters(this.buyItems[i], false);
+
+            let numberItems = this.buyItems.length;
+
+            for (let i = 0, len = filter.length; i < len; i++) {
+
+                for (let o = 0; o < numberItems; o++) {
+                    this.Exec[filter[i]](this.filter, this.buyItems[o]);
+                }
             }
-            // Display the number of available items
-            this.botItems.innerText = '(' + displayed + ' / ' + i + ')';
+
+            // Display the numbres of visibles items
+
+            let hidden = this.buyContainer.querySelectorAll('.item.' + this.rmClassList.join(',.item.')).length;
+            this.botItems.textContent = ' ( ' + (numberItems - hidden) + ' / ' + numberItems + ' )';
         }
         // Sell container
         else {
-            this.sellItems = this.sellContainer.querySelectorAll('#sell-container div .item');
-            for (var i = 0, displayed = 0, len = this.sellItems.length; i < len; i++) {
-                displayed += this.Filters(this.sellItems[i], true);
+            if (!this.sellItems || this.sellItems[0]) {
+                this.sellItems = this.sellContainer.querySelectorAll('#sell-container div .item');
+                this.BuildSearchDatas(this.sellItems);
             }
-            // Display the number of available items
-            this.userItems.innerText = '(' + displayed + ' / ' + i + ')';
+
+            let numberItems = this.sellItems.length;
+
+            for (let i = 0, len = filter.length; i < len; i++) {
+
+                for (let o = 0; o < numberItems; o++) {
+                    this.Exec[filter[i]](this.filter, this.sellItems[o]);
+                }
+            }
+
+            // Display the numbres of visibles items
+
+            let hidden = this.sellContainer.querySelectorAll('.item.' + this.rmClassList.join(',.item.')).length;
+            this.userItems.textContent = ' ( ' + (numberItems - hidden) + ' / ' + numberItems + ' )';
         }
 
         // And Save filter
         this.SaveFilter();
     }
+    BuildSearchDatas(elem) {
+
+        /* Convert attributes list to simple object */
+
+        for (let i = 0, len = elem.length; i < len; i++) {
+
+            elem[i].datas = {};
+
+            for (let o = 0, len = elem[i].attributes.length; o < len; o++) {
+                let item = elem[i].attributes.item(o);
+                elem[i].datas[item.name] = item.value;
+            }
+
+            elem[i].datas.level = Number(elem[i].datas['data-content'].match(/(\d+)/)[0])
+        }
+    }
+    MultiClassListRemove(elem, arr) {
+        for (let i = 0, len = arr.length; i < len; i++) {
+            elem.classList.remove(arr[i])
+        }
+    }
     ResetFilters() {
-        // reset filter list
+
+        /* reset filter list */
+
+        let backpack = this.filter.myInventory;
         this.filter = this.DefaultFilter();
 
-        // Reset css Style
+        this.filter.myInventory = backpack;
+        this.SaveFilter();
+
+        /* Reset css Style */
+
         this.query.value = "";
         this.hideInv.checked = false;
 
@@ -284,6 +343,7 @@ class FILTER {
         for (let i = 1; i < 10; i++) {
             this.classesAndSlot[i].classList.remove('selected');
         }
+
         // Slots filters
         for (let i = 10, len = this.classesAndSlot.length; i < len; i++) {
             this.classesAndSlot[i].classList.add('selected');
@@ -292,15 +352,40 @@ class FILTER {
         /* Extras filters */
 
         // Level
-        if (this.currFilter.level) this.ResetLevelFilter();
+        if (this.currFilter.level)
+            this.ResetLevelFilter();
 
-        // Apply the default filters
-        this.ApplyFilter();
+        /* Apply the default filters */
+
+        for (var i = 0, displayed = 0, len = this.buyItems.length; i < len; i++) {
+            this.MultiClassListRemove(this.buyItems[i], this.rmClassList);
+        }
+        if (this.sellItems) {
+            for (var i = 0, displayed = 0, len = this.sellItems.length; i < len; i++) {
+                this.MultiClassListRemove(this.sellItems[i], this.rmClassList);
+            }
+        }
+
+        // Buy container
+        if (!this.sellUserInvDisplayed) {
+            // Display the numbres of visibles items
+            let numberItems = this.buyItems.length;
+            this.botItems.textContent = ' ( ' + numberItems + ' / ' + numberItems + ' )';
+        }
+        // Sell container
+        else if (this.sellItems && this.sellItems[0]) {
+            // Display the numbres of visibles items
+            let numberItems = this.sellItems.length;
+            this.userItems.textContent = ' ( ' + numberItems + ' / ' + numberItems + ' )';
+        }
+
     }
     LoadSavedFilters() {
         if (localStorage && localStorage.getItem(this.filterType)) {
+
             ScrapTF.Inventory.ToggleFilters();
             var savedConf = JSON.parse(localStorage.getItem(this.filterType));
+
             // Return datas
             if (savedConf.version == this.saveVersion) {
                 if (!savedConf.lvlMax) savedConf.lvlMax = Infinity;
@@ -326,7 +411,8 @@ class FILTER {
             classes: this.classesList.slice(),
             slot: this.slotList.slice(),
             slotHat: this.slotHatList.slice(),
-            query: ""
+            query: "",
+            myInventory: {}
         };
     }
     BuildFilterObject() {

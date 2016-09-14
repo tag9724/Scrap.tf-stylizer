@@ -1,5 +1,5 @@
 var s = document.createElement('script');
-s.innerText = 'const LOADINGGIF = "' + chrome.extension.getURL('img/loading.svg') + '";';
+s.textContent = 'const LOADINGGIF = "' + chrome.extension.getURL('img/loading.svg') + '";';
 (document.head || document.documentElement).appendChild(s);
 s.onload = function() {
     s.parentNode.removeChild(s);
