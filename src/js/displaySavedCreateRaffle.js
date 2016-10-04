@@ -1,28 +1,29 @@
-function DateFormat(d) {
-    if (d < 3600) {
+function DateFormat( d ) {
+    if ( d < 3600 ) {
         return d / 60 + " mins"
-    } else if (d < 3600 * 24) {
+    } else if ( d < 3600 * 24 ) {
         return d / 3600 + " hours";
     } else {
-        return d / (3600 * 24) + " days";
+        return d / ( 3600 * 24 ) + " days";
     }
 }
 
-var typeRaffle = ["Public Raffle", "Secret Link", "Secret Link & Password",
+var typeRaffle = [ "Public Raffle", "Secret Link", "Secret Link & Password",
     "My Friend Only", "Password Per Entry", "Twitch Followers Only", "Twitch Subscribers Only",
     "Puzzle Raffle", "Steam Group Only"
 ];
-var coloredType = ["btn-success", "btn-info", "btn-info", "btn-primary", "btn-info", "btn-primary", "btn-primary", "btn-success", "btn-primary"];
+var coloredType = [ "btn-success", "btn-info", "btn-info", "btn-primary", "btn-info", "btn-primary", "btn-primary", "btn-success", "btn-primary" ];
+var raffleSelect = {}; // OpenRaffleEdit()
 
 /* Load All saved raffles */
 
-chrome.storage.local.get(["savedCreateRaffle"], function (res) {
+chrome.storage.local.get( [ "savedCreateRaffle" ], function ( res ) {
 
-    if (res.savedCreateRaffle && res.savedCreateRaffle[0]) {
+    if ( res.savedCreateRaffle && res.savedCreateRaffle[ 0 ] ) {
 
         // Append The load Box
 
-        document.querySelector('.panel.panel-info').insertAdjacentHTML('afterend',
+        document.querySelector( '.panel.panel-info' ).insertAdjacentHTML( 'afterend',
             '<div class="panel panel-info" id="PonyPanel">' +
             '   <div class="panel-heading">' +
             '      <h3 class="panel-title"><i18n>Load Raffle</i18n></h3>' +
@@ -37,111 +38,107 @@ chrome.storage.local.get(["savedCreateRaffle"], function (res) {
 
         // Append saved conf
 
-        var appendBox = document.getElementById('appendHere');
+        var appendBox = document.getElementById( 'appendHere' );
         var DOMFrag = BuildDOM.NewDocFrag();
 
-        console.time('appendSaveDOM');
+        for ( let i = 0, len = res.savedCreateRaffle.length; i < len; i++ ) {
 
-        for (let i = 0, len = res.savedCreateRaffle.length; i < len; i++) {
-
-            let nextStep = (res.savedCreateRaffle[i].privateRaffle == 0 || res.savedCreateRaffle[i].privateRaffle == 7) ? false : true;
+            let nextStep = ( res.savedCreateRaffle[ i ].privateRaffle == 0 || res.savedCreateRaffle[ i ].privateRaffle == 7 ) ? false : true;
             nextStep = 'ScrapTF.Raffles.NextStep(' + nextStep + ')';
 
             // Yup it's ugly
 
             DOMFrag.appendChild(
-                BuildDOM.Create({
+                BuildDOM.Create( {
                     tag: 'div',
-                    classList: ['form-group'],
+                    classList: [ 'form-group' ],
                     dataset: {
-                        k: res.savedCreateRaffle[i].raffleID
+                        k: res.savedCreateRaffle[ i ].raffleID
                     },
-                    childrens: [{
+                    childrens: [ {
                         tag: 'div',
-                        classList: ['form-control'],
+                        classList: [ 'form-control' ],
                         attributes: {
                             onclick: nextStep
                         },
-                        childrens: [{
+                        childrens: [ {
                             tag: 'span',
-                            classList: ['form-control-static'],
-                            childrens: [{
+                            classList: [ 'form-control-static' ],
+                            childrens: [ {
                                 tag: 'i',
-                                classList: ['fa', (res.savedCreateRaffle[i].type ? 'fa-users' : 'fa-user')]
+                                classList: [ 'fa', ( res.savedCreateRaffle[ i ].type ? 'fa-users' : 'fa-user' ) ]
                             }, {
                                 tag: 'i18n',
-                                textContent: res.savedCreateRaffle[i].savedName
-                            }]
+                                textContent: res.savedCreateRaffle[ i ].savedName
+                            } ]
                         }, {
                             tag: 'div',
-                            classList: ['pull-right'],
-                            childrens: [{
+                            classList: [ 'pull-right' ],
+                            childrens: [ {
                                 tag: 'span',
-                                classList: ['btn', 'btn-xs', (res.savedCreateRaffle[i].nocmt ? 'btn-danger' : 'btn-default')],
+                                classList: [ 'btn', 'btn-xs', ( res.savedCreateRaffle[ i ].nocmt ? 'btn-danger' : 'btn-default' ) ],
                                 innerHTML: '<i class="fa fa-comments-o"></i></span>'
                             }, {
                                 tag: 'span',
-                                classList: ['btn', 'btn-xs', coloredType[res.savedCreateRaffle[i].privateRaffle]],
-                                textContent: typeRaffle[res.savedCreateRaffle[i].privateRaffle]
+                                classList: [ 'btn', 'btn-xs', coloredType[ res.savedCreateRaffle[ i ].privateRaffle ] ],
+                                textContent: typeRaffle[ res.savedCreateRaffle[ i ].privateRaffle ]
                             }, {
                                 tag: 'span',
-                                classList: ['btn', 'btn-xs', 'btn-default'],
-                                textContent: DateFormat(res.savedCreateRaffle[i].length)
+                                classList: [ 'btn', 'btn-xs', 'btn-default' ],
+                                textContent: DateFormat( res.savedCreateRaffle[ i ].length )
                             }, {
                                 tag: 'span',
-                                classList: ['btn', 'btn-xs', 'btn-default'],
-                                childrens: [{
+                                classList: [ 'btn', 'btn-xs', 'btn-default' ],
+                                childrens: [ {
                                     tag: 'i',
-                                    classList: ['fa', 'fa-users']
+                                    classList: [ 'fa', 'fa-users' ]
                                 }, {
                                     tag: 'span',
-                                    classList: ['entries'],
-                                    textContent: res.savedCreateRaffle[i].maxentries
-                                }]
-                            }]
-                        }]
+                                    classList: [ 'entries' ],
+                                    textContent: res.savedCreateRaffle[ i ].maxentries
+                                } ]
+                            } ]
+                        } ]
                     }, {
                         tag: 'div',
-                        classList: ['pull-right', 'btnDel'],
+                        classList: [ 'pull-right', 'btnDel' ],
                         innerHTML: '<button class="btn btn-xs btn-danger rm"><i class="fa fa-remove rm"></i></button>'
-                    }]
-                })
+                    } ]
+                } )
             );
 
         } // End for
 
-        appendBox.appendChild(DOMFrag);
-
-        console.timeEnd('appendSaveDOM');
+        appendBox.appendChild( DOMFrag );
 
         // Event Add and Delete
 
-        function MakeMilshake(ev) {
+        function MakeMilshake( ev ) {
 
             // Search the main div
 
             var target = ev.target;
-            for (let i = 0, c, len = appendBox.children.length; i < len; i++) {
-                if (appendBox.children[i].contains(target)) {
-                    target = appendBox.children[i];
+            for ( let i = 0, c, len = appendBox.children.length; i < len; i++ ) {
+                if ( appendBox.children[ i ].contains( target ) ) {
+                    target = appendBox.children[ i ];
                     break;
                 }
             }
 
             /* Remove from the save list the element */
 
-            if (ev.target.matches('.rm')) {
+            if ( ev.target.matches( '.rm' ) ) {
 
-                chrome.storage.local.get(["savedCreateRaffle"], function (res) {
+                chrome.storage.local.get( [ "savedCreateRaffle" ], function ( res ) {
 
                     // First configuration
-                    if (!res.savedCreateRaffle) {
+                    if ( !res.savedCreateRaffle ) {
                         res.savedCreateRaffle = [];
                     }
 
-                    for (let i = 0, dataset = target.dataset.k, len = res.savedCreateRaffle.length; i < len; i++) {
-                        if (res.savedCreateRaffle[i].raffleID == dataset) {
-                            res.savedCreateRaffle.splice(i, 1);
+                    for ( let i = 0, dataset = target.dataset.k, len = res.savedCreateRaffle.length; i < len; i++ ) {
+                        if ( res.savedCreateRaffle[ i ].raffleID == dataset ) {
+                            res.savedCreateRaffle.splice( i, 1 );
                             break;
                         }
                     }
@@ -150,108 +147,162 @@ chrome.storage.local.get(["savedCreateRaffle"], function (res) {
                     target.remove();
 
                     // Save the new config
-                    chrome.storage.local.set({
+                    chrome.storage.local.set( {
                         savedCreateRaffle: res.savedCreateRaffle
-                    });
+                    } );
 
-                });
+                } );
 
             }
 
             /* Or open this element */
             else {
 
-                // Remove The load box
-                document.getElementById('PonyPanel').remove();
-
                 // And ... continue
 
-                chrome.storage.local.get(["savedCreateRaffle"], function (res) {
+                chrome.storage.local.get( [ "savedCreateRaffle" ], function ( res ) {
 
-                    if (res.savedCreateRaffle) {
+                    if ( res.savedCreateRaffle ) {
 
                         // load configuration
 
-                        var conf;
+                        let conf;
 
-                        for (let i = 0, dataset = target.dataset.k, len = res.savedCreateRaffle.length; i < len; i++) {
-                            if (res.savedCreateRaffle[i].raffleID == dataset) {
-                                conf = res.savedCreateRaffle[i];
+                        for ( let i = 0, dataset = target.dataset.k, len = res.savedCreateRaffle.length; i < len; i++ ) {
+                            if ( res.savedCreateRaffle[ i ].raffleID == dataset ) {
+                                conf = res.savedCreateRaffle[ i ];
                                 break;
                             }
                         }
 
                         /* Display saved informations */
 
-                        if (conf) {
+                        if ( conf ) {
+
+                            /* Puzzle panel */
+
+                            if ( conf.privateRaffle == 7 ) {
+
+                                OpenRaffleEdit( 'puzzle' );
+                                var prefix = 'puzzle-';
+
+                                document.getElementById( 'puzzlesolution' ).value = ( conf.solution ) ? conf.solution : "";
+
+                                // Raffle time
+                                document.getElementById( 'select2-chosen-4' ).textContent = DateFormat( conf.length );
+
+                                // Number of winners
+                                document.getElementById( 'select2-chosen-5' ).textContent = conf.type ? "Multiple winners" : "One winner";
+
+                            }
+
+                            /* Public or private */
+                            else {
+
+                                OpenRaffleEdit( 'public' );
+                                var prefix = '';
+
+                                // Raffle time
+                                document.getElementById( 'select2-chosen-1' ).textContent = DateFormat( conf.length );
+
+                                // Number of winners
+                                document.getElementById( 'select2-chosen-2' ).textContent = conf.type ? "Multiple winners" : "One winner";
+
+                            }
+
+                            // Spawn raffleSelect
+
+                            GenRaffleSelect( prefix );
+
+                            /* Inject values on inputs */
 
                             // Name content & enter msgs
 
-                            document.getElementById('rafflename').value = conf.name;
-                            document.getElementById('rafflemessage').value = conf.message;
-                            document.getElementById('enteredmessage').value = conf.entmsg;
+                            raffleSelect.name.value = conf.name;
+                            raffleSelect.message.value = conf.message;
+                            raffleSelect.enteredmessage.value = conf.entmsg;
 
                             // Poll entries solution & password
 
-                            document.getElementById('raffle-poll').value = conf.poll;
-                            document.getElementById('raffle-maxentries').value = conf.maxentries;
-                            document.getElementById('raffle-password').value = conf.pwd;
-                            document.getElementById('puzzlesolution').value = (conf.solution) ? conf.solution : "";
+                            raffleSelect.poll.value = conf.poll;
+                            raffleSelect.maxentries.value = conf.maxentries;
+                            raffleSelect.password.value = conf.pwd;
 
                             // Display the password box
-                            if (conf.privateRaffle == 2 || conf.privateRaffle == 7 || conf.privateRaffle == 8) {
-                                document.getElementById('raffle-password-out').style.display = "block";
-                            }
-
-                            // Display the solution box
-                            if (conf.privateRaffle == 7) {
-                                document.querySelector('.puzzle-solution').style.display = "block";
-                                document.querySelector('.puzzle-ban-warning').style.display = "block";
+                            if ( conf.privateRaffle == 2 || conf.privateRaffle == 8 ) {
+                                document.getElementById( 'raffle-password-out' ).style.display = "block";
                             }
 
                             // Raffle time
-
-                            document.getElementById('raffle-length').value = conf.length;
-                            document.getElementById('select2-chosen-1').textContent = DateFormat(conf.length);
+                            raffleSelect.length.value = conf.length;
 
                             // Number of winners
+                            raffleSelect.method.value = conf.type ? "2" : "1";
 
-                            document.getElementById('raffle-method').value = conf.type ? "2" : "1";
-                            document.getElementById('select2-chosen-2').textContent = conf.type ? "Multiple winners" : "One winner";
+                            // Append also the save button
 
-                            document.getElementById(conf.isPrivate ? "raffle-private" : "raffle-public").value = conf.privateRaffle;
-                            document.getElementById('select2-chosen-3').textContent = typeRaffle[conf.privateRaffle];
-                            document.getElementById('select2-chosen-4').textContent = typeRaffle[conf.privateRaffle];
+                            if ( conf.privateRaffle != 7 && conf.privateRaffle != 0 ) {
+                                raffleSelect.privateRaffle.value = conf.privateRaffle;
+                                document.getElementById( 'select2-chosen-3' ).textContent = typeRaffle[ conf.privateRaffle ];
+                                document.getElementById( 'select2-chosen-4' ).textContent = typeRaffle[ conf.privateRaffle ];
+
+                                AppendSaveBtn( "true" );
+                            } else {
+
+                                // Complicated for nothing ...
+
+                                raffleSelect.privateRaffle.appendChild(
+                                    BuildDOM.Create( {
+                                        tag: 'option',
+                                        attributes: {
+                                            value: conf.privateRaffle
+                                        }
+                                    } )
+                                );
+
+                                raffleSelect.privateRaffle.value = conf.privateRaffle;
+
+                                // Remove the private raffle inputs
+
+                                let privateInputs = Array.from( document.querySelectorAll( '.raffle-private-field' ) );
+
+                                for ( let i = 0, len = privateInputs.length; i < len; i++ ) {
+                                    privateInputs[ i ].style.display = "none";
+                                }
+
+                                AppendSaveBtn( "false" );
+                            }
 
                             // Disable comments
 
-                            document.getElementById('disable-comments').checked = conf.nocmt;
+                            raffleSelect.comments.checked = conf.nocmt;
 
                             /* Only privates raffle */
 
-                            if (conf.isPrivate) {
+                            if ( conf.isPrivate ) {
 
                                 // Twitch Raffle
 
-                                document.getElementById('make-twitch-raffle').checked = conf.twitch;
+                                raffleSelect.twitch.checked = conf.twitch;
 
-                                if (conf.twitch) {
-                                    var subLuck = document.getElementById('raffle-sub-luck');
-
-                                    subLuck.value = (conf.subluck != 1) ? conf.subluck : "";
-                                    subLuck.parentElement.style.display = "block";
-                                    subLuck.parentElement.previousElementSibling.style.display = "block";
+                                if ( conf.twitch ) {
+                                    raffleSelect.subluck.value = ( conf.subluck != 1 ) ? conf.subluck : "";
+                                    raffleSelect.subluck.parentElement.style.display = "block";
+                                    raffleSelect.subluck.parentElement.previousElementSibling.style.display = "block";
                                 }
                             }
+
+                            // Display the correct panel
+                            document.getElementById( 'raffle-' + prefix + 'form' ).style.display = "";
                         }
                     }
 
-                });
+                } );
             }
         }
 
         // Append the event
 
-        appendBox.addEventListener('click', MakeMilshake);
+        appendBox.addEventListener( 'click', MakeMilshake );
     }
-});
+} );

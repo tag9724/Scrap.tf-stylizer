@@ -1,10 +1,13 @@
-chrome.storage.local.get(["profileStats"], function(res) {
+chrome.storage.local.get(["profileStats"], function (res) {
 
     /* Get Informations on the profile */
 
     let STATS = document.querySelectorAll('.profile-stats-sidebar .profile-stat');
     let stats = [],
-        iElem = '<i class="fa fa-star pull-right"></i>';
+        iElem = BuildDOM.Create({
+            tag: 'i',
+            classList: ['fa', 'fa-star', 'pull-right']
+        });
 
     for (let i = 0, len = STATS.length; i < len; i++) {
         stats[i] = STATS[i].cloneNode(true);
@@ -40,7 +43,7 @@ chrome.storage.local.get(["profileStats"], function(res) {
             res['profileStats'][1].value = stats[1];
             res['profileStats'][1].id = stats[0];
 
-            STATS[1].innerHTML += iElem;
+            STATS[1].appendChild(iElem);
         };
 
         // Check other stats
@@ -51,7 +54,7 @@ chrome.storage.local.get(["profileStats"], function(res) {
                 res['profileStats'][i].value = stats[i];
                 res['profileStats'][i].id = stats[0];
 
-                STATS[i].innerHTML += iElem;
+                STATS[i].appendChild(iElem);
             }
 
             /* Next update */

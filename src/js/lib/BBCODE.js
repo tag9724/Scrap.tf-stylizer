@@ -13,7 +13,6 @@ var BBCODE = [
     // Unofficials urls
     function(text) {
         var re = /((https?|ftps?):\/\/[^"|'<\s]+)(?![^<>]*>|[^"]*?<\/a)/ig;
-
         while (text.search(re) !== -1) {
             text = text.replace(re, '<a target="_blank" href="$1">$1</a>');
         }

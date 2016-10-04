@@ -19,8 +19,9 @@
    word-break: break-all;
 }
 
+#puzzle-rafflemessage,
 #rafflemessage {
-   height: 200px;
+   height: 220px;
 }
 
 textarea {

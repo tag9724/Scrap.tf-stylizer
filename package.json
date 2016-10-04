@@ -10,6 +10,7 @@
         "gulp-csso": "latest",
         "gulp-jsmin": "latest",
         "gulp-clean": "latest",
-        "gulp-sync-task" : "1.0.3"
+        "gulp-sync-task" : "1.0.3",
+        "gulp-zip" : "latest"
     }
 }

@@ -1,25 +1,16 @@
 function BuildUsedTemplate() {
-    chrome.storage.local.get('UsedTemplate', function(res) {
+    chrome.storage.local.get('UsedTemplate', function (res) {
 
         let UsedTemplate = res.UsedTemplate;
 
         if (UsedTemplate) {
 
-            chrome.storage.local.get(res.UsedTemplate, function(res) {
+            chrome.storage.local.get(res.UsedTemplate, function (res) {
 
                 res = res[UsedTemplate];
 
                 if (res) {
                     let build = "";
-
-                    /* Background */
-
-                    if (res.background.image !== "") {
-                        build += "body{" +
-                            "background-image:" + "url(" + res.background.image + ");" +
-                            "background-attachment:" + ((res.background.fixed) ? "fixed;" : "scroll;");
-                        build += ((res.background.size !== "") ? "background-size:" + res.background.size + ";" : "") + "}";
-                    }
 
                     /* Fonts & start root build */
 
@@ -45,10 +36,30 @@ function BuildUsedTemplate() {
                         build += "--" + k + ":" + res.buttons[k] + ((k === "radius") ? "em;" : ";");
                     }
 
-                    // Avatars borders & end of root build
+                    // Avatars borders
                     build += "--avatarBorders:" +
                         res.avatarBorders[0] + "em " + res.avatarBorders[1] + "em " +
-                        res.avatarBorders[3] + "em " + res.avatarBorders[2] + "em;}";
+                        res.avatarBorders[3] + "em " + res.avatarBorders[2] + "em;";
+
+                    /* Background  & end of root build */
+
+                    if (res.background.image !== "") {
+
+                        // end of root
+                        build += "--back-attachment:" + ((res.background.fixed) ? "fixed;" : "scroll;") +
+                            "--back-size:" + ((res.background.size !== "") ? res.background.size + ";" : ";") +
+                            "--back-image:url(" + res.background.image + ");}";
+
+                        // Add custom background
+                        build += "body{" +
+                            "background-image:var(--back-image)!important;" +
+                            "background-attachment:var(--back-attachment)!important;" +
+                            "background-size: var(--back-size)!important;}";
+
+                    } else {
+                        // end of root
+                        build += "}";
+                    }
 
                     /* customCSS */
 

@@ -212,9 +212,21 @@
 
 - Replaced all innerText by textContent ( more performant )
 - Improved performances for filters 
-- Saved in localstorage the userinventory for filters 
+- Saved in localstorage the user inventory for filters 
 - Level filters "keyup" event for input changed for "input" 
 - Filters fixed bug select "multi" remove selected class on slots buttons
 - Fixed UI bug on filters : hover on classes and slot buttons
 - Fixed bug in filters : items not displayed on validated trade page
 - Fixed bug with BuildDOM on raffle with main.js
+
+## 22 September 2016
+
+**v1.2.6** | ScrapTF update append
+
+- Added Background css variables  
+- Replaced innerHTML by BuildDOM in : profileStats.js
+- Fixed preview raffle message and text-formating buttons when creating puzzle raffle ( createRaffle.js )
+- Fixed custom UI ( createRaffle.css )
+- Fixed bug load raffle panel disappear on missclick 
+- Load saved raffle work again ( displaySavedCreateRaffle.js )
+- Save button appear also on loading saved raffle ( displaySavedCreateRaffle.js )

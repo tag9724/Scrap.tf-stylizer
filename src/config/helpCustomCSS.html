@@ -2,130 +2,157 @@
 
 <html>
 
-<head>
-   <title>Help - Custom CSS</title>
-   <link rel="stylesheet" href="css/bootstrap.min.css">
-   <link rel="stylesheet" href="css/help.css">
-</head>
+   <head>
+      <title>Help - Custom CSS</title>
+      <link rel="stylesheet" href="css/bootstrap.min.css">
+      <link rel="stylesheet" href="css/help.css">
+   </head>
 
-<body>
+   <body>
 
-   <div class="container">
-      <div class="page-header">
-         <h3>Introduction</h3>
-         <hr>
-         <div class="panel panel-body">
-            <p>
-               All of your CSS code will be injected in the <code>head</code> tag on all scrapTF pages ( exept : chat / forum ).<br/><br/> So your own custom CSS can be injected before or after the default style.css used by scraptf, so I can recommend to be carefull with your
-               selectors and don't forget to use <code>!important</code> with your rules.<br/><br/>
-               All settings on your template can be used with some CSS variables ( see the next part ).<br/>
-               If you want to take a look to the <code>template.css</code> injected with your t'emplate for applying him follow <a href="/css/template.css" target="_blank">the link</a>
-            </p>
+      <div class="container">
+         <div class="page-header">
+            <h3>Introduction</h3>
+            <hr>
+            <div class="panel panel-body">
+               <p>
+                  All of your CSS code will be injected in the
+                  <code>head</code>
+                  tag on all scrapTF pages ( exept : chat / forum ).<br/><br/>
+                  So your own custom CSS can be injected before or after the default style.css used by scrap.tf, so I recommend you be careful with your selections and don't forget to use
+                  <code>!important</code>
+                  with your rules.<br/><br/>
+
+                  All settings on your template can be used with some CSS variables ( see the next part ).<br/>
+                  If you want to take a look at the
+                  <code>template.css</code>
+                  injected with your template for applying it follow
+                  <a href="/css/template.css" target="_blank">this link</a>
+               </p>
+            </div>
          </div>
-      </div>
 
-      <div class="page-header">
-         <h3>Generated variables</h3>
-         <hr>
-         <div class="panel panel-body">
-            <div class="row">
-               <div class="col-md-6">
-                  <table class="table table-bordered table-striped table-hover">
-                     <tr>
-                        <th>Global</th>
-                        <th>Variable</th>
-                     </tr>
-                     <tr>
-                        <td>text color</td>
-                        <td>var(--textcolor)</td>
-                     </tr>
-                     <tr>
-                        <td>Backgoud color 1</td>
-                        <td>var(--back1)</td>
-                     </tr>
-                     <tr>
-                        <td>Backgoud color 2</td>
-                        <td>var(--back2)</td>
-                     </tr>
-                     <tr>
-                        <td>Background enter message</td>
-                        <td>var(--enterMsgColor)</td>
-                     </tr>
-                     <tr>
-                        <td>Border color</td>
-                        <td>var(--border)</td>
-                     </tr>
-                     <tr>
-                        <td>Avatars border-radius</td>
-                        <td>var(--avatarBorders)</td>
-                     </tr>
-                  </table>
-               </div>
-               <div class="col-md-6">
-                  <table class="table table-bordered table-striped table-hover">
-                     <tr>
-                        <th>Buttons</th>
-                        <th>Variable</th>
-                     </tr>
-                     <tr>
-                        <td>text color</td>
-                        <td>var(--btntext)</td>
-                     </tr>
-                     <tr>
-                        <td>Color 1 - Report</td>
-                        <td>var(--btn1)</td>
-                     </tr>
-                     <tr>
-                        <td>Color 2 - Enter Raffle</td>
-                        <td>var(--btn2)</td>
-                     </tr>
-                     <tr>
-                        <td>Color 3 - Create Raffle</td>
-                        <td>var(--btn3)</td>
-                     </tr>
-                     <tr>
-                        <td>Color 4 - Public raffle</td>
-                        <td>var(--btn4)</td>
-                     </tr>
-                     <tr>
-                        <td>Border radius</td>
-                        <td>var(--radius)</td>
-                     </tr>
-                  </table>
-               </div>
-               <div class="col-md-12">
-                  <table class="table table-bordered table-striped table-hover">
-                     <tr>
-                        <th>Fonts</th>
-                        <th>Variable</th>
-                     </tr>
-                     <tr>
-                        <td>Global font</td>
-                        <td>var(--globalFont)</td>
-                     </tr>
-                     <tr>
-                        <td>Title font</td>
-                        <td>var(--titleFont)</td>
-                     </tr>
-                  </table>
-               </div>
-               <hr>
-               <div class="col-md-12">
+         <div class="page-header">
+            <h3>Generated variables</h3>
+            <hr>
+            <div class="panel panel-body">
+               <div class="row">
+                  <div class="col-md-6">
+                     <table class="table table-bordered table-striped table-hover">
+                        <tr>
+                           <th>Global</th>
+                           <th>Variable</th>
+                        </tr>
+                        <tr>
+                           <td>text color</td>
+                           <td>var(--textcolor)</td>
+                        </tr>
+                        <tr>
+                           <td>Backgoud color 1</td>
+                           <td>var(--back1)</td>
+                        </tr>
+                        <tr>
+                           <td>Backgoud color 2</td>
+                           <td>var(--back2)</td>
+                        </tr>
+                        <tr>
+                           <td>Background enter message</td>
+                           <td>var(--enterMsgColor)</td>
+                        </tr>
+                        <tr>
+                           <td>Border color</td>
+                           <td>var(--border)</td>
+                        </tr>
+                        <tr>
+                           <td>Avatars border-radius</td>
+                           <td>var(--avatarBorders)</td>
+                        </tr>
+                     </table>
+                  </div>
+                  <div class="col-md-6">
+                     <table class="table table-bordered table-striped table-hover">
+                        <tr>
+                           <th>Buttons</th>
+                           <th>Variable</th>
+                        </tr>
+                        <tr>
+                           <td>text color</td>
+                           <td>var(--btntext)</td>
+                        </tr>
+                        <tr>
+                           <td>Color 1 - Report</td>
+                           <td>var(--btn1)</td>
+                        </tr>
+                        <tr>
+                           <td>Color 2 - Enter Raffle</td>
+                           <td>var(--btn2)</td>
+                        </tr>
+                        <tr>
+                           <td>Color 3 - Create Raffle</td>
+                           <td>var(--btn3)</td>
+                        </tr>
+                        <tr>
+                           <td>Color 4 - Public raffle</td>
+                           <td>var(--btn4)</td>
+                        </tr>
+                        <tr>
+                           <td>Border radius</td>
+                           <td>var(--radius)</td>
+                        </tr>
+                     </table>
+                  </div>
+                  <div class="col-md-6">
+                     <table class="table table-bordered table-striped table-hover">
+                        <tr>
+                           <th>Background</th>
+                           <th>Variable</th>
+                        </tr>
+                        <tr>
+                           <td>background-image</td>
+                           <td>var(--back-image)</td>
+                        </tr>
+                        <tr>
+                           <td>background-attachment</td>
+                           <td>var(--back-attachment)</td>
+                        </tr>
+                        <tr>
+                           <td>background-size</td>
+                           <td>var(--back-size)</td>
+                        </tr>
+                     </table>
+                  </div>
+                  <div class="col-md-6">
+                     <table class="table table-bordered table-striped table-hover">
+                        <tr>
+                           <th>Fonts</th>
+                           <th>Variable</th>
+                        </tr>
+                        <tr>
+                           <td>Global font</td>
+                           <td>var(--globalFont)</td>
+                        </tr>
+                        <tr>
+                           <td>Title font</td>
+                           <td>var(--titleFont)</td>
+                        </tr>
+                     </table>
+                  </div>
                   <hr>
-                  <h4 class="text-center">Examples</h4>
-                  <hr>
-                  <p>
-                     <pre><var class="selector">.container</var> {
+                  <div class="col-md-12">
+                     <hr>
+                     <h4 class="text-center">Examples</h4>
+                     <hr>
+                     <p>
+                        <pre><var class="selector">.container</var> {
    <var class="rule">background-color</var>: var(--back2) !important;
    <var class="rule">border-radius</var>: var(--border) !important;
    <var class="rule">font-family</var>: var(--globalFont) !important;
 }</pre>
-                  </p>
+                     </p>
+                  </div>
                </div>
             </div>
          </div>
       </div>
-   </div>
 
-
-</body>
+   </body>

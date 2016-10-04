@@ -1,63 +1,57 @@
-var IS_PRIVATE, NewModal = document.createElement('div');
-
-// New raffles is private ?
-
-document.querySelector("#raffle-intro > div:nth-child(2) > button").addEventListener("click", function() {
-    AppendSaveBtn(false);
-});
-document.querySelector("#raffle-intro > div:nth-child(3) > button").addEventListener("click", function() {
-    AppendSaveBtn(true);
-});
+var ISPRIVATE, NewModal = document.createElement( 'div' );
 
 /* Save raffle content */
 
 function SaveModalRaffle() {
 
     var conf = {
-        isPrivate: IS_PRIVATE,
+        isPrivate: ISPRIVATE,
         raffleID: Date.now(),
-        name: document.getElementById("rafflename").value,
-        message: document.getElementById("rafflemessage").value,
-        length: document.getElementById("raffle-length").value,
-        type: (document.getElementById("raffle-method").value == "2") ? true : false,
-        maxentries: document.getElementById("raffle-maxentries").value,
-        privateRaffle: document.getElementById(IS_PRIVATE ? "raffle-private" : "raffle-public").value,
-        pwd: document.getElementById("raffle-password").value,
-        poll: document.getElementById("raffle-poll").value,
-        nocmt: document.getElementById("disable-comments").checked,
-        twitch: document.getElementById("make-twitch-raffle").checked,
-        subluck: document.getElementById("raffle-sub-luck").value,
-        entmsg: document.getElementById("enteredmessage").value
+        name: raffleSelect.name.value,
+        message: raffleSelect.message.value,
+        entmsg: raffleSelect.enteredmessage.value,
+        length: raffleSelect.length.value,
+        type: ( raffleSelect.method.value == "2" ) ? true : false,
+        maxentries: raffleSelect.maxentries.value,
+        pwd: raffleSelect.password.value,
+        poll: raffleSelect.poll.value,
+        nocmt: raffleSelect.comments.checked,
+        twitch: raffleSelect.twitch.checked,
+        subluck: raffleSelect.subluck.value
     };
-    conf.solution = (conf.privateRaffle == 7 && document.getElementById("puzzlesolution").value);
-    conf.subluck = (conf.subluck == 0 || conf.subluck == null) ? 1 : conf.subluck;
 
-    conf.maxentries = (conf.maxentries == "") ? "200" : conf.maxentries;
+    if ( ISPRIVATE ) {
+        conf.privateRaffle = raffleSelect.privateRaffle.value
+    } else {
+        conf.privateRaffle = ( raffleSelect.isPuzzle ) ? 7 : 0;
+    }
 
-    conf.savedName = NewModal.querySelector('#ModalValue').value;
-    conf.savedName = (conf.savedName == "") ? conf.name : conf.savedName;
+    conf.solution = ( conf.privateRaffle == 7 && raffleSelect.puzzlesolution.value );
+    conf.subluck = ( conf.subluck == 0 || conf.subluck == null ) ? 1 : conf.subluck;
+
+    conf.maxentries = ( conf.maxentries == "" ) ? "200" : conf.maxentries;
+
+    conf.savedName = NewModal.querySelector( '#ModalValue' ).value;
+    conf.savedName = ( conf.savedName == "" ) ? conf.name : conf.savedName;
 
     // Save in storage
 
-    chrome.storage.local.get(["savedCreateRaffle"], function(res) {
+    chrome.storage.local.get( [ "savedCreateRaffle" ], function ( res ) {
 
         // First configuration
-        if (!res.savedCreateRaffle) {
-            console.log("Construct config");
+        if ( !res.savedCreateRaffle ) {
             res.savedCreateRaffle = [];
         }
 
         // Add item
-        res.savedCreateRaffle.push(conf);
+        res.savedCreateRaffle.push( conf );
 
         // save him
-        chrome.storage.local.set({
+        chrome.storage.local.set( {
             savedCreateRaffle: res.savedCreateRaffle
-        }, function(err, msg) {
-            console.log("Config saved", err, msg);
-        });
+        } );
 
-    });
+    } );
 
     // Close the modal
     CancelModalRaffle();
@@ -65,41 +59,36 @@ function SaveModalRaffle() {
 
 function CancelModalRaffle() {
     // Close the modal
-    NewModal.classList.add('hidden');
+    NewModal.classList.add( 'hidden' );
 }
 
 function OpenSaveModal() {
 
     // Suggest a name for this raffle config
-    NewModal.querySelector('#ModalValue').setAttribute('placeholder',
-        document.getElementById("rafflename").value);
+    NewModal.querySelector( '#ModalValue' ).setAttribute( 'placeholder', raffleSelect.name.value );
 
     // Display the modal
-    NewModal.classList.remove('hidden');
+    NewModal.classList.remove( 'hidden' );
 }
 
 // Append the save icon
-function AppendSaveBtn(isPriv) {
+function AppendSaveBtn( isPriv ) {
 
-    IS_PRIVATE = isPriv;
-
-    // Remove The load box
-    var PonyPanel = document.getElementById('PonyPanel');
-    PonyPanel ? PonyPanel.remove() : false;
+    ISPRIVATE = ( isPriv == "true" );
 
     // Display the save icon
 
-    var saveBtn = document.createElement('i');
-    saveBtn.classList.add('fa', 'fa-save', 'btn-saveConf');
-    saveBtn.addEventListener('click', OpenSaveModal);
-    document.querySelector('div.panel-heading > h3').appendChild(saveBtn);
+    var saveBtn = document.createElement( 'i' );
+    saveBtn.classList.add( 'fa', 'fa-save', 'btn-saveConf' );
+    saveBtn.addEventListener( 'click', OpenSaveModal );
+    document.querySelector( 'div.panel-heading > h3' ).appendChild( saveBtn );
 
     /* Append the modal in the page */
 
-    NewModal.classList.add('modal', 'fade', 'in', 'NewModal', 'hidden');
-    NewModal.setAttribute('tabindex', '-1');
-    NewModal.setAttribute('role', 'dialog');
-    NewModal.setAttribute('aria-hidden', 'false');
+    NewModal.classList.add( 'modal', 'fade', 'in', 'NewModal', 'hidden' );
+    NewModal.setAttribute( 'tabindex', '-1' );
+    NewModal.setAttribute( 'role', 'dialog' );
+    NewModal.setAttribute( 'aria-hidden', 'false' );
 
     NewModal.innerHTML = '<div class="modal-backdrop fade in" style="height: 0px;"></div>' +
         '<div class="modal-dialog">' +
@@ -121,8 +110,8 @@ function AppendSaveBtn(isPriv) {
         '   </div>' +
         '</div>';
 
-    NewModal.querySelector('#ModalCancel').addEventListener('click', CancelModalRaffle);
-    NewModal.querySelector('#ModalSave').addEventListener('click', SaveModalRaffle);
+    NewModal.querySelector( '#ModalCancel' ).addEventListener( 'click', CancelModalRaffle );
+    NewModal.querySelector( '#ModalSave' ).addEventListener( 'click', SaveModalRaffle );
 
-    document.body.appendChild(NewModal);
+    document.body.appendChild( NewModal );
 }

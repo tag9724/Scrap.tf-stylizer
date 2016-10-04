@@ -5,7 +5,8 @@
     tag : String
     classList : Array
     textContent || innerHTML : String
-    dataset : Object
+    dataset : Object,
+    attributes: Object,
     childrens : Array[@Object]
 }
  */
