@@ -27,3 +27,14 @@ div > div > div.well-padding {
 input[placeholder="min"] {
    margin-right: 5px;
 }
+
+div.auction-items > div > a.bpLink {
+   width: 35px;
+   height: 23px;
+   position: absolute;
+   background-size: 100%;
+   background-repeat: no-repeat;
+   top: inherit;
+   bottom: -15px;
+   right: -8px;
+}

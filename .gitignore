@@ -7,3 +7,4 @@ bin.nex
 src.nex
 gulpfile.js
 /Next-update
+updateItemList.js

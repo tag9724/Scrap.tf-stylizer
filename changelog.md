@@ -138,7 +138,7 @@
 - Bug dark theme not applied on announcement
 - Bug dark theme solution button on puzzle not appear
 - Minimalist stats on profiles
-- Clean after maj : main.js & background.js 
+- Clean after maj : main.js & background.js
 
 ## 27 August 2016
 
@@ -151,7 +151,7 @@
 - HTML CSS JS files minified
 - Converted .ttf in .woff2
 - Removed Background and dark theme features
-- Added the template management 
+- Added the template management
 
 ## 29 August 2016
 
@@ -180,7 +180,7 @@
 - Fixed bot-list.js for stranges
 - Fixed bug : trying to add filters on the wrong page
 - Template not applied on announcement
-- raffle.css and profile.css replaced by global.css 
+- raffle.css and profile.css replaced by global.css
 - bug template.css solution button don't appear
 - Injected style tag before template.css on main.js
 - Reduced size : Open-Sans font ( 60Ko => 5Ko )
@@ -211,22 +211,32 @@
 **v1.2.5**
 
 - Replaced all innerText by textContent ( more performant )
-- Improved performances for filters 
-- Saved in localstorage the user inventory for filters 
-- Level filters "keyup" event for input changed for "input" 
+- Improved performances for filters
+- Saved in localstorage the user inventory for filters
+- Level filters "keyup" event for input changed for "input"
 - Filters fixed bug select "multi" remove selected class on slots buttons
 - Fixed UI bug on filters : hover on classes and slot buttons
 - Fixed bug in filters : items not displayed on validated trade page
 - Fixed bug with BuildDOM on raffle with main.js
 
-## 22 September 2016
+## 4 October 2016
 
-**v1.2.6** | ScrapTF update append
+**v1.2.6** | ScrapTF raffle update
 
 - Added Background css variables  
 - Replaced innerHTML by BuildDOM in : profileStats.js
 - Fixed preview raffle message and text-formating buttons when creating puzzle raffle ( createRaffle.js )
 - Fixed custom UI ( createRaffle.css )
-- Fixed bug load raffle panel disappear on missclick 
+- Fixed bug load raffle panel disappear on missclick
 - Load saved raffle work again ( displaySavedCreateRaffle.js )
 - Save button appear also on loading saved raffle ( displaySavedCreateRaffle.js )
+
+## 8 October
+
+**v1.2.7** | ScrapTF auction update
+
+- Fixed UI bugs ( template.css )
+- Added list of TF2 items ( def-index : name | items-shema.js )
+- Added shortlink to backpack.tf for items in auction ( auction-backpack-tf.js )
+- Updated banking.js and BuildDOM ( function BpLink reusable for auction )
+- Removed background script ( used for removing old custom background setting )

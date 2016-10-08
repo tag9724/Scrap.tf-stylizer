@@ -2,105 +2,105 @@ function Extras() {
 
     // Append FavoriteRaffle, Announcement and polls history li tag in nav bar
 
-    var navUL = document.querySelector('#navbar-collapse-01 > ul:nth-child(1) > li.dropdown:nth-child(2) ul');
+    var navUL = document.querySelector( '#navbar-collapse-01 > ul:nth-child(1) > li.dropdown:nth-child(2) ul' );
     navUL.innerHTML += '<li><a href="/raffles/favorites"><i class="fa fa-fw fa-star"></i><i18n>Favorites Raffles</i18n></a></li>' +
         '<li class="divider"></li>' +
         '<li><a href="/polls/history"><i class="fa fa-fw fa-pie-chart"></i><i18n>Polls History</i18n></a></li>' +
         '<li><a href="/announcement"><i class="fa fa-fw fa-bullhorn"></i><i18n>Announcement</i18n></a></li>';
 }
 
-if (document.readyState == "interactive" || document.readyState == "complete") {
+if ( document.readyState == "interactive" || document.readyState == "complete" ) {
     Extras();
 } else {
-    document.addEventListener("DOMContentLoaded", Extras);
+    document.addEventListener( "DOMContentLoaded", Extras );
 }
 
 /* Append the sound */
 
-function AppendCustomSound(res) {
+function AppendCustomSound( res ) {
 
     function AppendSound() {
-        if (res.sound && res.sound != "") {
-            let notifSound = document.getElementById('chatBeep');
+        if ( res.sound && res.sound != "" ) {
+            let notifSound = document.getElementById( 'chatBeep' );
             notifSound.textContent = '';
-            notifSound.setAttribute('src', res.sound);
+            notifSound.setAttribute( 'src', res.sound );
         }
     }
 
-    if (document.readyState == "interactive" || document.readyState == "complete") {
+    if ( document.readyState == "interactive" || document.readyState == "complete" ) {
         AppendSound();
     } else {
-        document.addEventListener("DOMContentLoaded", AppendSound);
+        document.addEventListener( "DOMContentLoaded", AppendSound );
     }
 }
 
 /* Firefox prevent crash, move sound config to local */
 
-if (chrome.storage.sync) {
-    chrome.storage.sync.get(["sound", "dark"], function (res) {
+if ( chrome.storage.sync ) {
+    chrome.storage.sync.get( [ "sound", "dark" ], function ( res ) {
 
         // Remove the dark theme setting
 
-        if (res.dark) {
-            chrome.storage.sync.remove('dark');
+        if ( res.dark ) {
+            chrome.storage.sync.remove( 'dark' );
         }
 
         // Move the setting from sync to local
 
-        if (res.sound && res.sound != "") {
-            chrome.storage.local.set({
+        if ( res.sound && res.sound != "" ) {
+            chrome.storage.local.set( {
                 sound: res.sound
-            });
-            chrome.storage.sync.remove('sound');
+            } );
+            chrome.storage.sync.remove( 'sound' );
 
             // Append the sound from sync
-            AppendCustomSound(res);
+            AppendCustomSound( res );
 
         } else {
-            chrome.storage.local.get("sound", AppendCustomSound);
+            chrome.storage.local.get( "sound", AppendCustomSound );
         }
 
-    });
+    } );
 } else {
     // The future was here
-    chrome.storage.local.get("sound", AppendCustomSound);
+    chrome.storage.local.get( "sound", AppendCustomSound );
 }
 
 /* The background can't no longer be saved in the sync storage */
 
-chrome.storage.local.get('CurrentTemplate', function (res) {
+chrome.storage.local.get( 'CurrentTemplate', function ( res ) {
 
-    if (res.CurrentTemplate) {
-        let templateBox = document.createElement('style');
+    if ( res.CurrentTemplate ) {
+        let templateBox = document.createElement( 'style' );
         templateBox.textContent = res.CurrentTemplate.style;
 
-        let customTemplate = document.createElement('link');
-        customTemplate.setAttribute('rel', 'stylesheet');
-        customTemplate.setAttribute('href', chrome.extension.getURL('css/template.css'));
+        let customTemplate = document.createElement( 'link' );
+        customTemplate.setAttribute( 'rel', 'stylesheet' );
+        customTemplate.setAttribute( 'href', chrome.extension.getURL( 'css/template.css' ) );
 
         /* Append <style> */
 
-        document.head.appendChild(customTemplate);
-        document.head.appendChild(templateBox);
+        document.head.appendChild( customTemplate );
+        document.head.appendChild( templateBox );
 
         /* Update Logo */
 
-        function ColorLuminance(hex, lum) {
+        function ColorLuminance( hex, lum ) {
 
             // validate hex string
-            hex = String(hex).replace(/[^0-9a-f]/gi, '');
-            if (hex.length < 6) {
-                hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2];
+            hex = String( hex ).replace( /[^0-9a-f]/gi, '' );
+            if ( hex.length < 6 ) {
+                hex = hex[ 0 ] + hex[ 0 ] + hex[ 1 ] + hex[ 1 ] + hex[ 2 ] + hex[ 2 ];
             }
             lum = lum || 0;
 
             // convert to decimal and change luminosity
             var rgb = "#",
                 c, i;
-            for (i = 0; i < 3; i++) {
-                c = parseInt(hex.substr(i * 2, 2), 16);
-                c = Math.round(Math.min(Math.max(0, c + (c * lum)), 255)).toString(16);
-                rgb += ("00" + c).substr(c.length);
+            for ( i = 0; i < 3; i++ ) {
+                c = parseInt( hex.substr( i * 2, 2 ), 16 );
+                c = Math.round( Math.min( Math.max( 0, c + ( c * lum ) ), 255 ) ).toString( 16 );
+                rgb += ( "00" + c ).substr( c.length );
             }
 
             return rgb;
@@ -111,31 +111,33 @@ chrome.storage.local.get('CurrentTemplate', function (res) {
         /* Raffle transition ( puzzle ) & logo */
 
         function AppendOnReady() {
-            var isRaffle = document.querySelector(".raffle-message");
+            let isRaffle = document.querySelector( ".raffle-message" );
+            let puzzleCheck = document.querySelector( 'div.welcome-overlay-container > ol > li:nth-child(1) > a > i18n' );
 
             // Raffle message transition
 
-            if (isRaffle) {
+            if ( isRaffle ) {
                 isRaffle.style.opacity = 1;
-                if (document.querySelector('div.welcome-overlay-container > ol > li:nth-child(1) > a > i18n').innerHTML.indexOf("Puzzle") >= 0) {
-                    document.querySelector(".raffle-message").classList.add('puzzle');
+
+                if ( puzzleCheck && puzzleCheck.innerHTML.indexOf( "Puzzle" ) >= 0 ) {
+                    document.querySelector( ".raffle-message" ).classList.add( 'puzzle' );
                 }
             }
 
             // Logo
 
-            document.querySelector('.navbar-brand.big-logo').outerHTML = svg;
+            document.querySelector( '.navbar-brand.big-logo' ).outerHTML = svg;
 
         }
 
-        if (document.readyState == "interactive") {
+        if ( document.readyState == "interactive" ) {
             AppendOnReady();
         } else {
             document.onreadystatechange = function () {
-                if (document.readyState == "interactive")
+                if ( document.readyState == "interactive" )
                     AppendOnReady();
             };
         }
 
     }
-});
+} );
