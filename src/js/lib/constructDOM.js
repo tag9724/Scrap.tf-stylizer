@@ -84,8 +84,6 @@ if ( typeof BuildDOM === "undefined" ) {
             bpLink.target = "_blank";
             bpLink.style.backgroundImage = "url(" + this.backpackTFIcon + ")";
 
-            console.log(this.backpackTFIcon);
-
             return bpLink;
         }
     };

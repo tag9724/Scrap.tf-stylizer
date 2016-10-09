@@ -240,3 +240,16 @@
 - Added shortlink to backpack.tf for items in auction ( auction-backpack-tf.js )
 - Updated banking.js and BuildDOM ( function BpLink reusable for auction )
 - Removed background script ( used for removing old custom background setting )
+
+## 9 October
+
+**v1.2.8** 
+
+- Fixed backpack.tf auction links for quality "Haunted"
+- Fixed backpack.tf auction links for killstreak weapons
+- Fixed backpack.tf auction links for killstreak kits
+- Fixed backpack.tf auction links for Strange decorated weapons
+- Comment box max-height fixed on auction
+- Added backpack.tf shortlink on auction main pages
+- ScrapTF UI bug : overflow on .container-margin, .panel-raffle
+- Fixed UI bug with template.css on search page

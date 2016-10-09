@@ -161,6 +161,16 @@ nav .iconic:before {
    background-color: var(--btn4) !important;
    color: var(--btntext) !important;
 }
+/* Search bar */
+.popover {
+   background-color: var(--back2) !important;
+   color: var(--text) !important;
+}
+
+.popover li.active {
+   background-color: var(--btn4) !important;
+   color: var(--btntext) !important;
+}
 /* Checkbox & switch btn */
 .checkbox input[type="checkbox"].custom-checkbox:checked+.icons .icon-checked,
 .checkbox input[type="radio"].custom-radio:checked+.icons .icon-checked,

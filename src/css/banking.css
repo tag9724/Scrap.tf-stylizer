@@ -28,13 +28,14 @@ input[placeholder="min"] {
    margin-right: 5px;
 }
 
-div.auction-items > div > a.bpLink {
-   width: 35px;
-   height: 23px;
+.auction-items > div > a.bpLink,
+.panel-raffle-items > div > a.bpLink {
    position: absolute;
    background-size: 100%;
    background-repeat: no-repeat;
    top: inherit;
-   bottom: -15px;
+   height: 20px;
+   width: 34px;
+   bottom: -11px;
    right: -8px;
 }

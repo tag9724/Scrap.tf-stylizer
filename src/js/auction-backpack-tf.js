@@ -1,7 +1,9 @@
 ( function () {
-    const ITEMS = document.querySelectorAll( '.well-padding > .auction-items > div' );
+    const ITEMS = document.querySelectorAll( '.well-padding > .auction-items > div, .panel-raffle-items > div' );
     const RegQuality = /quality(\d*)/;
     const RegParticles = /particles_440\/(\d*)/;
+    const RegKillstreakWeapon = /killstreak(\d)/i;
+    const RegKillstreakKit = /(.*?) (.*?) Kit/i;
 
     const Quality = {
         0: "Normal",
@@ -11,8 +13,21 @@
         5: "Unusual",
         9: "Self-Made",
         11: "Strange",
+        13: "Haunted",
         14: "Collector's",
         15: "Decorated Weapon"
+    };
+
+    const Killstreak = {
+        1: 'Killstreak',
+        2: 'Specialized Killstreak',
+        3: 'Professional Killstreak'
+    };
+
+    const KillstreakIndex = {
+        'Basic': 1,
+        'Specialized': 2,
+        'Professional': 3
     };
 
     // ITEM_SHEMA[ defindex ]
@@ -35,34 +50,77 @@
 
             /* Item name */
 
-            let name = "";
+            let name = "",
+                killstreakKitIndex;
 
             // Decorated weapons
             if ( quality == 15 ) {
                 name = ITEMS[ i ].dataset.title.replace( '(', "| " + ITEM_SHEMA[ defindex ] + ' (' );
             }
+            // Strange decorated
+            else if ( quality == 11 && ITEMS[ i ].querySelector( '.statclock' ) ) {
+
+                name = ITEMS[ i ].dataset.title.replace( '(', "| " + ITEM_SHEMA[ defindex ] + ' (' )
+                    .replace( "<span class='quality11'>Strange ", '' )
+                    .replace( '</span>', '' );
+            }
             // Australium
             else if ( ITEMS[ i ].getAttribute( 'style' ).indexOf( "-gold." ) != -1 ) {
                 name = "Australium " + ITEM_SHEMA[ defindex ];
+            }
+            // Killstrek kit
+            else if ( ITEM_SHEMA[ defindex ] == "Kit" ) {
+
+                let kit = RegKillstreakKit.exec( ITEMS[ i ].dataset.title );
+
+                if ( kit ) {
+                    for ( let key in ITEM_SHEMA ) {
+                        if ( ITEM_SHEMA[ key ] == kit[ 2 ] ) {
+
+                            // Kit name
+                            name = ( kit[ 1 ].indexOf( 'Basic' ) >= 0 ) ? '' : kit[ 1 ] + ' ';
+                            name += 'Killstreak Kit';
+
+                            // Ks type and weapon defindex
+                            killstreakKitIndex = KillstreakIndex[ kit[ 1 ] ] + '-' + key;
+
+                            break;
+                        }
+                    }
+                }
+
             }
             // Anything else
             else {
                 name = ITEM_SHEMA[ defindex ];
             }
 
+            // Killstreak weapon
+
+            let isKs = RegKillstreakWeapon.exec( ITEMS[ i ].getAttribute( 'class' ) );
+            if ( isKs ) {
+                name = Killstreak[ isKs[ 1 ] ] + " " + name;
+            }
+
+            /* Craftable */
+
             link += "/" + name + "/Tradable/";
-
-            /* Craftable & unusuals particles */
-
             link += ( ITEMS[ i ].getAttribute( 'class' ).indexOf( "uncraft" ) >= 0 ) ? "Non-Craftable" : "Craftable";
 
-            if ( quality == 5 )
+            /* Extras parameters */
+
+            // Unusual particles
+            if ( quality == 5 ) {
                 link += "/" + RegParticles.exec( ITEMS[ i ].getAttribute( 'style' ) )[ 1 ];
+            }
+            // Killstreak kit
+            else if ( killstreakKitIndex ) {
+                link += "/" + killstreakKitIndex;
+            }
 
             /* Append the resulted icon */
 
             ITEMS[ i ].appendChild( BuildDOM.BpLink( link ) );
         }
-
     }
 } )();

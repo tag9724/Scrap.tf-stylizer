@@ -1,9 +1,10 @@
+/* Display addon version */
 footer {
    position: relative;
 }
 
 footer:after {
-   content: "ScrapTF-Styliser v1.2.7";
+   content: "ScrapTF-Styliser v1.2.8";
    position: absolute;
    bottom: 0;
    left: 0;
@@ -12,11 +13,16 @@ footer:after {
    width: 100%;
    text-align: center;
 }
+/* ScrapTf UI bugs */
+.container-margins, .panel-raffle {
+   overflow: inherit!important;
+}
 
 button[data-infav="true"] {
    color: #FFC877 !important;
 }
 /* Better comment section */
+.auction-well .raffle-commenters,
 .raffle-well .raffle-commenters {
    max-height: 600px !important;
 }
