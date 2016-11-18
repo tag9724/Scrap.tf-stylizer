@@ -74,6 +74,7 @@ gulp.task('zip', ['zipSRC', 'zipBin', 'zipNex']);
 
 /*
   DON'T ADD CSS MINIFICATION ANYMORE
+  jsmin broken on nodev7 ... I'm lazy ...
 */
 
-gulp.task('default', gulp_sync_task('clean', 'copy', 'html', 'js', 'zip'));
+gulp.task('default', gulp_sync_task('clean', 'copy', 'html', 'zip'));

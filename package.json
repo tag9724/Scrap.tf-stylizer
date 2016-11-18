@@ -1,16 +1,16 @@
 {
     "name": "Src-minifier_html_js_css",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "devDependencies": {
         "gulp": "latest",
-        "gulp-folders": "^1.1.0",
-        "gulp-load-plugins": "latest",
-        "gulp-recursive-concat": "^0.2.0",
-        "gulp-htmlmin": "latest",
-        "gulp-csso": "latest",
-        "gulp-jsmin": "latest",
         "gulp-clean": "latest",
-        "gulp-sync-task" : "1.0.3",
-        "gulp-zip" : "latest"
+        "gulp-csso": "latest",
+        "gulp-folders": "latest",
+        "gulp-htmlmin": "latest",
+        "gulp-jsmin": "latest",
+        "gulp-load-plugins": "latest",
+        "gulp-recursive-concat": "latest",
+        "gulp-sync-task": "latest",
+        "gulp-zip": "latest"
     }
 }

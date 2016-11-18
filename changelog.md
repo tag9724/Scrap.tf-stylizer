@@ -243,7 +243,7 @@
 
 ## 9 October
 
-**v1.2.8** 
+**v1.2.8**
 
 - Fixed backpack.tf auction links for quality "Haunted"
 - Fixed backpack.tf auction links for killstreak weapons
@@ -253,3 +253,16 @@
 - Added backpack.tf shortlink on auction main pages
 - ScrapTF UI bug : overflow on .container-margin, .panel-raffle
 - Fixed UI bug with template.css on search page
+
+## 18 November
+
+**v1.2.9** | 1M users event 
+
+- Fixed backpack.tf auction links for renamed decorated weapons
+- Fixed backpack.tf auction links for ' char on killstreak kits
+- Fixed UI bugs with template.css
+- Moved bot-list.js and items-shema.js to js/JSON/ folder
+- Clear main.js ( sound conf sync => local )
+- Fixed bug : save raffle ( createRaffle.js )
+- Fixed create raffles features 
+- Updated items-shema.js

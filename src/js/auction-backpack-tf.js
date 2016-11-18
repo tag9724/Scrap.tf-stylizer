@@ -4,6 +4,7 @@
     const RegParticles = /particles_440\/(\d*)/;
     const RegKillstreakWeapon = /killstreak(\d)/i;
     const RegKillstreakKit = /(.*?) (.*?) Kit/i;
+    const RegWeaponWear = /(Battle Scarred)|(Well-Worn)|(Field-Tested)|(Minimal Wear)|(Factory New)/gi;
 
     const Quality = {
         0: "Normal",
@@ -54,15 +55,11 @@
                 killstreakKitIndex;
 
             // Decorated weapons
-            if ( quality == 15 ) {
-                name = ITEMS[ i ].dataset.title.replace( '(', "| " + ITEM_SHEMA[ defindex ] + ' (' );
-            }
-            // Strange decorated
-            else if ( quality == 11 && ITEMS[ i ].querySelector( '.statclock' ) ) {
+            if ( quality == 15 || ( quality == 11 && ITEMS[ i ].querySelector( '.statclock' ) ) ) {
 
-                name = ITEMS[ i ].dataset.title.replace( '(', "| " + ITEM_SHEMA[ defindex ] + ' (' )
-                    .replace( "<span class='quality11'>Strange ", '' )
-                    .replace( '</span>', '' );
+                let wear = ITEMS[ i ].dataset.title.match( RegWeaponWear );
+                name = ITEM_SHEMA[ defindex ];
+                name += ( wear ) ? " (" + wear[ 0 ] + ")" : " (Factory new)";
             }
             // Australium
             else if ( ITEMS[ i ].getAttribute( 'style' ).indexOf( "-gold." ) != -1 ) {
@@ -74,6 +71,9 @@
                 let kit = RegKillstreakKit.exec( ITEMS[ i ].dataset.title );
 
                 if ( kit ) {
+
+                    kit[ 2 ] = kit[ 2 ].replace( /&apos;/g, "'" );
+
                     for ( let key in ITEM_SHEMA ) {
                         if ( ITEM_SHEMA[ key ] == kit[ 2 ] ) {
 

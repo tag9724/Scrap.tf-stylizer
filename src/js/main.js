@@ -34,43 +34,14 @@ function AppendCustomSound( res ) {
     }
 }
 
-/* Firefox prevent crash, move sound config to local */
-
-if ( chrome.storage.sync ) {
-    chrome.storage.sync.get( [ "sound", "dark" ], function ( res ) {
-
-        // Remove the dark theme setting
-
-        if ( res.dark ) {
-            chrome.storage.sync.remove( 'dark' );
-        }
-
-        // Move the setting from sync to local
-
-        if ( res.sound && res.sound != "" ) {
-            chrome.storage.local.set( {
-                sound: res.sound
-            } );
-            chrome.storage.sync.remove( 'sound' );
-
-            // Append the sound from sync
-            AppendCustomSound( res );
-
-        } else {
-            chrome.storage.local.get( "sound", AppendCustomSound );
-        }
-
-    } );
-} else {
-    // The future was here
-    chrome.storage.local.get( "sound", AppendCustomSound );
-}
+chrome.storage.local.get( "sound", AppendCustomSound );
 
 /* The background can't no longer be saved in the sync storage */
 
 chrome.storage.local.get( 'CurrentTemplate', function ( res ) {
 
     if ( res.CurrentTemplate ) {
+
         let templateBox = document.createElement( 'style' );
         templateBox.textContent = res.CurrentTemplate.style;
 
@@ -111,6 +82,7 @@ chrome.storage.local.get( 'CurrentTemplate', function ( res ) {
         /* Raffle transition ( puzzle ) & logo */
 
         function AppendOnReady() {
+
             let isRaffle = document.querySelector( ".raffle-message" );
             let puzzleCheck = document.querySelector( 'div.welcome-overlay-container > ol > li:nth-child(1) > a > i18n' );
 

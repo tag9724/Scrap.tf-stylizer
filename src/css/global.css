@@ -4,7 +4,7 @@ footer {
 }
 
 footer:after {
-   content: "ScrapTF-Styliser v1.2.8";
+   content: "ScrapTF-Styliser v1.2.9";
    position: absolute;
    bottom: 0;
    left: 0;
@@ -14,8 +14,13 @@ footer:after {
    text-align: center;
 }
 /* ScrapTf UI bugs */
-.container-margins, .panel-raffle {
+.container-margins,
+.panel-raffle {
    overflow: inherit!important;
+}
+
+.tooltip-inner {
+   min-width: 260px;
 }
 
 button[data-infav="true"] {

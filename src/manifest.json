@@ -3,7 +3,7 @@
 
     "name": "Scrap.tf stylizer",
     "description": "This extension give more features for scrap.tf",
-    "version": "1.2.8",
+    "version": "1.2.9",
 
     "icons": {
         "16": "img/icon.png",
@@ -37,9 +37,9 @@
         "css": ["css/favoritesRaffles.css"],
         "run_at": "document_start"
     }, {
-        "matches": ["*://*.scrap.tf/auctions/*"],
+        "matches": ["*://*.scrap.tf/auctions","*://*.scrap.tf/auctions/*"],
         "css": ["css/banking.css"],
-        "js": ["js/lib/items-shema.js", "js/auction-backpack-tf.js"]
+        "js": ["js/JSON/items-shema.js", "js/auction-backpack-tf.js"]
     }, {
         "matches": [
             "*://*.scrap.tf/weapons/*",
@@ -69,7 +69,7 @@
             "*://*.scrap.tf/killstreaks/*",
             "*://*.scrap.tf/stranges/*"
         ],
-        "js": ["js/lib/BBCODE.js", "js/lib/bot-list.js", "js/banking.js"],
+        "js": ["js/lib/BBCODE.js", "js/JSON/bot-list.js", "js/banking.js"],
         "css": ["css/banking.css"],
         "run_at": "document_end"
     }, {
