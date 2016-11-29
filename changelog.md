@@ -266,3 +266,9 @@
 - Fixed bug : save raffle ( createRaffle.js )
 - Fixed create raffles features 
 - Updated items-shema.js
+
+## 29 November
+
+**v1.2.9.1** | Little fix
+
+- Fixed extras raffles menus

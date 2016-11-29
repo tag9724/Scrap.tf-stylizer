@@ -87,10 +87,12 @@
         "storage",
         "activeTab",
         "unlimitedStorage",
+        "*://scrap.tf/*",
         "*://*.scrap.tf/*",
         "*://fonts.googleapis.com/*",
         "*://fonts.gstatic.com/*",
         "*://*.backpack.tf/*",
-        "*://backpack.tf/*"
+        "*://backpack.tf/*",
+        "*://steamcommunity-a.akamaihd.net/economy/emoticon/*"
     ]
 }
