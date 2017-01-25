@@ -3,7 +3,7 @@
 
     "name": "Scrap.tf stylizer",
     "description": "This extension give more features for scrap.tf",
-    "version": "1.2.9",
+    "version": "1.3.0",
 
     "icons": {
         "16": "img/icon.png",
@@ -23,7 +23,7 @@
     }, {
         "matches": ["*://*.scrap.tf/raffles/create"],
         "js": [
-            "js/lib/BBCODE.js",
+            "js/lib/inject.js",
             "js/createRaffle.js",
             "js/displaySavedCreateRaffle.js",
             "js/saveCreateRaffle.js"
@@ -31,13 +31,19 @@
         "css": ["css/createRaffle.css"]
     }, {
         "matches": ["*://*.scrap.tf/raffles/*"],
-        "js": ["js/lib/BBCODE.js", "js/raffle.js", "js/FavoritesRaffles.js", "js/DisplayFavoritesRaffles.js"]
+        "js": [
+            "js/lib/XBBCODE.js",
+            "js/lib/BB-Code.js",
+            "js/raffle.js",
+            "js/FavoritesRaffles.js",
+            "js/DisplayFavoritesRaffles.js"
+        ]
     }, {
         "matches": ["*://*.scrap.tf/raffles/favorites"],
         "css": ["css/favoritesRaffles.css"],
         "run_at": "document_start"
     }, {
-        "matches": ["*://*.scrap.tf/auctions","*://*.scrap.tf/auctions/*"],
+        "matches": ["*://*.scrap.tf/auctions", "*://*.scrap.tf/auctions/*"],
         "css": ["css/banking.css"],
         "js": ["js/JSON/items-shema.js", "js/auction-backpack-tf.js"]
     }, {
@@ -49,7 +55,7 @@
             "*://*.scrap.tf/items/*",
             "*://*.scrap.tf/killstreaks/*"
         ],
-        "js": ["js/lib/injectMulti.js", "js/IN_globalFilter.js"],
+        "js": ["js/lib/inject.js", "js/IN_globalFilter.js"],
         "css": ["css/filter.css"],
         "run_at": "document_start"
     }, {
@@ -69,12 +75,9 @@
             "*://*.scrap.tf/killstreaks/*",
             "*://*.scrap.tf/stranges/*"
         ],
-        "js": ["js/lib/BBCODE.js", "js/JSON/bot-list.js", "js/banking.js"],
+        "js": ["js/JSON/bot-list.js", "js/banking.js"],
         "css": ["css/banking.css"],
         "run_at": "document_end"
-    }, {
-        "matches": ["*://*.scrap.tf/profile/*"],
-        "js": ["js/profileStats.js"]
     }],
     "web_accessible_resources": [
         "js/inject/*",
@@ -83,6 +86,9 @@
         "css/*",
         "img/*"
     ],
+    "background": {
+        "scripts": ["js/background.js"]
+    },
     "permissions": [
         "storage",
         "activeTab",
@@ -93,6 +99,8 @@
         "*://fonts.gstatic.com/*",
         "*://*.backpack.tf/*",
         "*://backpack.tf/*",
-        "*://steamcommunity-a.akamaihd.net/economy/emoticon/*"
+        "*://steamcommunity-a.akamaihd.net/economy/emoticon/*",
+        "*://youtube.com/embed*",
+        "*://youtu.be/*"
     ]
 }

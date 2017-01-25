@@ -28,26 +28,6 @@ textarea {
    text-align: center;
 }
 
-.formattingHelp {
-   width: 100px;
-   float: right;
-}
-
-.formattingHelp i {
-   margin: 5px;
-   cursor: pointer;
-   transition: 0.1s ease-out;
-}
-
-.formattingHelp i:hover {
-   transform: scale(1.25);
-}
-
-.formattingHelp i.fa-ban:hover {
-   transform: scale(1);
-   border-bottom: 1px solid;
-}
-
 .create-raffle-inv {
    overflow: auto;
    max-height: 750px;
@@ -91,9 +71,4 @@ textarea {
    display: block !important;
    background: rgba(25, 25, 25, 0.4);
    padding-right: 12px;
-}
-@media (max-width: 991px) {
-   .formattingHelp {
-      width: auto;
-   }
 }

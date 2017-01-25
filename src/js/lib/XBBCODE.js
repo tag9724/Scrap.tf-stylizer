@@ -7,16 +7,18 @@
 
     Mofified version for ScrapTF-Stylizer
     @Usage XBBCODE.process( { text: 'BBCODE string' } )
+
+    More informations here : https://github.com/patorjk/Extendible-BBCode-Parser
 */
 
-var XBBCODE = ( function () {
+const XBBCODE_CONSTRUCTOR = function ( parseAdmin ) {
     "use strict";
 
     // Set up private variables
 
     var me = {},
         urlPattern = /^(?:https?|file|c):(?:\/{1,3}|\\{1})[-a-zA-Z0-9:;@#%&()~_?\+=\/\\\.]*$/,
-        colorNamePattern = /^(?:aliceblue|antiquewhite|aqua|aquamarine|azure|beige|bisque|black|blanchedalmond|blue|blueviolet|brown|burlywood|cadetblue|chartreuse|chocolate|coral|cornflowerblue|cornsilk|crimson|cyan|darkblue|darkcyan|darkgoldenrod|darkgray|darkgreen|darkkhaki|darkmagenta|darkolivegreen|darkorange|darkorchid|darkred|darksalmon|darkseagreen|darkslateblue|darkslategray|darkturquoise|darkviolet|deeppink|deepskyblue|dimgray|dodgerblue|firebrick|floralwhite|forestgreen|fuchsia|gainsboro|ghostwhite|gold|goldenrod|gray|green|greenyellow|honeydew|hotpink|indianred|indigo|ivory|khaki|lavender|lavenderblush|lawngreen|lemonchiffon|lightblue|lightcoral|lightcyan|lightgoldenrodyellow|lightgray|lightgreen|lightpink|lightsalmon|lightseagreen|lightskyblue|lightslategray|lightsteelblue|lightyellow|lime|limegreen|linen|magenta|maroon|mediumaquamarine|mediumblue|mediumorchid|mediumpurple|mediumseagreen|mediumslateblue|mediumspringgreen|mediumturquoise|mediumvioletred|midnightblue|mintcream|mistyrose|moccasin|navajowhite|navy|oldlace|olive|olivedrab|orange|orangered|orchid|palegoldenrod|palegreen|paleturquoise|palevioletred|papayawhip|peachpuff|peru|pink|plum|powderblue|purple|red|rosybrown|royalblue|saddlebrown|salmon|sandybrown|seagreen|seashell|sienna|silver|skyblue|slateblue|slategray|snow|springgreen|steelblue|tan|teal|thistle|tomato|turquoise|violet|wheat|white|whitesmoke|yellow|yellowgreen)$/,
+        colorNamePattern = /^(?:aliceblue|antiquewhite|aqua|aquamarine|azure|beige|bisque|black|blanchedalmond|blue|blueviolet|brown|burlywood|cadetblue|chartreuse|chocolate|coral|cornflowerblue|cornsilk|crimson|cyan|darkblue|darkcyan|darkgoldenrod|darkgray|darkgreen|darkkhaki|darkmagenta|darkolivegreen|darkorange|darkorchid|darkred|darksalmon|darkseagreen|darkslateblue|darkslategray|darkturquoise|darkviolet|deeppink|deepskyblue|dimgray|dodgerblue|firebrick|floralwhite|forestgreen|fuchsia|gainsboro|ghostwhite|gold|goldenrod|gray|green|greenyellow|honeydew|hotpink|indianred|indigo|ivory|khaki|lavender|lavenderblush|lawngreen|lemonchiffon|lightblue|lightcoral|lightcyan|lightgoldenrodyellow|lightgray|lightgreen|lightpink|lightsalmon|lightseagreen|lightskyblue|lightslategray|lightsteelblue|lightyellow|lime|limegreen|linen|magenta|maroon|mediumaquamarine|mediumblue|mediumorchid|mediumpurple|mediumseagreen|mediumslateblue|mediumspringgreen|mediumturquoise|mediumvioletred|midnightblue|mintcream|mistyrose|moccasin|navajowhite|navy|oldlace|olive|olivedrab|orange|orangered|orchid|palegoldenrod|palegreen|paleturquoise|palevioletred|papayawhip|peachpuff|peru|pink|plum|powderblue|purple|red|rosybrown|royalblue|saddlebrown|salmon|sandybrown|seagreen|seashell|sienna|silver|skyblue|slateblue|slategray|snow|springgreen|steelblue|tan|teal|thistle|tomato|turquoise|transparent|violet|wheat|white|whitesmoke|yellow|yellowgreen)$/,
         colorCodePattern = /^#?[a-fA-F0-9]{6}$/,
         emailPattern = /[^\s@]+@[^\s@]+\.[^\s@]+/,
         fontFacePattern = /^([a-z][a-z0-9_]+|"[a-z][a-z0-9_\s]+")$/i,
@@ -29,11 +31,45 @@ var XBBCODE = ( function () {
         openTags,
         closeTags;
 
+
+    // Set up Tag list
+
     tags = {
+        "youtube": {
+            openTag: function ( params, content ) {
+                if ( content.indexOf( '//youtu.be' ) == 0 ) {
+                    content = content.replace( '//youtu.be', 'https://youtube.com/embed' );
+                    return '<iframe src="' + content + '" allowfullscreen class="yt-iframe" frameborder="0"></iframe>';
+                } else {
+                    return ''; // Not youtube url
+                }
+            },
+            closeTag: function ( params, content ) {
+                return '';
+            },
+            displayContent: false
+        },
+        "mention": {
+            openTag: function ( params, content ) {
+
+                let myUrl;
+
+                if ( !params ) {
+                    myUrl = content.replace( /<.*?>/g, "" );
+                } else {
+                    myUrl = params.substr( 1 );
+                }
+
+                return '<a href="' + myUrl + '" target="_blank" class="user-mention">';
+            },
+            closeTag: function ( params, content ) {
+                return '</a>';
+            }
+        },
         "url": {
             openTag: function ( params, content ) {
 
-                var myUrl;
+                let myUrl;
 
                 if ( !params ) {
                     myUrl = content.replace( /<.*?>/g, "" );
@@ -46,7 +82,7 @@ var XBBCODE = ( function () {
                     myUrl = "#";
                 }
 
-                return '<a href="' + myUrl + '">';
+                return '<a href="' + myUrl + '" target="_blank" rel="noopener">';
             },
             closeTag: function ( params, content ) {
                 return '</a>';
@@ -56,9 +92,12 @@ var XBBCODE = ( function () {
             openTag: function ( params, content ) {
                 params = params || '';
 
-                var colorCode = ( params.substr( 1 ) ).toLowerCase() || "black";
+                let colorCode = ( params.substr( 1 ) ).toLowerCase() || "black";
+                colorCode = colorCode.replace( /;/g, '' );
+
                 colorNamePattern.lastIndex = 0;
                 colorCodePattern.lastIndex = 0;
+
                 if ( !colorNamePattern.test( colorCode ) ) {
                     if ( !colorCodePattern.test( colorCode ) ) {
                         colorCode = "black";
@@ -75,39 +114,67 @@ var XBBCODE = ( function () {
                 return '</span>';
             }
         },
-        "b": {
+        "code": {
             openTag: function ( params, content ) {
-                return '<span style="font-weight:bold">';
+                return '<code>';
             },
             closeTag: function ( params, content ) {
-                return '</span>';
+                return '</code>';
+            }
+        },
+        "b": {
+            openTag: function ( params, content ) {
+                return '<strong>';
+            },
+            closeTag: function ( params, content ) {
+                return '</strong>';
             }
         },
         "i": {
             openTag: function ( params, content ) {
-                return '<span style="font-style:italic">';
+                return '<em>';
             },
             closeTag: function ( params, content ) {
-                return '</span>';
+                return '</em>';
             }
         },
         "s": {
             openTag: function ( params, content ) {
-                return '<span style="text-decoration:line-through">';
+                return '<s>';
             },
             closeTag: function ( params, content ) {
-                return '</span>';
+                return '</s>';
             }
         },
         "u": {
             openTag: function ( params, content ) {
-                return '<span style="text-decoration:underline">';
+                return '<u>';
             },
             closeTag: function ( params, content ) {
-                return '</span>';
+                return '</u>';
             }
         }
     };
+
+    if ( parseAdmin ) {
+        tags[ 'img' ] = {
+            openTag: function ( params, content ) {
+
+                var myUrl = content;
+
+                urlPattern.lastIndex = 0;
+                if ( !urlPattern.test( myUrl ) ) {
+                    myUrl = "";
+                }
+
+                return '<img src="' + myUrl + '" alt="Loading Failed">';
+            },
+            closeTag: function ( params, content ) {
+                return '';
+            },
+            displayContent: false
+        };
+    }
 
     // create tag list and lookup fields
     function initTags() {
@@ -382,4 +449,9 @@ var XBBCODE = ( function () {
     };
 
     return me;
-} )();
+};
+
+/* Define BBCODE Parser */
+
+const XBBCODE = new XBBCODE_CONSTRUCTOR( false );
+const XBBCODE_ADMIN = new XBBCODE_CONSTRUCTOR( true );

@@ -231,7 +231,7 @@
 - Load saved raffle work again ( displaySavedCreateRaffle.js )
 - Save button appear also on loading saved raffle ( displaySavedCreateRaffle.js )
 
-## 8 October
+## 8 October 2016
 
 **v1.2.7** | ScrapTF auction update
 
@@ -241,7 +241,7 @@
 - Updated banking.js and BuildDOM ( function BpLink reusable for auction )
 - Removed background script ( used for removing old custom background setting )
 
-## 9 October
+## 9 October 2016
 
 **v1.2.8**
 
@@ -254,9 +254,9 @@
 - ScrapTF UI bug : overflow on .container-margin, .panel-raffle
 - Fixed UI bug with template.css on search page
 
-## 18 November
+## 18 November 2016
 
-**v1.2.9** | 1M users event 
+**v1.2.9** | 1M users event
 
 - Fixed backpack.tf auction links for renamed decorated weapons
 - Fixed backpack.tf auction links for ' char on killstreak kits
@@ -264,11 +264,33 @@
 - Moved bot-list.js and items-shema.js to js/JSON/ folder
 - Clear main.js ( sound conf sync => local )
 - Fixed bug : save raffle ( createRaffle.js )
-- Fixed create raffles features 
+- Fixed create raffles features
 - Updated items-shema.js
 
-## 29 November
+## 29 November 2016
 
 **v1.2.9.1** | Little fix
 
 - Fixed extras raffles menus
+
+## 25 January 2017
+
+**v1.3.0** | Happy new Year
+
+- Updated items-shema.js
+- Updated ScrapTF emotes list
+- New BBCODE system implemented
+- Youtube videos preview on raffles was replaced by iframes
+- Fixed UI bugs with template.css
+- Removed profile stats feature 
+- Background.js added for cleaning old profiles stats
+- Added permissions for youtube.com and youtu.be
+- Merged inject.js with injectMulti.js
+- Text editors ( CK-Editor ) are now resizable vertically
+- Raffle owner comments are easy to distinguish now
+- Puzzle raffle message are no longer parsed with BB-Code.js ( raffle.js )
+- Clean up the manifest.json
+- Bug fixed : loaded raffle message not injected on new CK-Editor ( createRaffle.js )
+- Bug fixed : Save raffle template don't save enter message and raffle content ( createRaffle.js )
+- Bug fixed : name and date don't appear on favorite raffles page ( DisplayFavoritesRaffles.js ) 
+- Bug fixed : ended raffle don't show number of reclaimed items

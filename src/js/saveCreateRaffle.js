@@ -2,14 +2,14 @@ var ISPRIVATE, NewModal = document.createElement( 'div' );
 
 /* Save raffle content */
 
-function SaveModalRaffle() {
+function SaveModalRaffle( message, entmsg ) {
 
     var conf = {
         isPrivate: ISPRIVATE,
         raffleID: Date.now(),
         name: raffleSelect.name.value,
-        message: raffleSelect.message.value,
-        entmsg: raffleSelect.enteredmessage.value,
+        message: message,
+        entmsg: entmsg,
         length: raffleSelect.length.value,
         type: ( raffleSelect.method.value == "2" ) ? true : false,
         maxentries: raffleSelect.maxentries.value,
@@ -103,7 +103,7 @@ function AppendSaveBtn( isPriv ) {
         '         <button id="ModalCancel" type="button" class="btn btn-default btn-embossed">' +
         '            <i18n>Cancel</i18n>' +
         '         </button>' +
-        '         <button id="ModalSave" type="button" class="btn btn-primary btn-embossed">' +
+        '         <button onclick="ExecSaveRaffle()" type="button" class="btn btn-primary btn-embossed">' +
         '            <i18n>Save</i18n>' +
         '         </button>' +
         '      </div>' +
@@ -111,7 +111,16 @@ function AppendSaveBtn( isPriv ) {
         '</div>';
 
     NewModal.querySelector( '#ModalCancel' ).addEventListener( 'click', CancelModalRaffle );
-    NewModal.querySelector( '#ModalSave' ).addEventListener( 'click', SaveModalRaffle );
-
     document.body.appendChild( NewModal );
+
+    /* Add Save event */
+
+    document.addEventListener( 'SaveRaffle', function ( ev ) {
+        let isPuzzle = ( raffleSelect.isPuzzle ) ? 1 : 0;
+        SaveModalRaffle(
+            ev.detail.message[ isPuzzle ],
+            ev.detail.entmsg[ isPuzzle ]
+        );
+    } );
+
 }

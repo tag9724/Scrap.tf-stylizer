@@ -179,11 +179,11 @@ chrome.storage.local.get( [ "savedCreateRaffle" ], function ( res ) {
 
                         if ( conf ) {
 
+                            OpenRaffleEdit();
+
                             /* Puzzle panel */
 
                             if ( conf.privateRaffle == 7 ) {
-
-                                OpenRaffleEdit( 'puzzle' );
                                 var prefix = 'puzzle-';
 
                                 document.getElementById( 'puzzlesolution' ).value = ( conf.solution ) ? conf.solution : "";
@@ -198,8 +198,6 @@ chrome.storage.local.get( [ "savedCreateRaffle" ], function ( res ) {
 
                             /* Public or private */
                             else {
-
-                                OpenRaffleEdit( 'public' );
                                 var prefix = '';
 
                                 // Raffle time
@@ -219,8 +217,15 @@ chrome.storage.local.get( [ "savedCreateRaffle" ], function ( res ) {
                             // Name content & enter msgs
 
                             raffleSelect.name.value = conf.name;
-                            raffleSelect.message.value = conf.message;
-                            raffleSelect.enteredmessage.value = conf.entmsg;
+
+                            Exec( 'LoadRaffle', {
+                                message: conf.message,
+                                enterMessage: conf.entmsg,
+                                target: prefix
+                            } );
+
+                            // raffleSelect.message.value = conf.message;
+                            // raffleSelect.enteredmessage.value = conf.entmsg;
 
                             // Poll entries solution & password
 

@@ -1,59 +1,129 @@
 /* Display addon version */
+
 footer {
-   position: relative;
+    position: relative;
 }
 
 footer:after {
-   content: "ScrapTF-Styliser v1.2.9";
-   position: absolute;
-   bottom: 0;
-   left: 0;
-   font-size: 12px;
-   color: #777;
-   width: 100%;
-   text-align: center;
+    content: "ScrapTF-Styliser v1.3.0";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    font-size: 12px;
+    color: #777;
+    width: 100%;
+    text-align: center;
 }
+
+
 /* ScrapTf UI bugs */
-.container-margins,
-.panel-raffle {
-   overflow: inherit!important;
+
+.container-margins, .panel-raffle {
+    overflow: inherit!important;
 }
 
 .tooltip-inner {
-   min-width: 260px;
+    min-width: 260px;
 }
 
 button[data-infav="true"] {
-   color: #FFC877 !important;
+    color: #FFC877 !important;
 }
+
+
 /* Better comment section */
-.auction-well .raffle-commenters,
-.raffle-well .raffle-commenters {
-   max-height: 600px !important;
+
+.auction-well .raffle-commenters, .raffle-well .raffle-commenters {
+    max-height: 600px !important;
 }
 
 .raffle-commenters .comment-container {
-   margin: auto;
-   padding: 4px 10px;
-   border-left: 2px solid transparent;
-   border-top: 1px solid #efefef;
-   padding-top: 10px;
-   padding-bottom: 0;
+    margin: 0px 10px !important;
+    padding: 12px 10px;
+    overflow: hidden;
+    border-left: 2px solid transparent;
+    border-top: 1px solid #efefef;
 }
 
 .raffle-commenters .comment-container:nth-child(1) {
-   border-top: none;
+    border-top: none;
 }
 
 .raffle-commenters .linked {
-   border-left-color: #16a085;
+    border-left-color: #16a085;
 }
 
 .raffle-commenters .currUser {
-   border-left-color: #34495e;
+    border-left-color: #34495e;
 }
 
 .comment-content {
-   padding: 0 5px 0 55px;
-   line-height: 20px;
+    padding: 0 5px 0 55px;
+    line-height: 20px;
+}
+
+
+/* Recreate Raffle */
+
+.btn.recreate-raffle {
+    width: 100%;
+    border-radius: 0 !important;
+}
+
+
+/* CK-Editor */
+
+.cke_contents {
+    resize: vertical;
+    padding-bottom: 12px !important;
+}
+
+
+/* Show up raffle owner */
+
+.comment-container.owner {
+    background-color: #f7f9fa;
+}
+
+.comment-container.owner .username {
+    border-bottom: 1px solid;
+    padding: 0 2px;
+}
+
+
+/* Raffle youtube iframes */
+
+.moviestrip {
+    visibility: hidden;
+    padding: 0 !important;
+}
+
+.yt-iframe, .moviestrip {
+    margin: 0 auto !important;
+    border: none;
+    height: 225px;
+    width: 400px;
+    display: block !important;
+}
+
+@media (max-width: 991px) {
+    .yt-iframe, .moviestrip {
+        width: 320px;
+        height: 180px;
+    }
+}
+
+@media (max-width: 550px) {
+    .yt-iframe, .moviestrip {
+        width: 285px;
+        height: 160px;
+    }
+}
+
+
+/* Favorites raffles */
+
+.throw-right {
+    position: absolute;
+    right: 0;
 }

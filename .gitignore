@@ -8,4 +8,5 @@ src.nex
 gulpfile.js
 /Next-update
 updateItemList.js
+updateEmotesList.js
 yarn.lock
