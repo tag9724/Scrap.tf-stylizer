@@ -3,7 +3,7 @@
 
     "name": "Scrap.tf stylizer",
     "description": "This extension give more features for scrap.tf",
-    "version": "1.3.0",
+    "version": "1.3.1",
 
     "icons": {
         "16": "img/icon.png",
@@ -100,7 +100,8 @@
         "*://*.backpack.tf/*",
         "*://backpack.tf/*",
         "*://steamcommunity-a.akamaihd.net/economy/emoticon/*",
-        "*://youtube.com/embed*",
+        "*://youtube.com/embed",
+        "*://youtu.be",
         "*://youtu.be/*"
     ]
 }

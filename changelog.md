@@ -294,3 +294,10 @@
 - Bug fixed : Save raffle template don't save enter message and raffle content ( createRaffle.js )
 - Bug fixed : name and date don't appear on favorite raffles page ( DisplayFavoritesRaffles.js ) 
 - Bug fixed : ended raffle don't show number of reclaimed items
+
+## 30 January 2017
+
+**v1.3.1**
+
+- Updated emotes list
+- Fixed BBCODE parsed on puzzle without any template used
