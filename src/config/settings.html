@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Settings - ScrapTF-Stylizer</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/fa-icons.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="/img/icon.png">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+
+    <nav class="navbar navbar-default ">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="https://scrap.tf"><img src="/img/icon.png" />
+                    <span>ScrapTF Stylizer</span>
+                </a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="settings.html"><i class="i-wrench"></i>
+                <span>Settings</span></a></li>
+                <li><a href="templates.html"><i class="i-brush"></i>
+                <span>Manage Templates</span></a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="separator"></div>
+
+    <!-- Main page -->
+
+    <div class="container bg-white">
+
+        <!-- User own url -->
+
+        <div class="page-header">
+            <h1><i class="i-volume-up"></i>Audio <small>Trade sound</small></h1>
+        </div>
+
+        <div id="soundBox">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h4>Set a sound from external website</h4>
+                </div>
+                <div class="col-sm-12">
+                    Leave this input blank if you want the default scraptf sound. <a target="blank" href="https://www.myinstants.com/">You can also find a sound here</a>
+                </div>
+            </div>
+
+            <form class="row m-up">
+                <div class="col-sm-10">
+                    <input type="text" placeholder="Example : https://www.website.com/soud.mp3" id="soundUrl" style="background-color: inherit;color: inherit;" class="form-control">
+                </div>
+                <div class="col-sm-2 f-icons">
+                    <input type="submit" value="" class="btn btn-primary form-control" />
+                </div>
+            </form>
+
+            <!-- Preselected sounds -->
+
+            <div class="row m-up">
+                <div class="col-sm-12">
+                    <h4>Or choose one of them</h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 audio-btn-group">
+                    <input type="button" class="btn btn-default btn-sm" data-nb="#1" value="Tuturu" name="tuturu">
+                    <input type="button" class="btn btn-default btn-sm" data-nb="#2" value="Swish" name="Abduction_swish">
+                    <input type="button" class="btn btn-default btn-sm" data-nb="#3" value="Yeah" name="yeah">
+                    <input type="button" class="btn btn-default btn-sm" data-nb="#4" value="Inception" name="inceptionbutton">
+                </div>
+            </div>
+
+            <!-- Volume -->
+
+            <div class="row m-up">
+                <div class="col-sm-12">
+                    <h4>Volume</h4>
+                </div>
+                <div class="col-sm-12">
+                    <input type="range" min="0" max="1" step="0.0001" id="volume"/>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/settings/sound.js"></script>
+</body>
+
+</html>

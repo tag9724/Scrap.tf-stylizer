@@ -23,6 +23,17 @@ function Extras() {
             document.querySelector( ".raffle-message" ).classList.add( 'puzzle' );
         }
     }
+
+    /* Disable audio tag a add event */
+
+    let notifSound = document.getElementById( 'chatBeep' );
+    notifSound.muted = true;
+
+    notifSound.addEventListener( 'play', function () {
+        chrome.runtime.sendMessage( {
+            playNotifSound: true
+        } );
+    } );
 }
 
 if ( document.readyState == "interactive" || document.readyState == "complete" ) {
@@ -30,27 +41,6 @@ if ( document.readyState == "interactive" || document.readyState == "complete" )
 } else {
     document.addEventListener( "DOMContentLoaded", Extras );
 }
-
-/* Append the sound */
-
-function AppendCustomSound( res ) {
-
-    function AppendSound() {
-        if ( res.sound && res.sound != "" ) {
-            let notifSound = document.getElementById( 'chatBeep' );
-            notifSound.textContent = '';
-            notifSound.setAttribute( 'src', res.sound );
-        }
-    }
-
-    if ( document.readyState == "interactive" || document.readyState == "complete" ) {
-        AppendSound();
-    } else {
-        document.addEventListener( "DOMContentLoaded", AppendSound );
-    }
-}
-
-chrome.storage.local.get( "sound", AppendCustomSound );
 
 /* The background can't no longer be saved in the sync storage */
 
@@ -105,7 +95,7 @@ chrome.storage.local.get( 'CurrentTemplate', function ( res ) {
             AppendOnReady();
         } else {
             document.onreadystatechange = function () {
-                if ( document.readyState == "interactive" || document.readyState == "complete" )
+                if ( document.readyState == "interactive" )
                     AppendOnReady();
             };
         }

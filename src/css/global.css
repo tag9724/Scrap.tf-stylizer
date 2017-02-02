@@ -5,7 +5,7 @@ footer {
 }
 
 footer:after {
-    content: "ScrapTF-Styliser v1.3.1";
+    content: "ScrapTF-Styliser v1.3.2";
     position: absolute;
     bottom: 0;
     left: 0;
@@ -93,12 +93,12 @@ button[data-infav="true"] {
 
 /* Raffle youtube iframes */
 
-.moviestrip {
+.raffle-message:not(.puzzle) .moviestrip {
     visibility: hidden;
     padding: 0 !important;
 }
 
-.yt-iframe, .moviestrip {
+.yt-iframe, .raffle-message:not(.puzzle) .moviestrip {
     margin: 0 auto !important;
     border: none;
     height: 225px;

@@ -131,7 +131,7 @@
 - Query search fixed
 - level filter on strange banking
 
-## 4 July 2016
+## 04 July 2016
 
 **v1.1.9**
 
@@ -171,7 +171,7 @@
 - Fixed sound for chrome & opera
 - Fixed some ui element with custom theme
 
-## 8 September 2016
+## 08 September 2016
 
 **v1.2.3**
 
@@ -219,7 +219,7 @@
 - Fixed bug in filters : items not displayed on validated trade page
 - Fixed bug with BuildDOM on raffle with main.js
 
-## 4 October 2016
+## 04 October 2016
 
 **v1.2.6** | ScrapTF raffle update
 
@@ -231,7 +231,7 @@
 - Load saved raffle work again ( displaySavedCreateRaffle.js )
 - Save button appear also on loading saved raffle ( displaySavedCreateRaffle.js )
 
-## 8 October 2016
+## 08 October 2016
 
 **v1.2.7** | ScrapTF auction update
 
@@ -241,7 +241,7 @@
 - Updated banking.js and BuildDOM ( function BpLink reusable for auction )
 - Removed background script ( used for removing old custom background setting )
 
-## 9 October 2016
+## 09 October 2016
 
 **v1.2.8**
 
@@ -301,3 +301,12 @@
 
 - Updated emotes list
 - Fixed BBCODE parsed on puzzle without any template used
+
+## 01 February 2017
+
+**v1.3.2** | RIP popup
+
+- Replaced config popup by a complete webpage ( merged with the template manager )
+- Multiple tabs opened when trading will no longer play the notification sound multiple time
+- Possibility to set the volume of the notification sound
+- Bug fixed : Moovistrip don't appear on puzzles raffle

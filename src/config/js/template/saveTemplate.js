@@ -1,9 +1,9 @@
-TemplatesManage.prototype.Save = function (use) {
+TemplatesManage.prototype.Save = function ( use ) {
 
     /* Build JSON save */
 
     var NewSave = {
-            name: (this.nameInput.value === "") ? "Unamed Template" : this.nameInput.value
+            name: ( this.nameInput.value === "" ) ? "Unamed Template" : this.nameInput.value
         },
         colors = [];
 
@@ -11,36 +11,36 @@ TemplatesManage.prototype.Save = function (use) {
 
     NewSave.colors = {};
 
-    for (let i = 0, len = 6; i < len; i++) {
+    for ( let i = 0, len = 6; i < len; i++ ) {
 
-        let currColor = TemplateManage.colorForm[i].querySelector('[type="color"]').value;
-        let cTarget = TemplateManage.colorForm[i].dataset.ctarget;
+        let currColor = TemplateManage.colorForm[ i ].querySelector( '[type="color"]' ).value;
+        let cTarget = TemplateManage.colorForm[ i ].dataset.ctarget;
 
-        NewSave.colors[cTarget] = currColor;
-        if (cTarget !== "border") colors.push(currColor);
+        NewSave.colors[ cTarget ] = currColor;
+        if ( cTarget !== "border" ) colors.push( currColor );
     }
 
     NewSave.buttons = {};
 
-    for (let i = 6, len = TemplateManage.colorForm.length; i < len; i++) {
+    for ( let i = 6, len = TemplateManage.colorForm.length; i < len; i++ ) {
 
-        let currColor = TemplateManage.colorForm[i].querySelector('[type="color"]').value;
-        let cTarget = TemplateManage.colorForm[i].dataset.ctarget;
+        let currColor = TemplateManage.colorForm[ i ].querySelector( '[type="color"]' ).value;
+        let cTarget = TemplateManage.colorForm[ i ].dataset.ctarget;
 
-        NewSave.buttons[cTarget] = currColor;
-        if (cTarget !== "btntext") colors.push(currColor);
+        NewSave.buttons[ cTarget ] = currColor;
+        if ( cTarget !== "btntext" ) colors.push( currColor );
     }
 
     // Border btn radius
 
-    NewSave.buttons.radius = Number(this.btnBorderForm.value) || 0;
+    NewSave.buttons.radius = Number( this.btnBorderForm.value ) || 0;
 
     // Border Avatar radius
 
     NewSave.avatarBorders = [];
 
-    for (let i = 0, len = 4; i < len; i++) {
-        NewSave.avatarBorders[i] = Number(this.avatarForm[i].value) || 0;
+    for ( let i = 0, len = 4; i < len; i++ ) {
+        NewSave.avatarBorders[ i ] = Number( this.avatarForm[ i ].value ) || 0;
     }
 
     // Background
@@ -55,9 +55,9 @@ TemplatesManage.prototype.Save = function (use) {
         "fontList": {}
     };
 
-    for (let i = 0, arr = ["globalFont", "titleFont"]; i < 2; i++) {
-        if (GoogleFont.fontList[GoogleFont[arr[i]]]) {
-            NewSave.fonts.fontList[GoogleFont[arr[i]]] = GoogleFont.fontList[GoogleFont[arr[i]]];
+    for ( let i = 0, arr = [ "globalFont", "titleFont" ]; i < 2; i++ ) {
+        if ( GoogleFont.fontList[ GoogleFont[ arr[ i ] ] ] ) {
+            NewSave.fonts.fontList[ GoogleFont[ arr[ i ] ] ] = GoogleFont.fontList[ GoogleFont[ arr[ i ] ] ];
         }
     }
 
@@ -67,20 +67,20 @@ TemplatesManage.prototype.Save = function (use) {
 
     /* If it's a new template create a new save */
 
-    if (this.isDefault) {
+    if ( this.isDefault ) {
         this.isDefault = false;
         this.templateID = this.GenID();
     }
 
     /* Save the template */
 
-    chrome.storage.local.get("AvailableTemplates", function (list) {
+    chrome.storage.local.get( "AvailableTemplates", function ( list ) {
 
         // For the first saved template
-        if (!list.AvailableTemplates) list.AvailableTemplates = {};
+        if ( !list.AvailableTemplates ) list.AvailableTemplates = {};
 
         // Add the element in the current list
-        list.AvailableTemplates[this.templateID] = {
+        list.AvailableTemplates[ this.templateID ] = {
             name: NewSave.name,
             colors: colors
         };
@@ -89,81 +89,88 @@ TemplatesManage.prototype.Save = function (use) {
 
         let save = {};
 
-        save["AvailableTemplates"] = list.AvailableTemplates;
-        save[this.templateID] = NewSave;
+        save[ "AvailableTemplates" ] = list.AvailableTemplates;
+        save[ this.templateID ] = NewSave;
 
-        chrome.storage.local.set(save);
+        chrome.storage.local.set( save );
 
-    }.bind(this));
+    }.bind( this ) );
 
     /* Update the cached save for the reset btn */
 
     this.curr = NewSave;
 
-    updateBox = document.querySelector(`#openSection .box[data-load="${this.templateID}"]`);
+    let updateBox = document.querySelector( `#openSection .box[data-load="${this.templateID}"]` );
+    if ( updateBox )
+        updateBox.remove();
 
-    /* Get updated content */
+    saveTemplate.appendChild( GenViewBoxes( this.templateID, NewSave.name, colors ) );
 
-    var newColors = [];
-
-    for (let i = 0, len = colors.length; i < len; i++) {
-        newColors.push({
-            tag: 'div',
-            classList: ['btn-group', 'color'],
-            attributes: {
-                style: "background:" + colors[i]
-            }
-        });
-    }
-
-    var newContent = BuildDOM.NewDocFrag({
-        tag: 'h4',
-        classList: ['pull-left'],
-        textContent: NewSave.name
-    }, {
-        tag: 'div',
-        classList: ['color-group'],
-        childrens: newColors
-    });
-
-    // Update the template box in the main page
-
-    if (updateBox) {
-        updateBox.textContent = "";
-        updateBox.appendChild(newContent);
-    } else {
-        let box = BuildDOM.Create({
-          tag: 'div',
-          classList: ['box'],
-          dataset: {
-            load: this.templateID
-          }
-        });
-
-        box.appendChild(newContent);
-        saveTemplate.appendChild(box);
-    }
+    let noTemplateMsg = saveTemplate.querySelector( 'p' );
+    if ( noTemplateMsg ) noTemplateMsg.remove();
 
     /* If the user want to use him */
 
-    if (use === true) {
-        chrome.storage.local.set({
+    if ( use === true ) {
+        chrome.storage.local.set( {
             'UsedTemplate': this.templateID
         }, function () {
             BuildUsedTemplate();
-        });
+        } );
     } else {
         BuildUsedTemplate();
     }
-}
+};
+
+TemplatesManage.prototype.ConstructDefaultTemplate = function ( id ) {
+
+    if ( id !== "default" ) {
+
+        /* Get the template JSON  */
+
+        var xhttp = new XMLHttpRequest();
+        xhttp.open( "GET", "templates/" + id + ".json" );
+        xhttp.onreadystatechange = function ( data ) {
+
+            // Save the template
+
+            if ( xhttp.readyState === 4 ) {
+
+                let newSave = {};
+                newSave[ id ] = JSON.parse( xhttp.responseText );
+                newSave[ 'UsedTemplate' ] = id;
+
+                chrome.storage.local.set(
+                    newSave,
+                    function () {
+                        BuildUsedTemplate();
+                    } );
+            }
+        }.bind( this );
+        xhttp.send();
+    }
+    // Defaut Scraptf template
+    else {
+        chrome.storage.local.remove( 'UsedTemplate' );
+        chrome.storage.local.remove( 'CurrentTemplate' );
+    }
+};
+TemplatesManage.prototype.ConstructSavedTemplate = function ( id ) {
+    chrome.storage.local.set( {
+            'UsedTemplate': id
+        },
+        function () {
+            BuildUsedTemplate();
+        } );
+};
 
 TemplatesManage.prototype.GenID = function () {
     var converted_string = "",
         actual_date = Date.now() + "";
-    var convert_arr = ["ABCDEFGHIJ", "abcdefghij"];
-    for (var i = 0, len = actual_date.length; i < len; i++) {
-        converted_string += convert_arr[Math.round(Math.random())][parseFloat(actual_date.charAt(i))];
-        converted_string += convert_arr[Math.round(Math.random())][Math.round(Math.random() * 9)];
+    var convert_arr = [ "ABCDEFGHIJ", "abcdefghij" ];
+    for ( var i = 0, len = actual_date.length; i < len; i++ ) {
+        converted_string += convert_arr[ Math.round( Math.random() ) ][ parseFloat( actual_date.charAt( i ) ) ];
+        converted_string += convert_arr[ Math.round( Math.random() ) ][ Math.round( Math.random() * 9 ) ];
     }
-    return "T=" + window.btoa(converted_string).replace('=', '');
-}
+    return "T=" + window.btoa( converted_string ).replace( '=', '' );
+};

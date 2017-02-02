@@ -542,6 +542,14 @@ td div div div:last-child {
     background-color: var(--btn4) !important;
 }
 
+.table-striped>tbody>tr:nth-child(odd), .table-striped>tbody>tr.selected-row {
+    background-color: var(--back2) !important;
+}
+
+div[style="width:100%;background:#2ecc71"] {
+    background-color: var(--btn4) !important;
+}
+
 
 /* Help center & About */
 
@@ -567,7 +575,7 @@ td div div div:last-child {
 }
 
 .user-helper {
-    background: var(--back2);
+    background: var(--back2) !important;
 }
 
 .about-inside * {
@@ -639,6 +647,14 @@ a.rules-accept-real {
 .bg-primary {
     background-color: var(--back2) !important;
     color: var(--text) !important;
+}
+
+.report-log {
+    border-color: var(--border) !important;
+}
+
+.report-user {
+    background-color: var(--back2) !important;
 }
 
 

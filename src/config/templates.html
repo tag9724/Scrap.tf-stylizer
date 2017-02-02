@@ -3,435 +3,457 @@
 <html>
 
 <head>
-   <title>Manage templates</title>
-   <link rel="stylesheet" href="css/bootstrap.min.css">
-   <link rel="stylesheet" href="css/template.css">
+    <meta charset="utf-8">
+    <title>Manage templates - ScrapTF-Stylizer</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/fa-icons.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="/img/icon.png">
 </head>
 
 <body>
-   <div id="bigLoad"></div>
-   <div id="openSection" class="container middle">
 
-      <div class="row">
+    <!-- Navbar -->
 
-         <div class="col-md-6 text-center first-col">
+    <nav class="navbar navbar-default ">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="https://scrap.tf"><img src="/img/icon.png" />
+                    <span>ScrapTF Stylizer</span>
+                </a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li><a href="settings.html"><i class="i-wrench"></i>
+                  <span>Settings</span></a></li>
+                <li class="active"><a href="templates.html"><i class="i-brush"></i>
+                  <span>Manage Templates</span></a></li>
+            </ul>
+        </div>
+    </nav>
 
-            <h3>Create a new template from</h3>
+    <div id="bigLoad"></div>
+    <div id="openSection" class="container middle">
 
-            <div class="group-template" id="defTemplate">
-               <div class="loading"></div>
-            </div>
-            <!-- /group-template -->
-         </div>
+        <div class="row">
 
-         <div class="col-md-6 text-center">
+            <div class="col-md-6 text-center first-col">
 
-            <h3>Edit existing template</h3>
+                <h1>Create a new template from</h1>
 
-            <div class="group-template" id="saveTemplates">
-               <div class="loading"></div>
+                <div class="group-template" id="defTemplate">
+                    <div class="loading"></div>
+                </div>
+                <!-- /group-template -->
             </div>
-            <!-- /group-template -->
-         </div>
 
-      </div>
-   </div>
-   <!-- /container -->
-   <div id="editSection" class="hide">
-      <div class="container editSection middle">
+            <div class="col-md-6 text-center">
 
-         <div class="row">
-            <div class="col-md-12 text-center">
-               <input type="text" class="form-control text-center" placeholder="Template name" id="templateName" autocomplete="off">
-            </div>
-         </div>
-         <!-- /row template name -->
+                <h1>Edit existing template</h1>
 
-         <hr>
+                <div class="group-template" id="saveTemplates">
+                    <div class="loading"></div>
+                </div>
+                <!-- /group-template -->
+            </div>
 
-         <div class="row">
-            <div class="col-md-12 text-center">
-               <h2>Color Palettes</h2>
-            </div>
-            <!-- /col-md-12 -->
-            <div class="col-md-12 text-center">
-               <div class="demoRaffle demo" data-ctarget="text" data-ctype="color">
-                  <div class="demo" data-ctarget="border" data-btype="borderColor">
-                     <div class="head demo" data-ctarget="back1" data-ctype="backgroundColor">
-                        <h3 class="subtitle">Example Raffle Title</h3>
-                     </div>
+        </div>
+    </div>
+    <!-- /container -->
+    <div id="editSection" class="hide">
+        <div class="container editSection middle">
 
-                     <div class="content demo" data-ctarget="back2" data-ctype="backgroundColor">
-                        This is a raffle message with a <a class="demo" data-ctarget="link" data-ctype="color">cool link</a>
-                     </div>
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <input type="text" class="form-control text-center" placeholder="Template name" id="templateName" autocomplete="off">
+                </div>
+            </div>
+            <!-- /row template name -->
 
-                     <div class="footer demo" data-ctarget="backMsg" data-ctype="backgroundColor">
-                        enter msg
-                     </div>
-                  </div>
-               </div>
-            </div>
-            <!-- /col-md-12 -->
-            <div class="col-md-6">
-               <form class="pickColor form-inline" data-ctarget="text" data-ctype="color">
-                  <label class="col-xs-6 control-label">Text color</label>
-                  <div class="col-xs-6 text-right input-group">
-                     <input class="form-control pull-right" type="color">
-                     <input class="form-control pull-right" placeholder="#000fff" maxlength="7" type="text">
-                  </div>
-               </form>
-            </div>
-            <!-- /col-md-6 -->
-            <div class="col-md-6">
-               <form class="pickColor form-inline" data-ctarget="link" data-ctype="color">
-                  <label class="col-xs-6 control-label">Link color</label>
-                  <div class="col-xs-6 text-right input-group">
-                     <input class="form-control pull-right" type="color">
-                     <input class="form-control pull-right" placeholder="#000fff" maxlength="7" type="text">
-                  </div>
-               </form>
-            </div>
-            <!-- /col-md-6 -->
-            <div class="col-md-6">
-               <form class="pickColor form-inline" data-ctarget="back1" data-ctype="backgroundColor">
-                  <label class="col-xs-6 control-label">Background Color 1</label>
-                  <div class="col-xs-6 text-right input-group">
-                     <input class="form-control pull-right" type="color">
-                     <input class="form-control pull-right" placeholder="#000fff" maxlength="7" type="text">
-                  </div>
-               </form>
-            </div>
-            <!-- /col-md-6 -->
-            <div class="col-md-6">
-               <form class="pickColor form-inline" data-ctarget="back2" data-ctype="backgroundColor">
-                  <label class="col-xs-6 control-label">Background Color 2</label>
-                  <div class="col-xs-6 text-right input-group">
-                     <input class="form-control pull-right" type="color">
-                     <input class="form-control pull-right" placeholder="#000fff" maxlength="7" type="text">
-                  </div>
-               </form>
-            </div>
-            <!-- /col-md-6 -->
-            <div class="col-md-6">
-               <form class="pickColor form-inline" data-ctarget="backMsg" data-ctype="backgroundColor">
-                  <label class="col-xs-6 control-label">Background enter message</label>
-                  <div class="col-xs-6 text-right input-group">
-                     <input class="form-control pull-right" type="color">
-                     <input class="form-control pull-right" placeholder="#000fff" maxlength="7" type="text">
-                  </div>
-               </form>
-            </div>
-            <!-- /col-md-6 -->
-            <div class="col-md-6">
-               <form class="pickColor form-inline" data-ctarget="border" data-ctype="borderColor">
-                  <label class="col-xs-6 control-label">Border color</label>
-                  <div class="col-xs-6 text-right input-group">
-                     <input class="form-control pull-right" type="color">
-                     <input class="form-control pull-right" placeholder="#000fff" maxlength="7" type="text">
-                  </div>
-               </form>
-            </div>
-            <!-- /col-md-6 -->
-         </div>
-         <!-- /row Global colors section -->
+            <hr>
 
-         <hr>
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <h2>Color Palettes</h2>
+                </div>
+                <!-- /col-md-12 -->
+                <div class="col-md-12 text-center">
+                    <div class="demoRaffle demo" data-ctarget="text" data-ctype="color">
+                        <div class="demo" data-ctarget="border" data-btype="borderColor">
+                            <div class="head demo" data-ctarget="back1" data-ctype="backgroundColor">
+                                <h3 class="subtitle">Example Raffle Title</h3>
+                            </div>
 
-         <div class="row">
-            <div class="col-md-12 text-center">
-               <h2>Avatar Borders</h2>
-            </div>
-            <!-- /col-md-12 -->
-            <div class="col-md-12 avatarDemo noselect">
-               <img class="demo" style="border-color: #CC0000; border-width: 3px; height: 100px;" src="img/avatar/HeartDesire.gif" data-btarget="avatarBorder">
-               <img class="demo" style="border-color: #CC0000; border-width: 2px; height: 60px;" src="img/avatar/HeartDesire.gif" data-btarget="avatarBorder">
-               <img class="demo" style="height: 35px;" src="img/avatar/HeartDesire.gif" data-btarget="avatarBorder">
-            </div>
-            <!-- /col-md-12 -->
-            <div class="col-md-6">
-               <form class="borderDemo form-inline" data-btype="borderTopLeftRadius" data-btarget="avatarBorder">
-                  <label class="col-xs-6 control-label">Border top left</label>
-                  <div class="col-xs-6 text-right input-group">
-                     <input class="form-control pull-right" type="number" step=".1" max="100" min="0">
-                     <span class="input-group-addon">em</span>
-                  </div>
-               </form>
-            </div>
-            <!-- /col-md-6 -->
-            <div class="col-md-6">
-               <form class="borderDemo form-inline" data-btype="borderTopRightRadius" data-btarget="avatarBorder">
-                  <label class="col-xs-6 control-label">Border top right</label>
-                  <div class="col-xs-6 text-right input-group">
-                     <input class="form-control pull-right" type="number" step=".1" max="100" min="0">
-                     <span class="input-group-addon">em</span>
-                  </div>
-               </form>
-            </div>
-            <!-- /col-md-6 -->
-            <div class="col-md-6">
-               <form class="borderDemo form-inline" data-btype="borderBottomLeftRadius" data-btarget="avatarBorder">
-                  <label class="col-xs-6 control-label">Border bottom left</label>
-                  <div class="col-xs-6 text-right input-group">
-                     <input class="form-control pull-right" type="number" step=".1" max="100" min="0">
-                     <span class="input-group-addon">em</span>
-                  </div>
-               </form>
-            </div>
-            <!-- /col-md-6 -->
-            <div class="col-md-6">
-               <form class="borderDemo form-inline" data-btype="borderBottomRightRadius" data-btarget="avatarBorder">
-                  <label class="col-xs-6 control-label">Border bottom right</label>
-                  <div class="col-xs-6 text-right input-group">
-                     <input class="form-control pull-right" type="number" step=".1" max="100" min="0">
-                     <span class="input-group-addon">em</span>
-                  </div>
-               </form>
-            </div>
-            <!-- /col-md-6 -->
-         </div>
-         <!-- /row avatar -->
+                            <div class="content demo" data-ctarget="back2" data-ctype="backgroundColor">
+                                This is a raffle message with a <a class="demo" data-ctarget="link" data-ctype="color">cool link</a>
+                            </div>
 
-         <hr>
-
-         <div class="row">
-            <div class="col-md-12 text-center">
-               <h2>Buttons Design</h2>
+                            <div class="footer demo" data-ctarget="backMsg" data-ctype="backgroundColor">
+                                enter msg
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /col-md-12 -->
+                <div class="col-md-6">
+                    <form class="pickColor form-inline" data-ctarget="text" data-ctype="color">
+                        <label class="col-xs-6 control-label">Text color</label>
+                        <div class="col-xs-6 text-right input-group">
+                            <input class="form-control pull-right" type="color">
+                            <input class="form-control pull-right" placeholder="#000fff" maxlength="7" type="text">
+                        </div>
+                    </form>
+                </div>
+                <!-- /col-md-6 -->
+                <div class="col-md-6">
+                    <form class="pickColor form-inline" data-ctarget="link" data-ctype="color">
+                        <label class="col-xs-6 control-label">Link color</label>
+                        <div class="col-xs-6 text-right input-group">
+                            <input class="form-control pull-right" type="color">
+                            <input class="form-control pull-right" placeholder="#000fff" maxlength="7" type="text">
+                        </div>
+                    </form>
+                </div>
+                <!-- /col-md-6 -->
+                <div class="col-md-6">
+                    <form class="pickColor form-inline" data-ctarget="back1" data-ctype="backgroundColor">
+                        <label class="col-xs-6 control-label">Background Color 1</label>
+                        <div class="col-xs-6 text-right input-group">
+                            <input class="form-control pull-right" type="color">
+                            <input class="form-control pull-right" placeholder="#000fff" maxlength="7" type="text">
+                        </div>
+                    </form>
+                </div>
+                <!-- /col-md-6 -->
+                <div class="col-md-6">
+                    <form class="pickColor form-inline" data-ctarget="back2" data-ctype="backgroundColor">
+                        <label class="col-xs-6 control-label">Background Color 2</label>
+                        <div class="col-xs-6 text-right input-group">
+                            <input class="form-control pull-right" type="color">
+                            <input class="form-control pull-right" placeholder="#000fff" maxlength="7" type="text">
+                        </div>
+                    </form>
+                </div>
+                <!-- /col-md-6 -->
+                <div class="col-md-6">
+                    <form class="pickColor form-inline" data-ctarget="backMsg" data-ctype="backgroundColor">
+                        <label class="col-xs-6 control-label">Background enter message</label>
+                        <div class="col-xs-6 text-right input-group">
+                            <input class="form-control pull-right" type="color">
+                            <input class="form-control pull-right" placeholder="#000fff" maxlength="7" type="text">
+                        </div>
+                    </form>
+                </div>
+                <!-- /col-md-6 -->
+                <div class="col-md-6">
+                    <form class="pickColor form-inline" data-ctarget="border" data-ctype="borderColor">
+                        <label class="col-xs-6 control-label">Border color</label>
+                        <div class="col-xs-6 text-right input-group">
+                            <input class="form-control pull-right" type="color">
+                            <input class="form-control pull-right" placeholder="#000fff" maxlength="7" type="text">
+                        </div>
+                    </form>
+                </div>
+                <!-- /col-md-6 -->
             </div>
-            <!-- /col-md-12 -->
-            <div class="col-md-6">
-               <form class="pickColor form-inline" data-ctype="backgroundColor" data-ctarget="btn1">
+            <!-- /row Global colors section -->
 
-                  <button data-btarget="btn" data-btype="borderRadius" data-ctype="backgroundColor" data-ctarget="btn1" class="demo col-xs-4 control-label btn btn-danger btn-embossed">
+            <hr>
+
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <h2>Avatar Borders</h2>
+                </div>
+                <!-- /col-md-12 -->
+                <div class="col-md-12 avatarDemo noselect">
+                    <img class="demo" style="border-color: #CC0000; border-width: 3px; height: 100px;" src="img/avatar/HeartDesire.gif" data-btarget="avatarBorder">
+                    <img class="demo" style="border-color: #CC0000; border-width: 2px; height: 60px;" src="img/avatar/HeartDesire.gif" data-btarget="avatarBorder">
+                    <img class="demo" style="height: 35px;" src="img/avatar/HeartDesire.gif" data-btarget="avatarBorder">
+                </div>
+                <!-- /col-md-12 -->
+                <div class="col-md-6">
+                    <form class="borderDemo form-inline" data-btype="borderTopLeftRadius" data-btarget="avatarBorder">
+                        <label class="col-xs-6 control-label">Border top left</label>
+                        <div class="col-xs-6 text-right input-group">
+                            <input class="form-control pull-right" type="number" step=".1" max="100" min="0">
+                            <span class="input-group-addon">em</span>
+                        </div>
+                    </form>
+                </div>
+                <!-- /col-md-6 -->
+                <div class="col-md-6">
+                    <form class="borderDemo form-inline" data-btype="borderTopRightRadius" data-btarget="avatarBorder">
+                        <label class="col-xs-6 control-label">Border top right</label>
+                        <div class="col-xs-6 text-right input-group">
+                            <input class="form-control pull-right" type="number" step=".1" max="100" min="0">
+                            <span class="input-group-addon">em</span>
+                        </div>
+                    </form>
+                </div>
+                <!-- /col-md-6 -->
+                <div class="col-md-6">
+                    <form class="borderDemo form-inline" data-btype="borderBottomLeftRadius" data-btarget="avatarBorder">
+                        <label class="col-xs-6 control-label">Border bottom left</label>
+                        <div class="col-xs-6 text-right input-group">
+                            <input class="form-control pull-right" type="number" step=".1" max="100" min="0">
+                            <span class="input-group-addon">em</span>
+                        </div>
+                    </form>
+                </div>
+                <!-- /col-md-6 -->
+                <div class="col-md-6">
+                    <form class="borderDemo form-inline" data-btype="borderBottomRightRadius" data-btarget="avatarBorder">
+                        <label class="col-xs-6 control-label">Border bottom right</label>
+                        <div class="col-xs-6 text-right input-group">
+                            <input class="form-control pull-right" type="number" step=".1" max="100" min="0">
+                            <span class="input-group-addon">em</span>
+                        </div>
+                    </form>
+                </div>
+                <!-- /col-md-6 -->
+            </div>
+            <!-- /row avatar -->
+
+            <hr>
+
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <h2>Buttons Design</h2>
+                </div>
+                <!-- /col-md-12 -->
+                <div class="col-md-6">
+                    <form class="pickColor form-inline" data-ctype="backgroundColor" data-ctarget="btn1">
+
+                        <button data-btarget="btn" data-btype="borderRadius" data-ctype="backgroundColor" data-ctarget="btn1" class="demo col-xs-4 control-label btn btn-danger btn-embossed">
                      <span class="demo" data-ctype="color" data-ctarget="btntext">Report</span>
                   </button>
 
-                  <div class="col-xs-8 text-right input-group">
-                     <input class="form-control pull-right" type="color">
-                     <input class="form-control pull-right" placeholder="#000fff" maxlength="7" type="text">
-                  </div>
-               </form>
-            </div>
-            <!-- /col-md-6 -->
-            <div class="col-md-6">
-               <form class="pickColor form-inline" data-ctype="backgroundColor" data-ctarget="btn2">
+                        <div class="col-xs-8 text-right input-group">
+                            <input class="form-control pull-right" type="color">
+                            <input class="form-control pull-right" placeholder="#000fff" maxlength="7" type="text">
+                        </div>
+                    </form>
+                </div>
+                <!-- /col-md-6 -->
+                <div class="col-md-6">
+                    <form class="pickColor form-inline" data-ctype="backgroundColor" data-ctarget="btn2">
 
-                  <button data-btarget="btn" data-btype="borderRadius" data-ctype="backgroundColor" data-ctarget="btn2" class="demo col-xs-4 control-label btn btn-info btn-embossed">
+                        <button data-btarget="btn" data-btype="borderRadius" data-ctype="backgroundColor" data-ctarget="btn2" class="demo col-xs-4 control-label btn btn-info btn-embossed">
                      <span class="demo" data-ctype="color" data-ctarget="btntext">Enter Raffle</span>
                   </button>
 
-                  <div class="col-xs-8 text-right input-group">
-                     <input class="form-control pull-right" type="color">
-                     <input class="form-control pull-right" placeholder="#000fff" maxlength="7" type="text">
-                  </div>
-               </form>
-            </div>
-            <!-- /col-md-6 -->
-            <div class="col-md-6">
-               <form class="pickColor form-inline" data-ctype="backgroundColor" data-ctarget="btn3">
+                        <div class="col-xs-8 text-right input-group">
+                            <input class="form-control pull-right" type="color">
+                            <input class="form-control pull-right" placeholder="#000fff" maxlength="7" type="text">
+                        </div>
+                    </form>
+                </div>
+                <!-- /col-md-6 -->
+                <div class="col-md-6">
+                    <form class="pickColor form-inline" data-ctype="backgroundColor" data-ctarget="btn3">
 
-                  <button data-btarget="btn" data-btype="borderRadius" data-ctype="backgroundColor" data-ctarget="btn3" class="demo col-xs-4 control-label btn btn-inverse btn-embossed">
+                        <button data-btarget="btn" data-btype="borderRadius" data-ctype="backgroundColor" data-ctarget="btn3" class="demo col-xs-4 control-label btn btn-inverse btn-embossed">
                      <span class="demo" data-ctype="color" data-ctarget="btntext">Create Raffle</span>
                   </button>
 
-                  <div class="col-xs-8 text-right input-group">
-                     <input class="form-control pull-right" type="color">
-                     <input class="form-control pull-right" placeholder="#000fff" maxlength="7" type="text">
-                  </div>
-               </form>
-            </div>
-            <!-- /col-md-6 -->
-            <div class="col-md-6">
-               <form class="pickColor form-inline" data-ctype="backgroundColor" data-ctarget="btn4">
+                        <div class="col-xs-8 text-right input-group">
+                            <input class="form-control pull-right" type="color">
+                            <input class="form-control pull-right" placeholder="#000fff" maxlength="7" type="text">
+                        </div>
+                    </form>
+                </div>
+                <!-- /col-md-6 -->
+                <div class="col-md-6">
+                    <form class="pickColor form-inline" data-ctype="backgroundColor" data-ctarget="btn4">
 
-                  <button data-btarget="btn" data-btype="borderRadius" data-ctype="backgroundColor" data-ctarget="btn4" class="demo col-xs-4 control-label btn btn-primary btn-embossed">
+                        <button data-btarget="btn" data-btype="borderRadius" data-ctype="backgroundColor" data-ctarget="btn4" class="demo col-xs-4 control-label btn btn-primary btn-embossed">
                      <span class="demo" data-ctype="color" data-ctarget="btntext">Public Raffles</span>
                   </button>
 
-                  <div class="col-xs-8 text-right input-group">
-                     <input class="form-control pull-right" type="color">
-                     <input class="form-control pull-right" placeholder="#000fff" maxlength="7" type="text">
-                  </div>
-               </form>
+                        <div class="col-xs-8 text-right input-group">
+                            <input class="form-control pull-right" type="color">
+                            <input class="form-control pull-right" placeholder="#000fff" maxlength="7" type="text">
+                        </div>
+                    </form>
+                </div>
+                <!-- /col-md-6 -->
+                <div class="clear separator col-md-12"></div>
+                <!-- /clear -->
+                <div class="col-md-6">
+                    <form class="pickColor form-inline" data-ctype="color" data-ctarget="btntext">
+                        <label class="col-xs-6 control-label">Text color</label>
+                        <div class="col-xs-6 text-right input-group">
+                            <input class="form-control pull-right" type="color">
+                            <input class="form-control pull-right" placeholder="#000fff" maxlength="7" type="text">
+                        </div>
+                    </form>
+                </div>
+                <!-- /col-md-6 -->
+                <div class="col-md-6">
+                    <form class="borderDemo form-inline" data-btype="borderRadius" data-btarget="btn">
+                        <label class="col-xs-6 control-label">Border radius</label>
+                        <div class="col-xs-6 text-right input-group">
+                            <input class="form-control pull-right" type="number" step=".1" max="100" min="0">
+                            <span class="input-group-addon">em</span>
+                        </div>
+                    </form>
+                </div>
+                <!-- /col-md-6 -->
             </div>
-            <!-- /col-md-6 -->
-            <div class="clear separator col-md-12"></div>
-            <!-- /clear -->
-            <div class="col-md-6">
-               <form class="pickColor form-inline" data-ctype="color" data-ctarget="btntext">
-                  <label class="col-xs-6 control-label">Text color</label>
-                  <div class="col-xs-6 text-right input-group">
-                     <input class="form-control pull-right" type="color">
-                     <input class="form-control pull-right" placeholder="#000fff" maxlength="7" type="text">
-                  </div>
-               </form>
-            </div>
-            <!-- /col-md-6 -->
-            <div class="col-md-6">
-               <form class="borderDemo form-inline" data-btype="borderRadius" data-btarget="btn">
-                  <label class="col-xs-6 control-label">Border radius</label>
-                  <div class="col-xs-6 text-right input-group">
-                     <input class="form-control pull-right" type="number" step=".1" max="100" min="0">
-                     <span class="input-group-addon">em</span>
-                  </div>
-               </form>
-            </div>
-            <!-- /col-md-6 -->
-         </div>
-         <!-- /row buttons-->
+            <!-- /row buttons-->
 
-         <hr>
+            <hr>
 
-         <div class="row">
-            <div class="col-md-12 text-center">
-               <h2>Background</h2>
-            </div>
-            <div class="col-md-6">
-               <form class="form-horizontal" data-backtarget="link">
-                  <input class="form-control" type="text" placeholder="Image url" autocomplete="off">
-                  <input type="submit" class="btn btn-embossed btn-primary full-width">
-               </form>
-            </div>
-            <!-- /col-md-6 -->
-            <div class="col-md-6">
-               <form class="form-horizontal" data-backtarget="file">
-                  <div class="fileInput">
-                     <input class="form-control" type="text" disabled="true" placeholder="Import image from you computer" autocomplete="off">
-                     <input class="form-control" type="file">
-                  </div>
-                  <input type="submit" class="btn btn-embossed btn-primary full-width ">
-               </form>
-            </div>
-            <!-- /col-md-6 -->
-            <div class="col-md-6">
-               <form class="form-inline">
-                  <label class="col-xs-6 control-label">Background Size</label>
-                  <div class="col-xs-6 input-group">
-                     <select class="form-control" data-backtarget="size">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <h2>Background</h2>
+                </div>
+                <div class="col-md-6">
+                    <form class="form-horizontal" data-backtarget="link">
+                        <input class="form-control" type="text" placeholder="Image url" autocomplete="off">
+                        <input type="submit" class="btn btn-embossed btn-primary full-width">
+                    </form>
+                </div>
+                <!-- /col-md-6 -->
+                <div class="col-md-6">
+                    <form class="form-horizontal" data-backtarget="file">
+                        <div class="fileInput">
+                            <input class="form-control" type="text" disabled="true" placeholder="Import image from you computer" autocomplete="off">
+                            <input class="form-control" type="file">
+                        </div>
+                        <input type="submit" class="btn btn-embossed btn-primary full-width ">
+                    </form>
+                </div>
+                <!-- /col-md-6 -->
+                <div class="col-md-6">
+                    <form class="form-inline">
+                        <label class="col-xs-6 control-label">Background Size</label>
+                        <div class="col-xs-6 input-group">
+                            <select class="form-control" data-backtarget="size">
                         <option value="">Default</option>
                         <option value="contain">Contain</option>
                         <option value="cover">Cover</option>
                      </select>
-                  </div>
-               </form>
+                        </div>
+                    </form>
+                </div>
+                <!-- /col-md-6 -->
+                <div class="col-md-6">
+                    <form class="form-inline checkbox">
+                        <label for="backgroundFixed" class="col-xs-6 control-label">Fixed Background</label>
+                        <div class="checkbox col-xs-6 input-group">
+                            <input type="checkbox" id="backgroundFixed" data-backtarget="fixed">
+                            <label for="backgroundFixed" class="pull-right"><span class="ui"></span></label>
+                        </div>
+                    </form>
+                </div>
+                <!-- /col-md-6 -->
             </div>
-            <!-- /col-md-6 -->
-            <div class="col-md-6">
-               <form class="form-inline checkbox">
-                  <label for="backgroundFixed" class="col-xs-6 control-label">Fixed Background</label>
-                  <div class="checkbox col-xs-6 input-group">
-                     <input type="checkbox" id="backgroundFixed" data-backtarget="fixed">
-                     <label for="backgroundFixed" class="pull-right"><span class="ui"></span></label>
-                  </div>
-               </form>
-            </div>
-            <!-- /col-md-6 -->
-         </div>
-         <!-- /row background-->
+            <!-- /row background-->
 
-         <hr>
+            <hr>
 
-         <div class="row" id="fontDemo">
-            <div class="col-md-12 text-center">
-               <a href="helpFont.html" target="_blank" class="help btn btn-inverse btn-embossed">?</a>
-               <h2>Custom font</h2>
-            </div>
+            <div class="row" id="fontDemo">
+                <div class="col-md-12 text-center">
+                    <a href="helpFont.html" target="_blank" class="help btn btn-inverse btn-embossed">?</a>
+                    <h2>Custom font</h2>
+                </div>
 
-            <div class="col-md-12">
-               <form class="row form-inline" data-font="url">
-                  <div class="inlineForm col-md-10">
-                     <input class="form-control" type="text" placeholder="Google font url" autocomplete="off">
-                  </div>
-                  <div class="inlineForm col-md-2">
-                     <input type="submit" class="btn btn-embossed btn-primary">
-                  </div>
-               </form>
-            </div>
-            <!-- /col-md-12 -->
+                <div class="col-md-12">
+                    <form class="row form-inline" data-font="url">
+                        <div class="inlineForm col-md-10">
+                            <input class="form-control" type="text" placeholder="Google font url" autocomplete="off">
+                        </div>
+                        <div class="inlineForm col-md-2">
+                            <input type="submit" class="btn btn-embossed btn-primary">
+                        </div>
+                    </form>
+                </div>
+                <!-- /col-md-12 -->
 
-            <div class="col-md-6">
-               <form class="form-inline" data-font="global">
-                  <label class="col-xs-6 control-label">Global font :</label>
-                  <div class="col-xs-6 input-group">
-                     <select class="form-control" disabled>
+                <div class="col-md-6">
+                    <form class="form-inline" data-font="global">
+                        <label class="col-xs-6 control-label">Global font :</label>
+                        <div class="col-xs-6 input-group">
+                            <select class="form-control" disabled>
                         <option value="">Default</option>
                      </select>
-                  </div>
-               </form>
-            </div>
-            <!-- /col-md-6 -->
+                        </div>
+                    </form>
+                </div>
+                <!-- /col-md-6 -->
 
-            <div class="col-md-6">
-               <form class="form-inline" data-font="title">
-                  <label class="col-xs-6 control-label">Title font :</label>
-                  <div class="col-xs-6 input-group">
-                     <select class="form-control" disabled>
+                <div class="col-md-6">
+                    <form class="form-inline" data-font="title">
+                        <label class="col-xs-6 control-label">Title font :</label>
+                        <div class="col-xs-6 input-group">
+                            <select class="form-control" disabled>
                         <option value="">Default</option>
                      </select>
-                  </div>
-               </form>
+                        </div>
+                    </form>
+                </div>
+                <!-- /col-md-6 -->
+
+                <div class="col-md-12 Font demo text-center" data-font="demo">
+                    <h3>Test what you want</h3>
+                    <br/>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
+                        in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    </p>
+                </div>
+                <!-- /col-md-12 -->
+
             </div>
-            <!-- /col-md-6 -->
+            <!-- /row font-->
 
-            <div class="col-md-12 Font demo text-center" data-font="demo">
-               <h3>Test what you want</h3>
-               <br/>
-               <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                  in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-               </p>
+            <hr>
+
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <a href="helpCustomCSS.html" target="_blank" class="help btn btn-inverse btn-embossed">?</a>
+                    <h2>Custom CSS ( optional )</h2>
+                </div>
+                <div class="col-md-12 text-center">
+                    <textarea class="form-control" rows="3" id="customCSS"></textarea>
+                </div>
             </div>
-            <!-- /col-md-12 -->
+            <!-- /row custom css rules -->
+            <hr>
 
-         </div>
-         <!-- /row font-->
-
-         <hr>
-
-         <div class="row">
-            <div class="col-md-12 text-center">
-               <a href="helpCustomCSS.html" target="_blank" class="help btn btn-inverse btn-embossed">?</a>
-               <h2>Custom CSS ( optional )</h2>
+            <div class="row">
+                <div class="col-md-12 text-right">
+                    <button type="submit" class="btn btn-embossed btn-inverse pull-left" id="ReturnToMain"><i class="i-left-big"></i> Return to the main page</button>
+                    <button type="submit" class="btn btn-embossed btn-inverse" id="ReloadConfig"><i class="i-ccw"></i> Reset</button>
+                    <button type="submit" class="btn btn-embossed btn-danger" id="Delete"><i class="i-trash-empty"></i> Delete</button>
+                    <button type="submit" class="btn btn-embossed btn-primary" id="Save"><i class="i-floppy"></i> Save</button>
+                    <button type="submit" class="btn btn-embossed btn-primary" id="SaveUse"><i class="i-ok"></i> Save and use</button>
+                </div>
             </div>
-            <div class="col-md-12 text-center">
-               <textarea class="form-control" rows="3" id="customCSS"></textarea>
-            </div>
-         </div>
-         <!-- /row custom css rules -->
-         <hr>
+            <!-- /row save setting -->
 
-         <div class="row">
-            <div class="col-md-12 text-right">
-               <input type="submit" class="btn btn-embossed btn-inverse pull-left" value="Return to the main page" id="ReturnToMain">
-               <input type="submit" class="btn btn-embossed btn-inverse" value="Reset" id="ReloadConfig">
-               <input type="submit" class="btn btn-embossed btn-danger" value="Delete" id="Delete">
-               <input type="submit" class="btn btn-embossed btn-primary" value="Save" id="Save">
-               <input type="submit" class="btn btn-embossed btn-primary" value="Save and use" id="SaveUse">
-            </div>
-         </div>
-         <!-- /row save setting -->
+        </div>
+        <!-- /container -->
+    </div>
+    <!-- /editSection -->
 
-      </div>
-      <!-- /container -->
-   </div>
-   <!-- /editSection -->
+    <!-- Libs -->
+    <script src="/js/lib/constructDOM.js"></script>
 
-   <!-- Libs -->
-   <script src="/js/lib/constructDOM.js"></script>
+    <!--Load templates -->
+    <script src="js/template/available.js"></script>
+    <script src="js/template/loadTemplate.js"></script>
+    <script src="js/template/saveTemplate.js"></script>
+    <script src="js/template/display.js"></script>
 
-   <!--Load templates -->
-   <script src="js/template/available.js"></script>
-   <script src="js/template/loadTemplate.js"></script>
-   <script src="js/template/saveTemplate.js"></script>
-   <script src="js/template/display.js"></script>
+    <!-- Edit/create template -->
+    <script src="js/template/colorForm.js"></script>
+    <script src="js/template/borderForm.js"></script>
+    <script src="js/template/backgroundForm.js"></script>
+    <script src="js/template/googleFont.js"></script>
 
-   <!-- Edit/create template -->
-   <script src="js/template/colorForm.js"></script>
-   <script src="js/template/borderForm.js"></script>
-   <script src="js/template/backgroundForm.js"></script>
-   <script src="js/template/googleFont.js"></script>
-
-   <!-- Global -->
-   <script src="js/template/BuildUsedTemplate.js"></script>
+    <!-- Global -->
+    <script src="js/template/BuildUsedTemplate.js"></script>
 
 </body>
 
