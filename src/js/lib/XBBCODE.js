@@ -94,19 +94,7 @@ const XBBCODE_CONSTRUCTOR = function ( parseAdmin ) {
 
                 let colorCode = ( params.substr( 1 ) ).toLowerCase() || "black";
                 colorCode = colorCode.replace( /;/g, '' );
-
-                colorNamePattern.lastIndex = 0;
-                colorCodePattern.lastIndex = 0;
-
-                if ( !colorNamePattern.test( colorCode ) ) {
-                    if ( !colorCodePattern.test( colorCode ) ) {
-                        colorCode = "black";
-                    } else {
-                        if ( colorCode.substr( 0, 1 ) !== "#" ) {
-                            colorCode = "#" + colorCode;
-                        }
-                    }
-                }
+                colorCode = colorCode.replace( /"/g, '\\"' );
 
                 return '<span style="color:' + colorCode + '">';
             },

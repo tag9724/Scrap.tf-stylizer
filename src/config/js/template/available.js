@@ -34,8 +34,8 @@ const DEFAULT = [{
     name: "Dark Theme",
     id: "dark",
     colors: {
-        link: "#148c7b",
         text: "#d8d8d8",
+        link: "#608b9f",
         back1: "#252525",
         back2: "#202020",
         backMsg: "#252525",

@@ -5,7 +5,7 @@ footer {
 }
 
 footer:after {
-    content: "ScrapTF-Styliser v1.3.2";
+    content: "ScrapTF-Styliser v1.3.4";
     position: absolute;
     bottom: 0;
     left: 0;

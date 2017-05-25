@@ -138,7 +138,7 @@ function AppendAllSavedRaffle() {
                         let JSONFormat = {
                             add: "boolean",
                             date: "number",
-                            items: "string",
+                            items: "object",
                             owner: "object",
                             raffleID: "string",
                             title: "string"

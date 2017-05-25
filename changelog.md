@@ -282,7 +282,7 @@
 - New BBCODE system implemented
 - Youtube videos preview on raffles was replaced by iframes
 - Fixed UI bugs with template.css
-- Removed profile stats feature 
+- Removed profile stats feature
 - Background.js added for cleaning old profiles stats
 - Added permissions for youtube.com and youtu.be
 - Merged inject.js with injectMulti.js
@@ -292,7 +292,7 @@
 - Clean up the manifest.json
 - Bug fixed : loaded raffle message not injected on new CK-Editor ( createRaffle.js )
 - Bug fixed : Save raffle template don't save enter message and raffle content ( createRaffle.js )
-- Bug fixed : name and date don't appear on favorite raffles page ( DisplayFavoritesRaffles.js ) 
+- Bug fixed : name and date don't appear on favorite raffles page ( DisplayFavoritesRaffles.js )
 - Bug fixed : ended raffle don't show number of reclaimed items
 
 ## 30 January 2017
@@ -302,7 +302,7 @@
 - Updated emotes list
 - Fixed BBCODE parsed on puzzle without any template used
 
-## 01 February 2017
+## 02 February 2017
 
 **v1.3.2** | RIP popup
 
@@ -310,3 +310,20 @@
 - Multiple tabs opened when trading will no longer play the notification sound multiple time
 - Possibility to set the volume of the notification sound
 - Bug fixed : Moovistrip don't appear on puzzles raffle
+
+## 05 February 2017
+
+**v1.3.3**
+
+- Fixed UI bug
+- Bug fixed : "import favorite raffles" button
+
+## 25 May 2017
+
+**v1.3.4**
+
+- Updated items-shema.js
+- Updated ScrapTF emotes list
+- Fixed UI bugs
+- BBCODE fixed bug color=RonaldDD replaced by color=black
+- BBCODE fixed bug with multiple same link
