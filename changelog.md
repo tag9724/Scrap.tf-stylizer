@@ -327,3 +327,10 @@
 - Fixed UI bugs
 - BBCODE fixed bug color=RonaldDD replaced by color=black
 - BBCODE fixed bug with multiple same link
+
+## 14 June 2017
+
+**v1.3.5**
+
+- Fixed BBCODE parsing on admins raffles
+- Updated items-shema.js

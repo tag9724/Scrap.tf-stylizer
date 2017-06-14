@@ -3,7 +3,7 @@
 
     "name": "Scrap.tf stylizer",
     "description": "This extension give more features for scrap.tf",
-    "version": "1.3.4",
+    "version": "1.3.5",
 
     "icons": {
         "16": "img/icon.png",

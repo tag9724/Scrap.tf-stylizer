@@ -74,10 +74,18 @@ if (typeof BBCode === "undefined") {
           i: [/(<em>)/gi, /(<\/em>)/g],
           s: [/(<s>)/gi, /(<\/s>)/g],
           u: [/(<u>)/gi, /(<\/u>)/g],
-          code: [/(<code>)/gi, /(<\/code>)/g]
+          code: [/(<code>)/gi, /(<\/code>)/g],
+          style: [/(<style>)/gi, /(<\/style>)/g],
+          h1: [/(<h1>)/gi, /(<\/h1>)/g],
+          h2: [/(<h2>)/gi, /(<\/h2>)/g],
+          h3: [/(<h3>)/gi, /(<\/h3>)/g],
+          h4: [/(<h4>)/gi, /(<\/h4>)/g],
+          h5: [/(<h5>)/gi, /(<\/h5>)/g],
+          h6: [/(<h6>)/gi, /(<\/h6>)/g],
         },
         heart: /<i.*?class=".*?fa-heart"><\/i>/gi,
-        br: /(<br>|<br\/>)/gi
+        br: /(<br>|<br\/>)/gi,
+        comment: /(?=<!--)([\s\S]*?)-->/g
       };
 
       /* TODO put an explicit comment here */
@@ -175,6 +183,7 @@ if (typeof BBCode === "undefined") {
 
     UnParse(str, reparse) {
 
+      str = str.replace(this.unparse.comment, '');
       str = this.replaceHtmlEntites(str);
       let res, result = str;
 
